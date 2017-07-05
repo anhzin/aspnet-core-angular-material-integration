@@ -142,3 +142,7 @@ md-nav-list.mat-nav-list .mat-subheader {
 .blue-app .mat-primary .mat-option.mat-selected {
     color: map-get($mat-blue, 400);
 }
+
+div.cdk-overlay-container {
+    background-color: transparent;
+}

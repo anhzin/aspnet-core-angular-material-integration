@@ -8,15 +8,16 @@ import { ThemeService } from '../../services/theme.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    materialTheme: string = 'green-app';
+    materialTheme = 'green-app';
 
     themes: Theme[] = new Array<Theme>();
 
-    constructor(private themeService: ThemeService) {}
+    constructor(private themeService: ThemeService) {
+    }
 
     ngOnInit() {
         this.themes = this.themeService.getThemes();
-        
+
         this.themeService.activeTheme.subscribe(theme => {
             this.materialTheme = theme.id;
         });
