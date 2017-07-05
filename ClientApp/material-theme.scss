@@ -99,7 +99,9 @@ md-nav-list.mat-nav-list .mat-subheader {
 .green-app code,
 .green-app .app-body a,
 .green-app .app-body a:visited,
-.green-app a.active div.mat-list-item-content {
+.green-app a.active div.mat-list-item-content,
+.green-app .md-option.mat-selected.map-primary,
+.green-app .mat-primary .mat-option.mat-selected {
     color: map-get($mat-green, A400);
 }
 
@@ -116,7 +118,9 @@ md-nav-list.mat-nav-list .mat-subheader {
 .red-app code,
 .red-app .app-body a,
 .red-app .app-body a:visited,
-.red-app a.active div.mat-list-item-content {
+.red-app a.active div.mat-list-item-content,
+.red-app .md-option.mat-selected.map-primary,
+.red-app .mat-primary .mat-option.mat-selected {
     color: map-get($mat-red, 400);
 }
 
@@ -133,6 +137,8 @@ md-nav-list.mat-nav-list .mat-subheader {
 .blue-app code,
 .blue-app .app-body a,
 .blue-app .app-body a:visited,
-.blue-app a.active div.mat-list-item-content {
+.blue-app a.active div.mat-list-item-content,
+.blue-app .md-option.mat-selected.map-primary,
+.blue-app .mat-primary .mat-option.mat-selected {
     color: map-get($mat-blue, 400);
 }

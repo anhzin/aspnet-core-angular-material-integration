@@ -1,0 +1,45 @@
+<md-toolbar>Select</md-toolbar>
+<p>
+    <code>md-select</code> is a form control for selecting a value from a set of options, similar to the native <code>select</code> element. See <a href="https://material.angular.io/components/select/overview" target="_blank">documentation</a>.
+</p>
+<h3>Select App Theme:</h3>
+<md-select placeholder="Theme" (change)="setTheme($event)">
+    <md-option *ngFor="let theme of themes" [value]="theme">{{theme.display}}</md-option>
+</md-select>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="select.component.html">
+        <pre class="snippet">&lt;h3&gt;Select App Theme:&lt;/h3&gt;
+&lt;md-select placeholder="Theme" (change)="setTheme($event)"&gt;
+    &lt;md-option *ngFor="let theme of themes" [value]="theme"&gt;{{'{'}}{{'{'}}theme.display{{'}'}}{{'}'}}&lt;/md-option&gt;
+&lt;/md-select&gt;</pre>
+    </md-tab>
+    <md-tab label="select.component.ts">
+        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+import {{'{'}} Theme {{'}'}} from '../../models/theme.model';
+import {{'{'}} ThemeService {{'}'}} from '../../services/theme.service';
+import {{'{'}} MdSelectChange {{'}'}} from '@angular/material';
+
+@Component({{'{'}}
+    selector: 'select-usage',
+    templateUrl: './select.component.html',
+    styleUrls: ['./select.component.css']
+{{'}'}})
+export class SelectComponent {{'{'}}
+    themes: Array&lt;Theme&gt;;
+
+    constructor(private themeService: ThemeService) {{'{'}}
+        this.themes = this.themeService.getThemes();
+    {{'}'}}
+
+    setTheme(event: MdSelectChange) {{'{'}}
+        this.themeService.setTheme(event.value);
+    {{'}'}}
+{{'}'}}</pre>
+    </md-tab>
+    <md-tab label="select.component.css">
+        <pre class="snippet">md-select {{'{'}}
+    margin: 10px 20px 20px 20px;
+{{'}'}}</pre>
+    </md-tab>
+</md-tab-group>

@@ -15,6 +15,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { InputComponent } from './components/input/input.component';
 import { RadioComponent } from './components/radio/radio.component';
+import { SelectComponent } from './components/select/select.component';
 import { CardComponent } from './components/card/card.component';
 
 export const sharedConfig: NgModule = {
@@ -30,6 +31,7 @@ export const sharedConfig: NgModule = {
         DatepickerComponent,
         InputComponent,
         RadioComponent,
+        SelectComponent,
         CardComponent
     ],
     providers: [
@@ -48,6 +50,7 @@ export const sharedConfig: NgModule = {
             { path: 'datepicker', component: DatepickerComponent },
             { path: 'input', component: InputComponent },
             { path: 'radio', component: RadioComponent },
+            { path: 'select', component: SelectComponent },
             { path: 'card', component: CardComponent },
             { path: '**', redirectTo: 'home' }
         ])
