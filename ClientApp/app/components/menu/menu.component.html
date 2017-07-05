@@ -1,0 +1,66 @@
+<md-toolbar>Menu</md-toolbar>
+<p>
+    <code>md-menu</code> is a floating panel containing list of options. See <a href="https://material.angular.io/components/menu/overview"
+        target="_blank">documentation</a>.
+</p>
+<h3>Menu Example</h3>
+<section class="example">
+    <button md-icon-button [mdMenuTriggerFor]="menu">
+        <md-icon>more_vert</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+        <button md-menu-item>
+            <md-icon>dialpad</md-icon>
+            <span>Redial</span>
+        </button>
+        <button md-menu-item disabled>
+            <md-icon>voicemail</md-icon>
+            <span>Check voicemail</span>
+        </button>
+        <button md-menu-item>
+            <md-icon>notifications_off</md-icon>
+            <span>Disable alerts</span>
+        </button>
+    </md-menu>
+</section>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="menu.component.html">
+        <pre class="snippet">&lt;h3&gt;Menu Example&lt;/h3&gt;
+&lt;section class="example"&gt;
+    &lt;button md-icon-button [mdMenuTriggerFor]="menu"&gt;
+        &lt;md-icon&gt;more_vert&lt;/md-icon&gt;
+    &lt;/button&gt;
+    &lt;md-menu #menu="mdMenu"&gt;
+        &lt;button md-menu-item&gt;
+            &lt;md-icon&gt;dialpad&lt;/md-icon&gt;
+            &lt;span&gt;Redial&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;button md-menu-item disabled&gt;
+            &lt;md-icon&gt;voicemail&lt;/md-icon&gt;
+            &lt;span&gt;Check voicemail&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;button md-menu-item&gt;
+            &lt;md-icon&gt;notifications_off&lt;/md-icon&gt;
+            &lt;span&gt;Disable alerts&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/md-menu&gt;
+&lt;/section&gt;</pre>
+    </md-tab>
+    <md-tab label="menu.component.ts">
+        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'menu-usage',
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.css']
+{{'}'}})
+export class MenuComponent {{'{'}}{{'}'}}</pre>
+    </md-tab>
+    <md-tab label="menu.component.css">
+        <pre class="snippet">.example {{'{'}}
+    margin-left: 20px;
+    margin-bottom: 20px;
+{{'}'}}</pre>
+    </md-tab>
+</md-tab-group>
