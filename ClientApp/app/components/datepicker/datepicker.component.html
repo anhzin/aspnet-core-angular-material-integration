@@ -1,0 +1,32 @@
+<md-toolbar>Datepicker</md-toolbar>
+<p>
+    The datepicker allows users to enter a date either through text input, or by choosing a date from the calendar. It is made
+    up of several components and directives that work together. See <a href="https://material.angular.io/components/datepicker/overview"
+        target="_blank">documentation</a>.
+</p>
+<md-input-container>
+    <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" [ngModel]="selectedDate">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+</md-input-container>
+<md-datepicker #picker></md-datepicker>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="datepicker.component.html">
+        <pre class="snippet">&lt;md-input-container&gt;
+    &lt;input mdInput [mdDatepicker]="picker" placeholder="Choose a date" [ngModel]="selectedDate"&gt;
+    &lt;button mdSuffix [mdDatepickerToggle]="picker"&gt;&lt;/button&gt;
+&lt;/md-input-container&gt;
+&lt;md-datepicker #picker&gt;&lt;/md-datepicker&gt;</pre>
+    </md-tab>
+    <md-tab label="datepicker.component.ts">
+        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'datepicker-usage',
+    templateUrl: './datepicker.component.html'
+{{'}'}})
+export class DatepickerComponent {{'{'}}
+    selectedDate: number = Date.now();
+{{'}'}}</pre>
+    </md-tab>
+</md-tab-group>

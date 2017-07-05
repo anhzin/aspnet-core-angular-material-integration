@@ -1,0 +1,96 @@
+<md-toolbar>Checkbox</md-toolbar>
+<p>
+    <code>md-checkbox</code> provides the same functionality as a native <code>&lt;input type="checkbox"&gt;</code> enhanced
+    with Material Design styling and animations. See <a href="https://material.angular.io/components/checkbox/overview" target="_blank">documentation</a>.
+</p>
+<md-card>
+    <md-card-content>
+        <h2 class="example-h2">Checkbox Configuration</h2>
+        <section class="example-section">
+            <md-checkbox class="example-margin" [(ngModel)]="checked">Checked</md-checkbox>
+            <md-checkbox class="example-margin" [(ngModel)]="indeterminate">Indeterminate</md-checkbox>
+        </section>
+        <section class="example-section">
+            <label class="example-margin">Align:</label>
+            <md-radio-group [(ngModel)]="align">
+                <md-radio-button class="example-margin" value="start">Start</md-radio-button>
+                <md-radio-button class="example-margin" value="end">End</md-radio-button>
+            </md-radio-group>
+        </section>
+        <section class="example-section">
+            <md-checkbox class="example-margin" [(ngModel)]="disabled">Disabled</md-checkbox>
+        </section>
+        <h2 class="example-h2">Result</h2>
+        <section class="example-section">
+            <md-checkbox class="example-margin" [checked]="checked" [indeterminate]="indeterminate" [align]="align" [disabled]="disabled">
+                I'm a checkbox
+            </md-checkbox>
+        </section>
+    </md-card-content>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="checkbox.component.html">
+        <pre class="snippet">&lt;md-card&gt;
+    &lt;md-card-content&gt;
+        &lt;h2 class="example-h2"&gt;Checkbox Configuration&lt;/h2&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="checked"&gt;Checked&lt;/md-checkbox&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="indeterminate"&gt;Indeterminate&lt;/md-checkbox&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;label class="example-margin"&gt;Align:&lt;/label&gt;
+            &lt;md-radio-group [(ngModel)]="align"&gt;
+                &lt;md-radio-button class="example-margin" value="start"&gt;Start&lt;/md-radio-button&gt;
+                &lt;md-radio-button class="example-margin" value="end"&gt;End&lt;/md-radio-button&gt;
+            &lt;/md-radio-group&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="disabled"&gt;Disabled&lt;/md-checkbox&gt;
+        &lt;/section&gt;
+        &lt;h2 class="example-h2"&gt;Result&lt;/h2&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-checkbox
+                class="example-margin"
+                [checked]="checked"
+                [indeterminate]="indeterminate"
+                [align]="align"
+                [disabled]="disabled"&gt;
+              I'm a checkbox
+            &lt;/md-checkbox&gt;
+        &lt;/section&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;</pre>
+    </md-tab>
+    <md-tab label="checkbox.component.ts">
+        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'checkbox-usage',
+    templateUrl: './checkbox.component.html',
+    styleUrls: ['./checkbox.component.css']
+{{'}'}})
+export class CheckboxComponent {{'{'}}
+    checked = false;
+    indeterminate = false;
+    align = 'start';
+    disabled = false;
+{{'}'}}</pre>
+    </md-tab>
+    <md-tab label="checkbox.component.css">
+        <pre class="snippet">.example-h2 {{'{'}}
+    margin: 10px;
+{{'}'}}
+
+.example-section {{'{'}}
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+{{'}'}}
+
+.example-margin {{'{'}}
+    margin: 0 10px;
+{{'}'}}</pre>
+    </md-tab>
+</md-tab-group>

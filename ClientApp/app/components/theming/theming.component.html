@@ -1,0 +1,418 @@
+<a href="https://material.angular.io/guide/theming" target="_blank">
+    <h1>Angular Material - Theming</h1>
+</a>
+<h2>Initial Theming Setup</h2>
+<p>
+    Before building out the <code>.scss</code> file that will represent our material theme, as well as app-wide style settings,
+    there is some infrastructure that needs to be added to support theming.
+</p>
+<ol>
+    <li>
+        Install <code>node-sass</code> and <code>sass-loader</code> to enable webpack to transpile Sass into CSS:
+        <div>
+            <pre class="snippet">npm install --save-dev node-sass sass-loader</pre>
+        </div>
+    </li>
+    <li>
+        Remove <code>'@angular/material/prebuilt-themes/deeppurple-amber.css'</code> from the <code>vendor</code> array in
+        <code>webpack.config.vendor.js</code>
+    </li>
+    <li>
+        Add <code>'./ClientApp/material-theme.scss'</code> to the <code>vendor</code> array in <code>webpack.config.vendor.js</code>.
+        This will be created momentarily
+    </li>
+    <li>
+        Configure <code>webpack.config.vendor.js</code> to use <code>sass-loader</code> to transpile Sass and merge it into
+        the <code>vendor.css</code> file that it generates:
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title>webpack.config.vendor.js - clientBundleConfig</md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <pre class="card-snippet">const clientBundleConfig = merge(sharedConfig, {{ '{' }}
+        output: {{ '{' }}
+            path: path.join(__dirname, 'wwwroot', 'dist')
+        {{ '}' }},
+        module: {{ '{' }}
+            rules: [{{ '{' }}
+                    test: /\.css(\?|$)/,
+                    use: extractCSS.extract({{ '{' }}
+                        use: isDevBuild ? 'css-loader' : 'css-loader?minimize'
+                    {{ '}' }})
+                {{ '}' }},
+                {{ '{' }}
+                    test: /\.scss(\?|$)/,
+                    use: extractCSS.extract({{ '{' }}
+                        use: [{{ '{' }} loader: 'css-loader' {{ '}' }}, {{ '{' }} loader: 'sass-loader' {{ '}' }}]
+                    {{ '}' }})
+                {{ '}' }}
+            ]
+        {{ '}' }},
+        plugins: [
+            extractCSS,
+            new webpack.DllPlugin({{ '{' }}
+                path: path.join(__dirname, 'wwwroot', 'dist', '[name]-manifest.json'),
+                name: '[name]_[hash]'
+            {{ '}' }})
+        ].concat(isDevBuild ? [] : [
+            new webpack.optimize.UglifyJsPlugin()
+        ])
+    {{ '}' }});</pre>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title>webpack.config.vendor.js - serverBundleConfig</md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <pre class="card-snippet">const serverBundleConfig = merge(sharedConfig, {{ '{' }}
+        target: 'node',
+        resolve: {{ '{' }}
+            mainFields: ['main']
+        {{ '}' }},
+        output: {{ '{' }}
+            path: path.join(__dirname, 'ClientApp', 'dist'),
+            libraryTarget: 'commonjs2',
+        {{ '}' }},
+        module: {{ '{' }}
+            rules: [{{ '{' }}
+                test: /\.css(\?|$)/,
+                use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize']
+            {{ '}' }},
+             {{ '{' }}
+                test: /\.scss(\?|$)/,
+                use: [{{ '{' }} loader: 'to-string-loader' {{ '}' }}, {{ '{' }} loader: 'css-loader' {{ '}' }}, {{ '{' }} loader: 'sass-loader' {{ '}' }}]
+            {{ '}' }}]
+        },
+        entry: {{ '{' }}
+            vendor: ['aspnet-prerendering']
+        {{ '}' }},
+        plugins: [
+            new webpack.DllPlugin({{ '{' }}
+                path: path.join(__dirname, 'ClientApp', 'dist', '[name]-manifest.json'),
+                name: '[name]_[hash]'
+            {{ '}' }})
+        ]
+    {{ '}' }});</pre>
+                </md-card-content>
+            </md-card>
+        </div>
+    </li>
+    <li>
+        Create a <code>material-theme.scss</code> file in the <code>ClientApp</code> folder
+    </li>
+    <li>
+        Provide initial settings for the theme:
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title>material-theme.scss</md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <pre class="card-snippet">@import '~@angular/material/_theming.scss';
+@include mat-core();
+
+$default-theme: mat-dark-theme(mat-palette($mat-green), mat-palette($mat-red));
+@include angular-material-theme($default-theme);</pre>
+                </md-card-content>
+            </md-card>
+        </div>
+    </li>
+</ol>
+<p>
+    Running the app at this point, you can see that an initial theme has been applied to Angular Material:
+</p>
+<md-card class="image-card">
+    <md-card-header>
+        <md-card-title>Initial Material Theme</md-card-title>
+    </md-card-header>
+    <img md-card-image src="http://i.imgur.com/Tk0ulKB.png" />
+    <md-card-content>
+        <p>An initial theme is applied to the web app</p>
+    </md-card-content>
+</md-card>
+<h2>Global Styles in Sass</h2>
+<p>
+    By default, Angular Material does not include much in the way of global styling. It is a lot more configuration-driven than
+    a more conventional framework like Bootstrap. With this in mind, some global stylings will be added after the initial
+    theme is created.
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/material-theme.scss</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">html, body, app {{ '{' }}
+    margin: 0;
+    height: 100%;
+{{ '}' }}
+
+.mat-typography h1, 
+.mat-typography h2, 
+.mat-typography h3, 
+.mat-typography h4, 
+.mat-typography h5, 
+.mat-typography h6, 
+.mat-typography p,
+md-card.mat-card,
+p.mat-caption {{ '{' }}
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+{{ '}' }}
+
+md-card.mat-card {{ '{' }}
+    margin-bottom: 20px;
+{{ '}' }}
+
+md-card.image-card {{ '{' }}
+    max-width: 600px;
+{{ '}' }}
+
+div.inline-card md-card.mat-card {{ '{' }}
+    display: inline-block;
+{{ '}' }}
+
+a.active {{ '{' }}
+    font-weight: bold;
+{{ '}' }}
+
+md-sidenav-container {{ '{' }}
+    height: 100%;
+{{ '}' }}
+
+pre.snippet {{ '{' }}
+    background-color: rgba(80, 80, 80, .7);
+    display: inline-flex;
+    box-sizing: border;
+    padding: 10px;
+    margin: 10px 15px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+{{ '}' }}
+
+pre.card-snippet {{ '{' }}
+    display: inline-flex;
+    box-sizing: border;
+    padding: 10px;
+    margin: 0px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+{{ '}' }}
+
+pre.snippet, code {{ '{' }}
+    font-family: Consolas, "Lucida Console", Monaco, monospace;
+{{ '}' }}</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<md-card class="image-card">
+    <md-card-header>
+        <md-card-title>Material with Global Styles</md-card-title>
+    </md-card-header>
+    <img md-card-image src="http://i.imgur.com/BYm1BsN.png" />
+    <md-card-content>
+        <p>
+            With the global styles in place, the following are provided:
+        </p>
+        <ul>
+            <li>
+                The web app fills the height and width of the viewport without any padding or margins
+            </li>
+            <li>
+                Base text elements are given some breathing room with margins
+            </li>
+            <li>
+                Infrastructure is provided to allow for image and snippet cards
+            </li>
+            <li>
+                <code>pre</code> and <code>code</code> elements are styled to enable block and inline code snippets. Nothing
+                fancy, but good enough for now.
+            </li>
+        </ul>
+    </md-card-content>
+</md-card>
+<h2>Multiple Material Themes</h2>
+<p>
+    Before modifying the <code>material-theme.scss</code> file, some infrastructure needs to be put in place to support multiple
+    themes:
+</p>
+<ol>
+    <li>
+        In <code>ClientApp/app/components/app/app.component.ts</code>, a <code>materialTheme: string</code> property should
+        be defined
+    </li>
+    <li>
+        In <code>ClientApp/app/components/app/app.component.ts</code>, a <code>themes: any[]</code> property should be defined
+    </li>
+    <li>
+        <code>ClientApp/app/components/app/app.component.ts</code> should implement <code>ngOnInit</code> and build an array
+        of styles that will be defined in <code>material-theme.scss</code>. Also, the initial value of <code>materialTheme</code>        should be set to the first index of the <code>themes</code> array
+        <div>
+            <pre class="snippet">ngOnInit() {{ '{' }}
+    this.themes = [
+        {{ '{' }} id: "green-app", display: "Green" {{ '}' }},
+        {{ '{' }} id: "red-app", display: "Red" {{ '}' }},
+        {{ '{' }} id: "blue-app", display: "Blue" {{ '}' }}
+    ];
+
+    this.materialTheme = this.themes[0].id;
+{{ '}' }}</pre>
+        </div>
+    </li>
+    <li>
+        In <code>ClientApp/app/components/app/app.component.html</code>, the <code>md-sidenav-container</code> should use
+        template binding to set a class based on the value of <code>materialTheme</code>:
+        <div>
+            <pre class="snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;</pre>
+        </div>
+    </li>
+    <li>
+        In <code>ClientApp/app/components/app/app.component.html</code>, the <code>router-outlet</code> should be surrounded
+        by a div with a class of <code>app-body</code>:
+        <div>
+            <pre class="snippet">&lt;div class="app-body"&gt;
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;/div&gt;</pre>
+        </div>
+    </li>
+</ol>
+<p>
+    Here are the full <code>app.component.ts</code> and <code>app.component.html</code> files:
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/app/components/app/app.component.ts</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">import {{ '{' }} Component, OnInit {{ '}' }} from '@angular/core';
+
+@Component({{ '{' }}
+    selector: 'app',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+{{ '}' }})
+export class AppComponent implements OnInit {{ '{' }}
+    materialTheme: string;
+    themes: any[] = new Array&lt;any&gt;();
+
+    ngOnInit() {{ '{' }}
+        this.themes = [
+            {{ '{' }} id: "green-app", display: "Green" {{ '}' }},
+            {{ '{' }} id: "red-app", display: "Red" {{ '}' }},
+            {{ '{' }} id: "blue-app", display: "Blue" {{ '}' }}
+        ];
+
+        this.materialTheme = this.themes[0].id;
+    {{ '}' }}
+{{ '}' }}</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/app/components/app/app.component.html</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;
+  &lt;md-sidenav #sidenav&gt;
+    &lt;md-toolbar color="primary"&gt;
+      &lt;span&gt;Material Documentation - Menu&lt;/span&gt;
+    &lt;/md-toolbar&gt;
+    &lt;md-nav-list&gt;
+      &lt;h3 md-subheader&gt;Getting Started&lt;/h3&gt;
+      &lt;a md-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()"&gt;Home&lt;/a&gt;
+    &lt;/md-nav-list&gt;
+  &lt;/md-sidenav&gt;
+  &lt;md-toolbar color="primary"&gt;
+    &lt;button md-button (click)="sidenav.open()"&gt;Menu&lt;/button&gt;
+    &lt;span class="toolbar-header"&gt;Material Documentation&lt;/span&gt;
+    &lt;span class="example-spacer"&gt;&lt;/span&gt;
+    &lt;button md-button *ngFor="let theme of themes" (click)="materialTheme = theme.id"&gt;{{ '{' }}{{ '{' }}theme.display{{ '}' }}{{ '}' }}&lt;/button&gt;
+    &lt;a md-button href="https://github.com/JaimeStill/AspNetCoreMaterial" target="_blank"&gt;GitHub&lt;/a&gt;
+  &lt;/md-toolbar&gt;
+  &lt;div class="app-body"&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  &lt;/div&gt;
+&lt;/md-sidenav-container&gt;</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<p>
+    Now, add the following styles to the bottom of <code>material-theme.scss</code>:
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/material-theme.scss</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">.green-app {{ '{' }}
+    background-color: black;
+    $green-app-primary: mat-palette($mat-green, A400);
+    $green-app-accent: mat-palette($mat-red);
+    $green-dark: mat-dark-theme($green-app-primary, $green-app-accent);
+    @include angular-material-theme($green-dark);    
+{{ '}' }}
+
+.green-app pre.snippet,
+.green-app pre.card-snippet,
+.green-app code,
+.green-app .app-body a,
+.green-app .app-body a:visited,
+.green-app a.active div.mat-list-item-content {{ '{' }}
+    color: map-get($mat-green, A400);
+{{ '}' }}
+
+.red-app {{ '{' }}
+    background-color: black;
+    $red-app-primary: mat-palette($mat-red);
+    $red-app-accent: mat-palette($mat-blue);
+    $red-dark: mat-dark-theme($red-app-primary, $red-app-accent);
+    @include angular-material-theme($red-dark);
+{{ '}' }}
+
+.red-app pre.snippet,
+.red-app pre.card-snippet,
+.red-app code,
+.red-app .app-body a,
+.red-app .app-body a:visited,
+.red-app a.active div.mat-list-item-content {{ '{' }}
+    color: map-get($mat-red, 400);
+{{ '}' }}
+
+.blue-app {{ '{' }}
+    background-color: black;
+    $blue-app-primary: mat-palette($mat-blue);
+    $blue-app-accent: mat-palette($mat-yellow);
+    $blue-dark: mat-dark-theme($blue-app-primary, $blue-app-accent);
+    @include angular-material-theme($blue-dark);
+{{ '}' }}
+
+.blue-app pre.snippet,
+.blue-app pre.card-snippet,
+.blue-app code,
+.blue-app .app-body a,
+.blue-app .app-body a:visited,
+.blue-app a.active div.mat-list-item-content {{ '{' }}
+    color: map-get($mat-blue, 400);
+{{ '}' }}</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<md-card class="image-card">
+    <md-card-header>
+        <md-card-title>Angular Material - Themed</md-card-title>
+    </md-card-header>
+    <img md-card-image src="https://user-images.githubusercontent.com/14102723/27751251-668ff9d4-5da9-11e7-8a50-754f217e40fc.gif" />
+    <md-card-content>
+        If you run the app now, you'll see that the web app supports multiple themes based on the buttons in the toolbar.
+    </md-card-content>
+</md-card>

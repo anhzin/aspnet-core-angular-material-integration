@@ -1,0 +1,171 @@
+<md-toolbar>Input</md-toolbar>
+<p>
+    <code>md-input-container</code> is a wrapper for native input and textarea elements. This container applies Material
+    Design styles and behavior while still allowing direct access to the underlying native element. The native element wrapped
+    by the md-input-container must be marked with the mdInput directive. See <a href="https://material.angular.io/components/input/overview"
+        target="_blank">documentation</a>.
+</p>
+<h3>Example Input</h3>
+<div>
+    <md-input-container>
+        <input mdInput placeholder="Favorite color" value="Red" />
+    </md-input-container>
+</div>
+<h3>Example Prefix and Suffix</h3>
+<div>
+    <md-input-container color="accent">
+        <span mdPrefix class="prefix">+1</span>
+        <input mdInput type="tel" placeholder="Telephone" />
+        <md-icon mdSuffix>edit</md-icon>
+    </md-input-container>
+</div>
+<h3>Example Form</h3>
+<form class="example-form">
+    <md-input-container class="example-full-width">
+        <input mdInput placeholder="Company (disabled)" disabled value="Google">
+    </md-input-container>
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="First name">
+                </md-input-container>
+            </td>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="Long Last Name That Will Be Truncated">
+                </md-input-container>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Address">1600 Ampitheatre Pkwy</textarea>
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Address 2"></textarea>
+        </md-input-container>
+    </div>
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="City">
+                </md-input-container>
+            </td>
+            <td>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="State">
+                </md-input-container>
+            </td>
+            <td>
+                <md-input-container class="example-full-width">
+                    <md-hint align="start">5 digit postal code</md-hint>
+                    <input mdInput #postalCode maxLength="5" placeholder="Postal Code" value="94043">
+                    <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
+                </md-input-container>
+            </td>
+        </tr>
+    </table>
+</form>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="input.component.html">
+        <pre class="snippet">&lt;h3&gt;Example Input&lt;/h3&gt;
+&lt;div&gt;
+    &lt;md-input-container&gt;
+        &lt;input mdInput placeholder="Favorite color" value="Red" /&gt;
+    &lt;/md-input-container&gt;
+&lt;/div&gt;
+&lt;h3&gt;Example Prefix and Suffix&lt;/h3&gt;
+&lt;div&gt;
+    &lt;md-input-container color="accent"&gt;
+        &lt;span mdPrefix class="prefix"&gt;+1&lt;/span&gt;
+        &lt;input mdInput type="tel" placeholder="Telephone" /&gt;
+        &lt;md-icon mdSuffix&gt;edit&lt;/md-icon&gt;
+    &lt;/md-input-container&gt;
+&lt;/div&gt;
+&lt;h3&gt;Example Form&lt;/h3&gt;
+&lt;form class="example-form"&gt;
+    &lt;md-input-container class="example-full-width"&gt;
+        &lt;input mdInput placeholder="Company (disabled)" disabled value="Google"&gt;
+    &lt;/md-input-container&gt;
+    &lt;table class="example-full-width" cellspacing="0"&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;md-input-container class="example-full-width"&gt;
+                    &lt;input mdInput placeholder="First name"&gt;
+                &lt;/md-input-container&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;md-input-container class="example-full-width"&gt;
+                    &lt;input mdInput placeholder="Long Last Name That Will Be Truncated"&gt;
+                &lt;/md-input-container&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;div&gt;
+        &lt;md-input-container class="example-full-width"&gt;
+            &lt;textarea mdInput placeholder="Address"&gt;1600 Ampitheatre Pkwy&lt;/textarea&gt;
+        &lt;/md-input-container&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;md-input-container class="example-full-width"&gt;
+            &lt;textarea mdInput placeholder="Address 2"&gt;&lt;/textarea&gt;
+        &lt;/md-input-container&gt;
+    &lt;/div&gt;
+    &lt;table class="example-full-width" cellspacing="0"&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;md-input-container class="example-full-width"&gt;
+                    &lt;input mdInput placeholder="City"&gt;
+                &lt;/md-input-container&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;md-input-container class="example-full-width"&gt;
+                    &lt;input mdInput placeholder="State"&gt;
+                &lt;/md-input-container&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;md-input-container class="example-full-width"&gt;
+                    &lt;md-hint align="start"&gt;5 digit postal code&lt;/md-hint&gt;
+                    &lt;input mdInput #postalCode maxLength="5" placeholder="Postal Code" value="94043"&gt;
+                    &lt;md-hint align="end"&gt;{{'{'}}{{'{'}}postalCode.value.length{{'}'}}{{'}'}} / 5&lt;/md-hint&gt;
+                &lt;/md-input-container&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/form&gt;</pre>
+    </md-tab>
+    <md-tab label="input.component.ts">
+        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'input-usage',
+    templateUrl: './input.component.html',
+    styleUrls: ['./input.component.css']
+{{'}'}})
+export class InputComponent {{'{'}}
+{{'}'}}</pre>
+    </md-tab>
+    <md-tab label="input.component.css">
+        <pre class="snippet">form {{'{'}}
+    margin-top: 10px;
+    margin-bottom: 10px;
+{{'}'}}
+
+.prefix {{'{'}}
+    margin-right: 5px;
+{{'}'}}
+
+.example-form {{'{'}}
+    width: 500px;
+{{'}'}}
+
+.example-full-width {{'{'}}
+    width: 100%;
+{{'}'}}</pre>
+    </md-tab>
+</md-tab-group>

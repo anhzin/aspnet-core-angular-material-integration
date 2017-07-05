@@ -1,0 +1,36 @@
+<div [ngClass]="materialTheme" class="app-frame">
+  <md-toolbar color="primary" class="fixed-toolbar">
+    <button md-button (click)="sidenav.toggle()"><md-icon>menu</md-icon></button>
+    <span class="toolbar-header">Web Platform Development</span>
+    <span class="example-spacer"></span>
+    <button md-button *ngFor="let theme of themes" (click)="themeService.setTheme(theme)">{{theme.display}}</button>
+    <a md-button href="https://github.com/JaimeStill/AspNetCoreMaterial" target="_blank">GitHub</a>
+  </md-toolbar>
+  <md-sidenav-container [ngClass]="materialTheme" class="mat-typography">
+    <md-sidenav #sidenav mode="side" opened="true">
+      <md-nav-list>
+        <a md-list-item routerLink="/home" routerLinkActive="active">Home</a>        
+        <md-divider></md-divider>
+        <h3 md-subheader>Downloads</h3>
+        <a md-list-item href="https://nodejs.org/en/" target="_blank">Node</a>
+        <a md-list-item href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>
+        <md-divider></md-divider>
+        <h3 md-subheader>Getting Started</h3>
+        <a md-list-item routerLink="/setup" routerLinkActive="active">Setup</a>
+        <a md-list-item routerLink="/theming" routerLinkActive="active">Theming</a>
+        <a md-list-item routerLink="/typography" routerLinkActive="active">Typography</a>
+        <md-divider></md-divider>
+        <h3 md-subheader>Components</h3>
+        <a md-list-item routerLink="/autocomplete" routerLinkActive="active">Autocomplete</a>
+        <a md-list-item routerLink="/checkbox" routerLinkActive="active">Checkbox</a>
+        <a md-list-item routerLink="/datepicker" routerLinkActive="active">Datepicker</a>
+        <a md-list-item routerLink="/input" routerLinkActive="active">Input</a>
+        <a md-list-item routerLink="/radio" routerLinkActive="active">Radio</a>
+        <a md-list-item routerLink="/card" routerLinkActive="active">Card</a>
+      </md-nav-list>
+    </md-sidenav>
+    <div class="app-body">
+      <router-outlet (activate)="onActivate($event)"></router-outlet>
+    </div>
+  </md-sidenav-container>
+</div>

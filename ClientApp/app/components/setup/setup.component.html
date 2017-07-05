@@ -1,0 +1,470 @@
+<a href="https://material.angular.io/guide/getting-started" target="_blank">
+    <h1>Angular Material - Setup</h1>
+</a>
+<h2>Setting Up the Project</h2>
+<p>
+    This guide will demonstrate how to accomplish the following:
+</p>
+<ul>
+    <li>
+        Scaffold an ASP.NET Core web app project with Angular and Webpack integration using the <a href="https://github.com/aspnet/JavaScriptServices"
+            target="_blank"><code>aspnetcore-spa</code></a> <a href="http://yeoman.io/" target="_blank"><code>yeoman</code></a>        generator.
+    </li>
+    <li>
+        Clear the dependency on <a href="http://getbootstrap.com/" target="_blank">bootstrap</a> as the integrated UI Framework,
+        and establish a baseline starting point for building apps.
+    </li>
+    <li>
+        Integrate <a href="https://material.angular.io/" target="_blank">Angular Material</a> as the UI Framework for the
+        project.
+    </li>
+</ul>
+<h3>Scaffold Project</h3>
+<p>
+    Ensure that both <code>yeoman</code> and the <code>generator-aspnetcore-spa</code> npm modules are installed globally.
+</p>
+<pre class="snippet">npm install -g yo generator-aspnetcore-spa</pre>
+<p>
+    Create a directory that will represent the root of the web project, then open a command window pointed to the newly created
+    directory and run the generator:
+</p>
+<pre class="snippet">yo aspnetcore-spa</pre>
+<md-card class="image-card">
+    <md-card-header>
+        <md-card-title>ASP.NET Core SPA Generator - Configuration</md-card-title>
+    </md-card-header>
+    <img md-card-image src="http://i.imgur.com/WiNB2Ud.png" />
+    <md-card-content>
+        <ol>
+            <li>
+                Select <code>Angular</code>
+            </li>
+            <li>
+                Specify no unit tests
+            </li>
+            <li>
+                Press <kbd>Enter</kbd> to set the project name to the name of the directory
+            </li>
+        </ol>
+    </md-card-content>
+</md-card>
+<md-card class="image-card">
+    <md-card-header>
+        <md-card-title>ASP.NET Core SPA Generator - Complete</md-card-title>
+    </md-card-header>
+    <img md-card-image src="http://i.imgur.com/aUSQevW.png" />
+    <md-card-content>
+        <p>Once scaffolding is complete, open in Visual Studio Code with the command <code>code .</code></p>
+        <p class="mat-caption">This tells Visual Studio Code to open the current directory.</p>
+    </md-card-content>
+</md-card>
+<h3>Establish a Baseline</h3>
+<p>
+    With the project open in Visual Studio Code, perform the following steps to get the project ready:
+</p>
+<ol>
+    <li>
+        Install the following <code>npm</code> modules:
+        <ul>
+            <li>
+                <code>npm install --save core-js</code>
+            </li>
+            <li>
+                <code>npm install --save classlist.js</code>
+            </li>
+            <li>
+                <code>npm install --save web-animations-js</code>
+            </li>
+        </ul>
+    </li>
+    <li>
+        Add the following <code>npm</code> scripts to <code>package.json</code>:
+        <div>
+            <pre class="snippet">"scripts": {{ '{' }}
+  "build": "npm install &amp;&amp; npm run webpack",
+  "webpack": "webpack --config webpack.config.vendor.js &amp;&amp; webpack"
+{{ '}' }}</pre>
+        </div>
+    </li>
+    <li>
+        Delete the <code>bootstrap</code> dependency from <code>project.json</code>
+    </li>
+    <li>
+        Delete <code>bootstrap</code> and <code>bootstrap/dist/css/bootstrap.css</code> from the <code>vendor</code> array
+        in <code>webpack.config.vendor.js</code>
+    </li>
+    <li>
+        Delete the <code>SampleDataController.cs</code> file from the <code>Controllers</code> folder
+    </li>
+    <li>
+        Create a <code>polyfills.ts</code> file in the <code>ClientApp</code> folder
+    </li>
+    <li>
+        Add the following import statement: <code>import './polyfills';</code> in <code>ClientApp/boot-client.ts</code>
+    </li>
+    <li>
+        Delete the following items from the <code>ClientApp/app/app.module.shared.ts</code> file:
+        <ul>
+            <li>
+                <code>import</code> statements for <code>NavMenuComponent</code>, <code>FetchDataComponent</code>, and
+                <code>CounterComponent</code>
+            </li>
+            <li>
+                <code>NavMenuComponent</code>, <code>FetchDataComponent</code>, and <code>CounterComponent</code> from the
+                <code>declarations</code> array
+            </li>
+            <li>
+                <code>CounterComponent</code> and <code>FetchDataComponent</code> routes from the route definitions in
+                <code>RouterModule</code>
+            </li>
+        </ul>
+    </li>
+    <li>
+        Delete the following directories from the <code>ClientApp/app/components</code> folder:
+        <ul>
+            <li><code>counter</code></li>
+            <li><code>fetchdata</code></li>
+            <li><code>navmenu</code></li>
+        </ul>
+    </li>
+    <li>
+        Delete the <code>app.component.css</code> file from <code>ClientApp/app/components/app</code>
+    </li>
+    <li>
+        Delete the contents of <code>app.component.html</code> in <code>ClientApp/app/components/app</code>, and set the
+        contents to just <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>
+    </li>
+    <li>
+        Delete the <code>styleUrls</code> setting in the <code>@Component</code> metadata attribute in <code>ClientApp/app/components/app/app.component.ts</code>
+    </li>
+    <li>
+        Delete the contents of <code>home.component.html</code> in <code>ClientApp/app/components/home</code>, and set the
+        contents to just <code>&lt;h1&gt;ASP.NET Core Angular SPA Baseline&lt;/h1&gt;</code>
+    </li>
+</ol>
+<p>
+    Set the contents of <code>polyfills.ts</code> as shown in the following snippets:
+</p>
+<p class="mat-caption">
+    These polyfills fill missing functionality for Angular for many common browsers
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/polyfills.ts</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">/**
+ * This file includes polyfills needed by Angular and is loaded before the app.
+ * You can add your own extra polyfills to this file.
+ *
+ * This file is divided into 2 sections:
+ *   1. Browser polyfills. These are applied before loading ZoneJS and are sorted by browsers.
+ *   2. Application imports. Files imported after ZoneJS that should be loaded before your main
+ *      file.
+ *
+ * The current setup is for so-called "evergreen" browsers; the last versions of browsers that
+ * automatically update themselves. This includes Safari >= 10, Chrome >= 55 (including Opera),
+ * Edge >= 13 on the desktop, and iOS 10 and Chrome on mobile.
+ *
+ * Learn more in https://angular.io/docs/ts/latest/guide/browser-support.html
+ */
+
+/***************************************************************************************************
+ * BROWSER POLYFILLS
+ */
+
+/** IE9, IE10 and IE11 requires all of the following polyfills. **/
+import 'core-js/es6/symbol';
+import 'core-js/es6/object';
+import 'core-js/es6/function';
+import 'core-js/es6/parse-int';
+import 'core-js/es6/parse-float';
+import 'core-js/es6/number';
+import 'core-js/es6/math';
+import 'core-js/es6/string';
+import 'core-js/es6/date';
+import 'core-js/es6/array';
+import 'core-js/es6/regexp';
+import 'core-js/es6/map';
+import 'core-js/es6/weak-map';
+import 'core-js/es6/set';
+
+/** IE10 and IE11 requires the following for NgClass support on SVG elements */
+import 'classlist.js';  // Run `npm install --save classlist.js`.
+
+/** IE10 and IE11 requires the following to support `@angular/animation`. */
+import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+
+
+/** Evergreen browsers require these. **/
+import 'core-js/es6/reflect';
+import 'core-js/es7/reflect';
+
+
+/** ALL Firefox browsers require the following to support `@angular/animation`. **/
+// import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+
+
+
+/***************************************************************************************************
+ * Zone JS is required by Angular itself.
+ */
+import 'zone.js/dist/zone';  // Included with Angular CLI.
+
+
+
+/***************************************************************************************************
+ * APPLICATION IMPORTS
+ */
+
+/**
+ * Date, currency, decimal and percent pipes.
+ * Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
+ */
+// import 'intl';  // Run `npm install --save intl`.
+/**
+ * Need to import at least one locale-data with intl.
+ */
+// import 'intl/locale-data/jsonp/en';</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<h2>Installing Angular Material</h2>
+<ol>
+    <li>
+        Install the <code>npm</code> module: <code>npm install --save @angular/material</code>
+    </li>
+    <li>
+        Add <code>@angular/material</code> to the <code>vendors</code> array in <code>webpack.config.vendor.js</code>
+    </li>
+    <li>
+        Add one of the pre-built material themes (<code>'@angular/material/prebuilt-themes/deeppurple-amber.css'</code>)
+        to the <code>vendors</code> array in <code>webpack.config.vendor.js</code>
+    </li>
+    <li>
+        Create a <code>app.module.material.ts</code> file in the <code>ClientApp/app</code> directory
+    </li>
+    <li>
+        <code>import</code> the <code>AppMaterialModule</code> and add it to the <code>imports</code> array before <code>RouterModule</code>        in <code>ClientApp/app/app.module.shared.ts</code>
+    </li>
+    <li>
+        <code>import</code> the <code>BrowserAnimationsModule</code> from <code>'@angular/platform-browser/animations'</code>        and add it to the <code>imports</code> array beneath <code>BrowserModule</code>
+    </li>
+</ol>
+
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/app/app.module.material.ts</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
+import {{ '{' }}
+    FullscreenOverlayContainer,
+    MdAutocompleteModule,
+    MdButtonModule,
+    MdButtonToggleModule,
+    MdCardModule,
+    MdCheckboxModule,
+    MdChipsModule,
+    MdCoreModule,
+    MdDatepickerModule,
+    MdDialogModule,
+    MdGridListModule,
+    MdIconModule,
+    MdInputModule,
+    MdListModule,
+    MdMenuModule,
+    MdNativeDateModule,
+    MdProgressBarModule,
+    MdProgressSpinnerModule,
+    MdRadioModule,
+    MdRippleModule,
+    MdSelectModule,
+    MdSidenavModule,
+    MdSliderModule,
+    MdSlideToggleModule,
+    MdSnackBarModule,
+    MdTabsModule,
+    MdToolbarModule,
+    MdTooltipModule,
+    OverlayContainer,
+{{ '}' }} from '@angular/material';  
+
+@NgModule({{ '{' }}
+    exports: [
+        MdAutocompleteModule,
+        MdButtonModule,
+        MdButtonToggleModule,
+        MdCardModule,
+        MdCheckboxModule,
+        MdChipsModule,
+        MdDatepickerModule,
+        MdDialogModule,
+        MdGridListModule,
+        MdIconModule,
+        MdInputModule,
+        MdListModule,
+        MdMenuModule,
+        MdCoreModule,
+        MdProgressBarModule,
+        MdProgressSpinnerModule,
+        MdRadioModule,
+        MdRippleModule,
+        MdSelectModule,
+        MdSidenavModule,
+        MdSlideToggleModule,
+        MdSliderModule,
+        MdSnackBarModule,
+        MdTabsModule,
+        MdToolbarModule,
+        MdTooltipModule,
+        MdNativeDateModule,
+    ]
+{{ '}' }})
+export class AppMaterialModule {{ '{' }}{{ '}' }}</pre>
+        </md-card-content>
+    </md-card>
+</div>
+
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/app/app.module.shared.ts</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
+import {{ '{' }} AppMaterialModule {{ '}' }} from './app.module.material';
+import {{ '{' }} RouterModule {{ '}' }} from '@angular/router';
+
+import {{ '{' }} AppComponent {{ '}' }} from './components/app/app.component'
+import {{ '{' }} HomeComponent {{ '}' }} from './components/home/home.component';
+
+export const sharedConfig: NgModule = {{ '{' }}
+    bootstrap: [ AppComponent ],
+    declarations: [
+        AppComponent,
+        HomeComponent
+    ],
+    imports: [
+        AppMaterialModule,
+        RouterModule.forRoot([
+            {{ '{' }} path: '', redirectTo: 'home', pathMatch: 'full' {{ '}' }},
+            {{ '{' }} path: 'home', component: HomeComponent {{ '}' }},
+            {{ '{' }} path: '**', redirectTo: 'home' {{ '}' }}
+        ])
+    ]
+{{ '}' }};</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/app/app.module.client.ts</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
+import {{ '{' }} BrowserModule {{ '}' }} from '@angular/platform-browser';
+import {{ '{' }} BrowserAnimationsModule {{ '}' }} from '@angular/platform-browser/animations';
+import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';
+import {{ '{' }} HttpModule {{ '}' }} from '@angular/http';
+import {{ '{' }} sharedConfig {{ '}' }} from './app.module.shared';
+
+@NgModule({{ '{' }}
+    bootstrap: sharedConfig.bootstrap,
+    declarations: sharedConfig.declarations,
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpModule,
+        ...sharedConfig.imports
+    ],
+    providers: [
+        {{ '{' }} provide: 'ORIGIN_URL', useValue: location.origin {{ '}' }}
+    ]
+{{ '}' }})
+export class AppModule {{ '{' }}{{ '}' }}</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<p>
+    With this initial infrastructure in place, Angular Material can be used in the app. Update the <code>AppComponent</code>    as shown in the following snippets:
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/app/components/app/app.component.html</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">&lt;md-sidenav-container class="mat-typography"&gt;
+  &lt;md-sidenav #sidenav&gt;
+    &lt;md-toolbar color="primary"&gt;
+      &lt;span&gt;Material Documentation - Menu&lt;/span&gt;
+    &lt;/md-toolbar&gt;
+    &lt;md-nav-list&gt;
+      &lt;h3 md-subheader&gt;Getting Started&lt;/h3&gt;
+      &lt;a md-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()"&gt;Home&lt;/a&gt;
+    &lt;/md-nav-list&gt;
+  &lt;/md-sidenav&gt;
+  &lt;md-toolbar color="primary"&gt;
+    &lt;button md-button (click)="sidenav.open()"&gt;Menu&lt;/button&gt;
+    &lt;span class="toolbar-header"&gt;Material Documentation&lt;/span&gt;
+    &lt;span class="example-spacer"&gt;&lt;/span&gt;
+    &lt;a md-button href="https://github.com/JaimeStill/AspNetCoreMaterial" target="_blank"&gt;GitHub&lt;/a&gt;
+  &lt;/md-toolbar&gt;
+  &lt;div class="app-body"&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  &lt;/div&gt;
+&lt;/md-sidenav-container&gt;</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/app/components/app/app.component.css</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">.example-spacer {{ '{' }}
+    flex: 1 1 auto;
+{{ '}' }}
+
+.toolbar-header {{ '{' }}
+    margin-left: 15px;
+{{ '}' }}</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/app/components/app/app.component.ts</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">import {{ '{' }} Component {{ '}' }} from '@angular/core';
+
+@Component({{ '{' }}
+    selector: 'app',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+{{ '}' }})
+export class AppComponent {{ '{' }}{{ '}' }}</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<p>
+    Run the <code>npm run build</code> script, then run <code>dotnet run</code> to debug the web app. Navigate to <a href="http://localhost:5000"
+        target="_blank">http://localhost:5000</a> in a browser to see Angular Material.
+</p>
+<md-card class="image-card">
+    <md-card-header>
+        <md-card-title>ASP.NET Core Angular Material</md-card-title>
+    </md-card-header>
+    <img md-card-image src="http://i.imgur.com/0JTDuMu.png" />
+    <md-card-content>
+        <p>Still a long way to go, but the initial work is done!</p>
+    </md-card-content>
+</md-card>

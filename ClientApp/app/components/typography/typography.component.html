@@ -1,0 +1,104 @@
+<a href="https://material.angular.io/guide/typography" target="_blank">
+    <h1>Angular Material - Typography</h1>
+</a>
+<h2>General Styling</h2>
+<p>
+    By default, Angular Material doesn't apply any global CSS. In order to make use of Material Typography, you need to specify
+    the appropriate style classes.
+</p>
+<h3>Available Typography Levels</h3>
+<ul>
+    <li>
+        <code>display-4</code>, <code>display-3</code>, <code>display-2</code>, and <code>display-1</code> - Large, one-off
+        headers, usually at the top of the page (e.g. a hero header).
+    </li>
+    <li>
+        <code>headline</code> - Section heading corresponding to the <code>&lt;h1&gt;</code> tag.
+    </li>
+    <li>
+        <code>title</code> - Section heading corresponding to the <code>&lt;h2&gt;</code> tag.
+    </li>
+    <li>
+        <code>subheading-2</code> - Section heading corresponding to the <code>&lt;h3&gt;</code> tag.
+    </li>
+    <li>
+        <code>subheading-1</code> - Section heading corresponding to the <code>&lt;h4&gt;</code> tag.
+    </li>
+    <li>
+        <code>body-1</code> - Base body text.
+    </li>
+    <li>
+        <code>body-2</code> - Bolder body text.
+    </li>
+    <li>
+        <code>caption</code> - Smaller body and hint text.
+    </li>
+    <li>
+        <code>button</code> - Buttons and anchors.
+    </li>
+</ul>
+<h3>Example</h3>
+<pre class="snippet">&lt;p class="mat-caption"&gt;Material Design Caption&lt;/p&gt;</pre>
+<p>
+    The above snippet renders as follows:
+</p>
+<p class="mat-caption">Material Design Caption</p>
+<h2>Typography Sections</h2>
+<p>
+    Alternatively, you can define a markup container with the <code>mat-typography</code> class.
+</p>
+<h3>Example</h3>
+<pre class="snippet">&lt;section class="mat-typography"&gt;
+    &lt;h1&gt;Styled h1 Header&lt;/h1&gt;
+&lt;/section&gt;</pre>
+<p>
+    Continuing from the previous walkthroughs, in <code>ClientApp/app/components/app/app.component.html</code>, add the <code>mat-typography</code>    class to the <code>md-sidenav-container</code> element:
+</p>
+<pre class="snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;</pre>
+<p>
+    This ensures that any of the markup contained in the web app receives the appropriate font.
+</p>
+<h2>Self-hosting Fonts</h2>
+<p>
+    By default, the themes in Angular Material use the <a href="https://fonts.google.com/specimen/Roboto" target="_blank">Roboto</a>    font-face for the overall application typography. Also, the <a href="https://material.io/icons/" target="_blank">Material Design Icons</a>    are used for icon components.
+</p>
+<p>
+    In order to integrate these font-faces into the build, the following steps need to be taken:
+</p>
+<ol>
+    <li>
+        <p>
+            Install <code>roboto-fontface</code> and <code>webpack-material-design-icons</code> modules as <code>devDependencies</code>:
+        </p>
+        <pre class="snippet">npm install --save-dev roboto-fontface webpack-material-design-icons</pre>
+    </li>
+    <li>
+        Add <code>roboto-fontface/css/roboto/roboto-fontface.css</code> and <code>webpack-material-design-icons</code> to
+        the <code>vendors</code> array in <code>webpack.config.vendor.js</code>.
+    </li>
+    <li>
+        Run the <code>npm run build</code> script to install the dependencies and generate the build files.
+    </li>
+</ol>
+<p>
+    Now, the web app self-hosts the fonts and icons used by Angular Material. To demonstrate, add an icon to the <code>Menu</code>    button in <code>ClientApp/app/components/app/app.component.html</code>:
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>ClientApp/app/components/app/app.component.html</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <pre class="card-snippet">&lt;button md-button (click)="sidenav.open()"&gt;&lt;md-icon&gt;menu&lt;/md-icon&gt; Menu&lt;/button&gt;</pre>
+        </md-card-content>
+    </md-card>
+</div>
+<md-card class="image-card">
+    <md-card-header>
+        <md-card-title>Self-hosted Fonts and Icons</md-card-title>
+    </md-card-header>
+    <img md-card-image src="http://i.imgur.com/oFbjDVe.png" />
+    <md-card-content>
+        <p>The <md-icon>menu</md-icon> icon now appears in the Menu button</p>
+    </md-card-content>
+</md-card>
