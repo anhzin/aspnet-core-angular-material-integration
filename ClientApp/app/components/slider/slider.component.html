@@ -1,0 +1,155 @@
+<md-toolbar>Slider</md-toolbar>
+<p>
+    <code>md-slider</code> allows for the selection of a value from a range via mouse, touch, or keyboard, similar to <code>input type="range"</code>.
+    See <a href="https://material.angular.io/components/slider/overview">documentation</a>.
+</p>
+<md-card class="example-card">
+    <md-card-content>
+        <h2 class="example-h2">Slider Configuration</h2>
+        <section class="example-section">
+            <md-input-container class="example-margin">
+                <input mdInput type="number" placeholder="value" [(ngModel)]="value">
+            </md-input-container>
+            <md-input-container class="example-margin">
+                <input mdInput type="number" placeholder="Min value" [(ngModel)]="min">
+            </md-input-container>
+            <md-input-container class="example-margin">
+                <input mdInput type="number" placeholder="Max value" [(ngModel)]="max">
+            </md-input-container>
+            <md-input-container class="example-margin">
+                <input mdInput type="number" placeholder="Step size" [(ngModel)]="step">
+            </md-input-container>
+        </section>
+        <section class="example-section">
+            <md-checkbox class="example-margin" [(ngModel)]="showTicks">Show ticks</md-checkbox>
+            <md-checkbox class="example-margin" [(ngModel)]="autoTicks" *ngIf="showTicks">Auto ticks</md-checkbox>
+            <md-input-container class="example-margin" *ngIf="showTicks && !autoTicks">
+                <input mdInput type="number" placeholder="Tick interval" [(ngModel)]="tickInterval">
+            </md-input-container>
+        </section>
+        <section class="example-section">
+            <md-checkbox class="example-margin" [(ngModel)]="thumbLabel">Show thumb label</md-checkbox>
+        </section>
+        <section class="example-section">
+            <md-checkbox class="example-margin" [(ngModel)]="vertical">Vertical</md-checkbox>
+            <md-checkbox class="example-margin" [(ngModel)]="invert">Inverted</md-checkbox>
+        </section>
+        <section class="example-section">
+            <md-checkbox class="example-margin" [(ngModel)]="disabled">Disabled</md-checkbox>
+        </section>
+        <h2 class="example-h2">Font Size:</h2>
+        <md-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step" [thumb-label]="thumbLabel"
+            [tick-interval]="tickInterval" [value]="value" [vertical]="vertical" [(ngModel)]="value"></md-slider>
+        <h2 class="example-h2">Result:</h2>
+        <section class="example-section">
+            <p [style.font-size]="value+'px'">Slider</p>
+        </section>
+    </md-card-content>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="slider.component.html">
+        <pre class="snippet">&lt;md-card class="example-card"&gt;
+    &lt;md-card-content&gt;
+        &lt;h2 class="example-h2"&gt;Slider Configuration&lt;/h2&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-input-container class="example-margin"&gt;
+                &lt;input mdInput type="number" placeholder="value" [(ngModel)]="value"&gt;
+            &lt;/md-input-container&gt;
+            &lt;md-input-container class="example-margin"&gt;
+                &lt;input mdInput type="number" placeholder="Min value" [(ngModel)]="min"&gt;
+            &lt;/md-input-container&gt;
+            &lt;md-input-container class="example-margin"&gt;
+                &lt;input mdInput type="number" placeholder="Max value" [(ngModel)]="max"&gt;
+            &lt;/md-input-container&gt;
+            &lt;md-input-container class="example-margin"&gt;
+                &lt;input mdInput type="number" placeholder="Step size" [(ngModel)]="step"&gt;
+            &lt;/md-input-container&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="showTicks"&gt;Show ticks&lt;/md-checkbox&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="autoTicks" *ngIf="showTicks"&gt;Auto ticks&lt;/md-checkbox&gt;
+            &lt;md-input-container class="example-margin" *ngIf="showTicks &amp;&amp; !autoTicks"&gt;
+                &lt;input mdInput type="number" placeholder="Tick interval" [(ngModel)]="tickInterval"&gt;
+            &lt;/md-input-container&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="thumbLabel"&gt;Show thumb label&lt;/md-checkbox&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="vertical"&gt;Vertical&lt;/md-checkbox&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="invert"&gt;Inverted&lt;/md-checkbox&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="disabled"&gt;Disabled&lt;/md-checkbox&gt;
+        &lt;/section&gt;
+        &lt;h2 class="example-h2"&gt;Font Size:&lt;/h2&gt;
+        &lt;md-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step" [thumb-label]="thumbLabel"
+            [tick-interval]="tickInterval" [value]="value" [vertical]="vertical" [(ngModel)]="value"&gt;&lt;/md-slider&gt;
+        &lt;h2 class="example-h2"&gt;Result:&lt;/h2&gt;
+        &lt;section class="example-section"&gt;
+            &lt;p [style.font-size]="value+'px'"&gt;Slider&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;</pre>
+    </md-tab>
+    <md-tab label="slider.component.ts">
+        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'slider-usage',
+    templateUrl: './slider.component.html',
+    styleUrls: ['./slider.component.css']
+{{'}'}})
+export class SliderComponent {{'{'}}
+    autoTicks = false;
+    disabled = false;
+    invert = false;
+    max = 48;
+    min = 8;
+    showTicks = true;
+    step = 4;
+    thumbLabel = true;
+    value = 16;
+    vertical = false;
+
+    get tickInterval(): number | 'auto' {{'{'}}
+        return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : null;
+    {{'}'}}
+
+    set tickInterval(v) {{'{'}}
+        this._tickInterval = Number(v);
+    {{'}'}}
+
+    private _tickInterval = 1;
+{{'}'}}</pre>
+    </md-tab>
+    <md-tab label="slider.component.css">
+        <pre class="snippet">.example-h2 {{'{'}}
+    margin: 10px;
+{{'}'}}
+
+.example-section {{'{'}}
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+{{'}'}}
+
+.example-margin {{'{'}}
+    margin: 10px;
+{{'}'}}
+
+.mat-slider-horizontal {{'{'}}
+    width: 300px;
+{{'}'}}
+
+.mat-slider-vertical {{'{'}}
+    height: 300px;
+{{'}'}}
+
+md-card.example-card {{'{'}}
+    display: inline-flex;
+{{'}'}}</pre>
+    </md-tab>
+</md-tab-group>
