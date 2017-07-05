@@ -1,0 +1,114 @@
+<md-toolbar>Slide Toggle</md-toolbar>
+<p>
+    <code>md-slide-toggle</code> is an on/off control that can be toggled via clicking or dragging. See <a href="https://material.angular.io/components/slide-toggle/overview"
+        target="_blank">documentation</a>.
+</p>
+<md-card class="example-card">
+    <md-card-content>
+        <h2 class="example-h2">Slider Configuration</h2>
+        <section class="example-section">
+            <label class="example-margin">Color:</label>
+            <md-radio-group [(ngModel)]="color">
+                <md-radio-button class="example-margin" value="primary">
+                    Primary
+                </md-radio-button>
+                <md-radio-button class="example-margin" value="accent">
+                    Accent
+                </md-radio-button>
+                <md-radio-button class="example-margin" value="warn">
+                    Warn
+                </md-radio-button>
+            </md-radio-group>
+        </section>
+        <section class="example-section">
+            <md-checkbox class="example-margin" [(ngModel)]="checked">Checked</md-checkbox>
+        </section>
+        <section class="example-section">
+            <md-checkbox class="example-margin" [(ngModel)]="disabled">Disabled</md-checkbox>
+        </section>
+        <section class="example-section">
+            <md-slide-toggle class="example-margin"
+                [color]="color"
+                [checked]="checked"
+                [disabled]="disabled"
+                [(ngModel)]="checked">
+              Reveal Secret
+            </md-slide-toggle>
+        </section>
+        <section class="example-section" *ngIf="checked">
+            <p>
+                Vote for me, and all of your wildest dreams will come true. - Pedro
+            </p>
+        </section>
+    </md-card-content>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="slide-toggle.component.html">
+        <pre class="snippet">&lt;md-card class="example-card"&gt;
+    &lt;md-card-content&gt;
+        &lt;h2 class="example-h2"&gt;Slider Configuration&lt;/h2&gt;
+        &lt;section class="example-section"&gt;
+            &lt;label class="example-margin"&gt;Color:&lt;/label&gt;
+            &lt;md-radio-group [(ngModel)]="color"&gt;
+                &lt;md-radio-button class="example-margin" value="primary"&gt;
+                    Primary
+                &lt;/md-radio-button&gt;
+                &lt;md-radio-button class="example-margin" value="accent"&gt;
+                    Accent
+                &lt;/md-radio-button&gt;
+                &lt;md-radio-button class="example-margin" value="warn"&gt;
+                    Warn
+                &lt;/md-radio-button&gt;
+            &lt;/md-radio-group&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="checked"&gt;Checked&lt;/md-checkbox&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-checkbox class="example-margin" [(ngModel)]="disabled"&gt;Disabled&lt;/md-checkbox&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-slide-toggle class="example-margin"
+                [color]="color"
+                [checked]="checked"
+                [disabled]="disabled"
+                [(ngModel)]="checked"&gt;
+              Reveal Secret
+            &lt;/md-slide-toggle&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section" *ngIf="checked"&gt;
+            &lt;p&gt;
+                Vote for me, and all of your wildest dreams will come true. - Pedro
+            &lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;</pre>
+    </md-tab>
+    <md-tab label="slide-toggle.component.ts">
+        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'slide-toggle-usage',
+    templateUrl: './slide-toggle.component.html',
+    styleUrls: ['./slide-toggle.component.css']
+{{'}'}})
+export class SlideToggleComponent {{'{'}}{{'}'}}</pre>
+    </md-tab>
+    <md-tab label="slide-toggle.component.css">
+        <pre class="snippet">.example-h2 {{'{'}}
+    margin: 10px;
+{{'}'}}
+
+.example-section {{'{'}}
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+{{'}'}}
+
+.example-margin {{'{'}}
+    margin: 10px;
+{{'}'}}</pre>
+    </md-tab>
+</md-tab-group>

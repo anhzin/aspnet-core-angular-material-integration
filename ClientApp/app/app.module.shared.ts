@@ -17,6 +17,8 @@ import { InputComponent } from './components/input/input.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { SelectComponent } from './components/select/select.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
+
 import { CardComponent } from './components/card/card.component';
 
 export const sharedConfig: NgModule = {
@@ -34,6 +36,7 @@ export const sharedConfig: NgModule = {
         RadioComponent,
         SelectComponent,
         SliderComponent,
+        SlideToggleComponent,
         CardComponent
     ],
     providers: [
@@ -54,6 +57,7 @@ export const sharedConfig: NgModule = {
             { path: 'radio', component: RadioComponent },
             { path: 'select', component: SelectComponent },
             { path: 'slider', component: SliderComponent },
+            { path: 'slide-toggle', component: SlideToggleComponent },
             { path: 'card', component: CardComponent },
             { path: '**', redirectTo: 'home' }
         ])
