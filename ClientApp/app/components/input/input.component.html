@@ -1,9 +1,9 @@
 <md-toolbar>Input</md-toolbar>
 <p>
-    <code>md-input-container</code> is a wrapper for native input and textarea elements. This container applies Material
-    Design styles and behavior while still allowing direct access to the underlying native element. The native element wrapped
-    by the md-input-container must be marked with the mdInput directive. See <a href="https://material.angular.io/components/input/overview"
-        target="_blank">documentation</a>.
+    <code class="snippet">md-input-container</code> is a wrapper for native input and textarea elements. This container applies
+    Material Design styles and behavior while still allowing direct access to the underlying native element. The native element
+    wrapped by the <code class="snippet">md-input-container</code> must be marked with the <code class="snippet">mdInput</code>    
+    directive. See <a href="https://material.angular.io/components/input/overview" target="_blank">documentation</a>.
 </p>
 <h3>Example Input</h3>
 <div>
@@ -73,7 +73,7 @@
 <md-toolbar color="primary">Code</md-toolbar>
 <md-tab-group>
     <md-tab label="input.component.html">
-        <pre class="snippet">&lt;h3&gt;Example Input&lt;/h3&gt;
+        <prism language="markup">&lt;h3&gt;Example Input&lt;/h3&gt;
 &lt;div&gt;
     &lt;md-input-container&gt;
         &lt;input mdInput placeholder="Favorite color" value="Red" /&gt;
@@ -137,10 +137,10 @@
             &lt;/td&gt;
         &lt;/tr&gt;
     &lt;/table&gt;
-&lt;/form&gt;</pre>
+&lt;/form&gt;</prism>
     </md-tab>
     <md-tab label="input.component.ts">
-        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+        <prism language="typescript">import {{'{'}} Component {{'}'}} from '@angular/core';
 
 @Component({{'{'}}
     selector: 'input-usage',
@@ -148,10 +148,10 @@
     styleUrls: ['./input.component.css']
 {{'}'}})
 export class InputComponent {{'{'}}
-{{'}'}}</pre>
+{{'}'}}</prism>
     </md-tab>
     <md-tab label="input.component.css">
-        <pre class="snippet">form {{'{'}}
+        <prism language="css">form {{'{'}}
     margin-top: 10px;
     margin-bottom: 10px;
 {{'}'}}
@@ -166,6 +166,6 @@ export class InputComponent {{'{'}}
 
 .example-full-width {{'{'}}
     width: 100%;
-{{'}'}}</pre>
+{{'}'}}</prism>
     </md-tab>
 </md-tab-group>

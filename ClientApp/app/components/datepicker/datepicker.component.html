@@ -12,14 +12,14 @@
 <md-toolbar color="primary">Code</md-toolbar>
 <md-tab-group>
     <md-tab label="datepicker.component.html">
-        <pre class="snippet">&lt;md-input-container&gt;
+        <prism language="markup">&lt;md-input-container&gt;
     &lt;input mdInput [mdDatepicker]="picker" placeholder="Choose a date" [ngModel]="selectedDate"&gt;
     &lt;button mdSuffix [mdDatepickerToggle]="picker"&gt;&lt;/button&gt;
 &lt;/md-input-container&gt;
-&lt;md-datepicker #picker&gt;&lt;/md-datepicker&gt;</pre>
+&lt;md-datepicker #picker&gt;&lt;/md-datepicker&gt;</prism>
     </md-tab>
     <md-tab label="datepicker.component.ts">
-        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+        <prism language="typescript">import {{'{'}} Component {{'}'}} from '@angular/core';
 
 @Component({{'{'}}
     selector: 'datepicker-usage',
@@ -27,6 +27,6 @@
 {{'}'}})
 export class DatepickerComponent {{'{'}}
     selectedDate: number = Date.now();
-{{'}'}}</pre>
+{{'}'}}</prism>
     </md-tab>
 </md-tab-group>

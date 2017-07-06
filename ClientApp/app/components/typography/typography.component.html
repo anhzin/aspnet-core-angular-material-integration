@@ -9,52 +9,77 @@
 <h3>Available Typography Levels</h3>
 <ul>
     <li>
-        <code>display-4</code>, <code>display-3</code>, <code>display-2</code>, and <code>display-1</code> - Large, one-off
+        <code class="snippet">display-4</code>, <code class="snippet">display-3</code>, <code class="snippet">display-2</code>, and <code class="snippet">display-1</code> - Large, one-off
         headers, usually at the top of the page (e.g. a hero header).
     </li>
     <li>
-        <code>headline</code> - Section heading corresponding to the <code>&lt;h1&gt;</code> tag.
+        <code class="snippet">headline</code> - Section heading corresponding to the <code class="snippet">&lt;h1&gt;</code> tag.
     </li>
     <li>
-        <code>title</code> - Section heading corresponding to the <code>&lt;h2&gt;</code> tag.
+        <code class="snippet">title</code> - Section heading corresponding to the <code class="snippet">&lt;h2&gt;</code> tag.
     </li>
     <li>
-        <code>subheading-2</code> - Section heading corresponding to the <code>&lt;h3&gt;</code> tag.
+        <code class="snippet">subheading-2</code> - Section heading corresponding to the <code class="snippet">&lt;h3&gt;</code> tag.
     </li>
     <li>
-        <code>subheading-1</code> - Section heading corresponding to the <code>&lt;h4&gt;</code> tag.
+        <code class="snippet">subheading-1</code> - Section heading corresponding to the <code class="snippet">&lt;h4&gt;</code> tag.
     </li>
     <li>
-        <code>body-1</code> - Base body text.
+        <code class="snippet">body-1</code> - Base body text.
     </li>
     <li>
-        <code>body-2</code> - Bolder body text.
+        <code class="snippet">body-2</code> - Bolder body text.
     </li>
     <li>
-        <code>caption</code> - Smaller body and hint text.
+        <code class="snippet">caption</code> - Smaller body and hint text.
     </li>
     <li>
-        <code>button</code> - Buttons and anchors.
+        <code class="snippet">button</code> - Buttons and anchors.
     </li>
 </ul>
-<h3>Example</h3>
-<pre class="snippet">&lt;p class="mat-caption"&gt;Material Design Caption&lt;/p&gt;</pre>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>Example</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="markup" class="card-snippet">&lt;p class="mat-caption"&gt;Material Design Caption&lt;/p&gt;</prism>
+        </md-card-content>
+    </md-card>
+</div>
 <p>
     The above snippet renders as follows:
 </p>
 <p class="mat-caption">Material Design Caption</p>
 <h2>Typography Sections</h2>
 <p>
-    Alternatively, you can define a markup container with the <code>mat-typography</code> class.
+    Alternatively, you can define a markup container with the <code class="snippet">mat-typography</code> class.
 </p>
-<h3>Example</h3>
-<pre class="snippet">&lt;section class="mat-typography"&gt;
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title>Example</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="markup" class="card-snippet">&lt;section class="mat-typography"&gt;
     &lt;h1&gt;Styled h1 Header&lt;/h1&gt;
-&lt;/section&gt;</pre>
+&lt;/section&gt;</prism>
+        </md-card-content>
+    </md-card>
+</div>
 <p>
-    Continuing from the previous walkthroughs, in <code>ClientApp/app/components/app/app.component.html</code>, add the <code>mat-typography</code>    class to the <code>md-sidenav-container</code> element:
+    Continuing from the previous walkthroughs, in <code class="snippet">ClientApp/app/components/app/app.component.html</code>, add the <code class="snippet">mat-typography</code>    class to the <code class="snippet">md-sidenav-container</code> element:
 </p>
-<pre class="snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;</pre>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title><md-icon>code</md-icon></md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="markup" class="card-snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;</prism>
+        </md-card-content>
+    </md-card>
+</div>
 <p>
     This ensures that any of the markup contained in the web app receives the appropriate font.
 </p>
@@ -68,20 +93,29 @@
 <ol>
     <li>
         <p>
-            Install <code>roboto-fontface</code> and <code>webpack-material-design-icons</code> modules as <code>devDependencies</code>:
+            Install <code class="snippet">roboto-fontface</code> and <code class="snippet">webpack-material-design-icons</code> modules as <code class="snippet">devDependencies</code>:
         </p>
-        <pre class="snippet">npm install --save-dev roboto-fontface webpack-material-design-icons</pre>
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title><md-icon>code</md-icon></md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <prism language="bash" class="card-snippet">npm install --save-dev roboto-fontface webpack-material-design-icons</prism>
+                </md-card-content>
+            </md-card>
+        </div>
     </li>
     <li>
-        Add <code>roboto-fontface/css/roboto/roboto-fontface.css</code> and <code>webpack-material-design-icons</code> to
-        the <code>vendors</code> array in <code>webpack.config.vendor.js</code>.
+        Add <code class="snippet">roboto-fontface/css/roboto/roboto-fontface.css</code> and <code class="snippet">webpack-material-design-icons</code> to
+        the <code class="snippet">vendors</code> array in <code class="snippet">webpack.config.vendor.js</code>.
     </li>
     <li>
-        Run the <code>npm run build</code> script to install the dependencies and generate the build files.
+        Run the <code class="snippet">npm run build</code> script to install the dependencies and generate the build files.
     </li>
 </ol>
 <p>
-    Now, the web app self-hosts the fonts and icons used by Angular Material. To demonstrate, add an icon to the <code>Menu</code>    button in <code>ClientApp/app/components/app/app.component.html</code>:
+    Now, the web app self-hosts the fonts and icons used by Angular Material. To demonstrate, add an icon to the <code class="snippet">Menu</code>    button in <code class="snippet">ClientApp/app/components/app/app.component.html</code>:
 </p>
 <div class="inline-card">
     <md-card>
@@ -89,7 +123,7 @@
             <md-card-title>ClientApp/app/components/app/app.component.html</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">&lt;button md-button (click)="sidenav.open()"&gt;&lt;md-icon&gt;menu&lt;/md-icon&gt; Menu&lt;/button&gt;</pre>
+            <prism language="markup" class="card-snippet">&lt;button md-button (click)="sidenav.open()"&gt;&lt;md-icon&gt;menu&lt;/md-icon&gt; Menu&lt;/button&gt;</prism>
         </md-card-content>
     </md-card>
 </div>

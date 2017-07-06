@@ -8,7 +8,7 @@
 <ul>
     <li>
         Scaffold an ASP.NET Core web app project with Angular and Webpack integration using the <a href="https://github.com/aspnet/JavaScriptServices"
-            target="_blank"><code>aspnetcore-spa</code></a> <a href="http://yeoman.io/" target="_blank"><code>yeoman</code></a>        generator.
+            target="_blank"><code class="snippet">aspnetcore-spa</code></a> <a href="http://yeoman.io/" target="_blank"><code class="snippet">yeoman</code></a>        generator.
     </li>
     <li>
         Clear the dependency on <a href="http://getbootstrap.com/" target="_blank">bootstrap</a> as the integrated UI Framework,
@@ -21,14 +21,33 @@
 </ul>
 <h3>Scaffold Project</h3>
 <p>
-    Ensure that both <code>yeoman</code> and the <code>generator-aspnetcore-spa</code> npm modules are installed globally.
+    Ensure that both <code class="snippet">yeoman</code> and the <code class="snippet">generator-aspnetcore-spa</code> npm
+    modules are installed globally.
 </p>
-<pre class="snippet">npm install -g yo generator-aspnetcore-spa</pre>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title><md-icon>code</md-icon></md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="bash" class="card-snippet">npm install -g yo generator-aspnetcore-spa</prism>
+        </md-card-content>
+    </md-card>
+</div>
 <p>
     Create a directory that will represent the root of the web project, then open a command window pointed to the newly created
     directory and run the generator:
 </p>
-<pre class="snippet">yo aspnetcore-spa</pre>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title><md-icon>code</md-icon></md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="bash" class="card-snippet">yo aspnetcore-spa</prism>
+        </md-card-content>
+    </md-card>
+</div>
 <md-card class="image-card">
     <md-card-header>
         <md-card-title>ASP.NET Core SPA Generator - Configuration</md-card-title>
@@ -37,13 +56,13 @@
     <md-card-content>
         <ol>
             <li>
-                Select <code>Angular</code>
+                Select <code class="snippet">Angular</code>
             </li>
             <li>
                 Specify no unit tests
             </li>
             <li>
-                Press <kbd>Enter</kbd> to set the project name to the name of the directory
+                Press <code class="snippet">Enter</code> to set the project name to the name of the directory
             </li>
         </ol>
     </md-card-content>
@@ -54,7 +73,7 @@
     </md-card-header>
     <img md-card-image src="http://i.imgur.com/aUSQevW.png" />
     <md-card-content>
-        <p>Once scaffolding is complete, open in Visual Studio Code with the command <code>code .</code></p>
+        <p>Once scaffolding is complete, open in Visual Studio Code with the command <code class="snippet">code .</code></p>
         <p class="mat-caption">This tells Visual Studio Code to open the current directory.</p>
     </md-card-content>
 </md-card>
@@ -64,21 +83,21 @@
 </p>
 <ol>
     <li>
-        Install the following <code>npm</code> modules:
+        Install the following <code class="snippet">npm</code> modules:
         <ul>
             <li>
-                <code>npm install --save core-js</code>
+                <code class="snippet">npm install --save core-js</code>
             </li>
             <li>
-                <code>npm install --save classlist.js</code>
+                <code class="snippet">npm install --save classlist.js</code>
             </li>
             <li>
-                <code>npm install --save web-animations-js</code>
+                <code class="snippet">npm install --save web-animations-js</code>
             </li>
         </ul>
     </li>
     <li>
-        Add the following <code>npm</code> scripts to <code>package.json</code>:
+        Add the following <code class="snippet">npm</code> scripts to <code class="snippet">package.json</code>:
         <div>
             <pre class="snippet">"scripts": {{ '{' }}
   "build": "npm install &amp;&amp; npm run webpack",
@@ -87,63 +106,68 @@
         </div>
     </li>
     <li>
-        Delete the <code>bootstrap</code> dependency from <code>project.json</code>
+        Delete the <code class="snippet">bootstrap</code> dependency from <code class="snippet">project.json</code>
     </li>
     <li>
-        Delete <code>bootstrap</code> and <code>bootstrap/dist/css/bootstrap.css</code> from the <code>vendor</code> array
-        in <code>webpack.config.vendor.js</code>
+        Delete <code class="snippet">bootstrap</code> and <code class="snippet">bootstrap/dist/css/bootstrap.css</code> from
+        the <code class="snippet">vendor</code> array in <code class="snippet">webpack.config.vendor.js</code>
     </li>
     <li>
-        Delete the <code>SampleDataController.cs</code> file from the <code>Controllers</code> folder
+        Delete the <code class="snippet">SampleDataController.cs</code> file from the <code class="snippet">Controllers</code> folder
     </li>
     <li>
-        Create a <code>polyfills.ts</code> file in the <code>ClientApp</code> folder
+        Create a <code class="snippet">polyfills.ts</code> file in the <code class="snippet">ClientApp</code> folder
     </li>
     <li>
-        Add the following import statement: <code>import './polyfills';</code> in <code>ClientApp/boot-client.ts</code>
+        Add the following import statement: <code class="snippet">import './polyfills';</code> in <code class="snippet">ClientApp/boot-client.ts</code>
     </li>
     <li>
-        Delete the following items from the <code>ClientApp/app/app.module.shared.ts</code> file:
+        Delete the following items from the <code class="snippet">ClientApp/app/app.module.shared.ts</code> file:
         <ul>
             <li>
-                <code>import</code> statements for <code>NavMenuComponent</code>, <code>FetchDataComponent</code>, and
-                <code>CounterComponent</code>
+                <code class="snippet">import</code> statements for <code class="snippet">NavMenuComponent</code>, <code class="snippet">FetchDataComponent</code>,
+                and
+                <code class="snippet">CounterComponent</code>
             </li>
             <li>
-                <code>NavMenuComponent</code>, <code>FetchDataComponent</code>, and <code>CounterComponent</code> from the
-                <code>declarations</code> array
+                <code class="snippet">NavMenuComponent</code>, <code class="snippet">FetchDataComponent</code>, and
+                <code
+                    class="snippet">CounterComponent</code> from the
+                    <code class="snippet">declarations</code> array
             </li>
             <li>
-                <code>CounterComponent</code> and <code>FetchDataComponent</code> routes from the route definitions in
-                <code>RouterModule</code>
+                <code class="snippet">CounterComponent</code> and <code class="snippet">FetchDataComponent</code> routes
+                from the route definitions in
+                <code class="snippet">RouterModule</code>
             </li>
         </ul>
     </li>
     <li>
-        Delete the following directories from the <code>ClientApp/app/components</code> folder:
+        Delete the following directories from the <code class="snippet">ClientApp/app/components</code> folder:
         <ul>
-            <li><code>counter</code></li>
-            <li><code>fetchdata</code></li>
-            <li><code>navmenu</code></li>
+            <li><code class="snippet">counter</code></li>
+            <li><code class="snippet">fetchdata</code></li>
+            <li><code class="snippet">navmenu</code></li>
         </ul>
     </li>
     <li>
-        Delete the <code>app.component.css</code> file from <code>ClientApp/app/components/app</code>
+        Delete the <code class="snippet">app.component.css</code> file from <code class="snippet">ClientApp/app/components/app</code>
     </li>
     <li>
-        Delete the contents of <code>app.component.html</code> in <code>ClientApp/app/components/app</code>, and set the
-        contents to just <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>
+        Delete the contents of <code class="snippet">app.component.html</code> in <code class="snippet">ClientApp/app/components/app</code>,
+        and set the contents to just <code class="snippet">&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>
     </li>
     <li>
-        Delete the <code>styleUrls</code> setting in the <code>@Component</code> metadata attribute in <code>ClientApp/app/components/app/app.component.ts</code>
+        Delete the <code class="snippet">styleUrls</code> setting in the <code class="snippet">@Component</code> metadata
+        attribute in <code class="snippet">ClientApp/app/components/app/app.component.ts</code>
     </li>
     <li>
-        Delete the contents of <code>home.component.html</code> in <code>ClientApp/app/components/home</code>, and set the
-        contents to just <code>&lt;h1&gt;ASP.NET Core Angular SPA Baseline&lt;/h1&gt;</code>
+        Delete the contents of <code class="snippet">home.component.html</code> in <code class="snippet">ClientApp/app/components/home</code>,
+        and set the contents to just <code class="snippet">&lt;h1&gt;ASP.NET Core Angular SPA Baseline&lt;/h1&gt;</code>
     </li>
 </ol>
 <p>
-    Set the contents of <code>polyfills.ts</code> as shown in the following snippets:
+    Set the contents of <code class="snippet">polyfills.ts</code> as shown in the following snippets:
 </p>
 <p class="mat-caption">
     These polyfills fill missing functionality for Angular for many common browsers
@@ -154,7 +178,7 @@
             <md-card-title>ClientApp/polyfills.ts</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">/**
+            <prism language="typescript" class="card-snippet">/**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
  *
@@ -226,30 +250,30 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /**
  * Need to import at least one locale-data with intl.
  */
-// import 'intl/locale-data/jsonp/en';</pre>
+// import 'intl/locale-data/jsonp/en';</prism>
         </md-card-content>
     </md-card>
 </div>
 <h2>Installing Angular Material</h2>
 <ol>
     <li>
-        Install the <code>npm</code> module: <code>npm install --save @angular/material</code>
+        Install the <code class="snippet">npm</code> module: <code class="snippet">npm install --save @angular/material</code>
     </li>
     <li>
-        Add <code>@angular/material</code> to the <code>vendors</code> array in <code>webpack.config.vendor.js</code>
+        Add <code class="snippet">@angular/material</code> to the <code class="snippet">vendors</code> array in <code class="snippet">webpack.config.vendor.js</code>
     </li>
     <li>
-        Add one of the pre-built material themes (<code>'@angular/material/prebuilt-themes/deeppurple-amber.css'</code>)
-        to the <code>vendors</code> array in <code>webpack.config.vendor.js</code>
+        Add one of the pre-built material themes (<code class="snippet">'@angular/material/prebuilt-themes/deeppurple-amber.css'</code>)
+        to the <code class="snippet">vendors</code> array in <code class="snippet">webpack.config.vendor.js</code>
     </li>
     <li>
-        Create a <code>app.module.material.ts</code> file in the <code>ClientApp/app</code> directory
+        Create a <code class="snippet">app.module.material.ts</code> file in the <code class="snippet">ClientApp/app</code>        directory
     </li>
     <li>
-        <code>import</code> the <code>AppMaterialModule</code> and add it to the <code>imports</code> array before <code>RouterModule</code>        in <code>ClientApp/app/app.module.shared.ts</code>
+        <code class="snippet">import</code> the <code class="snippet">AppMaterialModule</code> and add it to the <code class="snippet">imports</code>        array before <code class="snippet">RouterModule</code> in <code class="snippet">ClientApp/app/app.module.shared.ts</code>
     </li>
     <li>
-        <code>import</code> the <code>BrowserAnimationsModule</code> from <code>'@angular/platform-browser/animations'</code>        and add it to the <code>imports</code> array beneath <code>BrowserModule</code>
+        <code class="snippet">import</code> the <code class="snippet">BrowserAnimationsModule</code> from <code class="snippet">'@angular/platform-browser/animations'</code>        and add it to the <code class="snippet">imports</code> array beneath <code class="snippet">BrowserModule</code>
     </li>
 </ol>
 
@@ -259,7 +283,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
             <md-card-title>ClientApp/app/app.module.material.ts</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
+            <prism language="typescript" class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
 import {{ '{' }}
     FullscreenOverlayContainer,
     MdAutocompleteModule,
@@ -323,7 +347,7 @@ import {{ '{' }}
         MdNativeDateModule,
     ]
 {{ '}' }})
-export class AppMaterialModule {{ '{' }}{{ '}' }}</pre>
+export class AppMaterialModule {{ '{' }}{{ '}' }}</prism>
         </md-card-content>
     </md-card>
 </div>
@@ -334,7 +358,7 @@ export class AppMaterialModule {{ '{' }}{{ '}' }}</pre>
             <md-card-title>ClientApp/app/app.module.shared.ts</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
+            <prism language="typescript" class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
 import {{ '{' }} AppMaterialModule {{ '}' }} from './app.module.material';
 import {{ '{' }} RouterModule {{ '}' }} from '@angular/router';
 
@@ -355,7 +379,7 @@ export const sharedConfig: NgModule = {{ '{' }}
             {{ '{' }} path: '**', redirectTo: 'home' {{ '}' }}
         ])
     ]
-{{ '}' }};</pre>
+{{ '}' }};</prism>
         </md-card-content>
     </md-card>
 </div>
@@ -365,7 +389,7 @@ export const sharedConfig: NgModule = {{ '{' }}
             <md-card-title>ClientApp/app/app.module.client.ts</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
+            <prism language="typescript" class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
 import {{ '{' }} BrowserModule {{ '}' }} from '@angular/platform-browser';
 import {{ '{' }} BrowserAnimationsModule {{ '}' }} from '@angular/platform-browser/animations';
 import {{ '{' }} FormsModule {{ '}' }} from '@angular/forms';
@@ -386,12 +410,12 @@ import {{ '{' }} sharedConfig {{ '}' }} from './app.module.shared';
         {{ '{' }} provide: 'ORIGIN_URL', useValue: location.origin {{ '}' }}
     ]
 {{ '}' }})
-export class AppModule {{ '{' }}{{ '}' }}</pre>
+export class AppModule {{ '{' }}{{ '}' }}</prism>
         </md-card-content>
     </md-card>
 </div>
 <p>
-    With this initial infrastructure in place, Angular Material can be used in the app. Update the <code>AppComponent</code>    as shown in the following snippets:
+    With this initial infrastructure in place, Angular Material can be used in the app. Update the <code class="snippet">AppComponent</code>    as shown in the following snippets:
 </p>
 <div class="inline-card">
     <md-card>
@@ -399,7 +423,7 @@ export class AppModule {{ '{' }}{{ '}' }}</pre>
             <md-card-title>ClientApp/app/components/app/app.component.html</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">&lt;md-sidenav-container class="mat-typography"&gt;
+            <prism language="markup" class="card-snippet">&lt;md-sidenav-container class="mat-typography"&gt;
   &lt;md-sidenav #sidenav&gt;
     &lt;md-toolbar color="primary"&gt;
       &lt;span&gt;Material Documentation - Menu&lt;/span&gt;
@@ -418,7 +442,7 @@ export class AppModule {{ '{' }}{{ '}' }}</pre>
   &lt;div class="app-body"&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
   &lt;/div&gt;
-&lt;/md-sidenav-container&gt;</pre>
+&lt;/md-sidenav-container&gt;</prism>
         </md-card-content>
     </md-card>
 </div>
@@ -428,13 +452,13 @@ export class AppModule {{ '{' }}{{ '}' }}</pre>
             <md-card-title>ClientApp/app/components/app/app.component.css</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">.example-spacer {{ '{' }}
+            <prism language="css" class="card-snippet">.example-spacer {{ '{' }}
     flex: 1 1 auto;
 {{ '}' }}
 
 .toolbar-header {{ '{' }}
     margin-left: 15px;
-{{ '}' }}</pre>
+{{ '}' }}</prism>
         </md-card-content>
     </md-card>
 </div>
@@ -444,20 +468,21 @@ export class AppModule {{ '{' }}{{ '}' }}</pre>
             <md-card-title>ClientApp/app/components/app/app.component.ts</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">import {{ '{' }} Component {{ '}' }} from '@angular/core';
+            <prism language="typescript" class="card-snippet">import {{ '{' }} Component {{ '}' }} from '@angular/core';
 
 @Component({{ '{' }}
     selector: 'app',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 {{ '}' }})
-export class AppComponent {{ '{' }}{{ '}' }}</pre>
+export class AppComponent {{ '{' }}{{ '}' }}</prism>
         </md-card-content>
     </md-card>
 </div>
 <p>
-    Run the <code>npm run build</code> script, then run <code>dotnet run</code> to debug the web app. Navigate to <a href="http://localhost:5000"
-        target="_blank">http://localhost:5000</a> in a browser to see Angular Material.
+    Run the <code class="snippet">npm run build</code> script, then run <code class="snippet">dotnet run</code> to debug
+    the web app. Navigate to <a href="http://localhost:5000" target="_blank">http://localhost:5000</a> in a browser to see
+    Angular Material.
 </p>
 <md-card class="image-card">
     <md-card-header>

@@ -6,6 +6,9 @@ import { ThemeService } from './services/theme.service';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
+
+import { PrismComponent } from './components/prism/prism.component';
+
 import { SetupComponent } from './components/setup/setup.component';
 import { ThemingComponent } from './components/theming/theming.component';
 import { TypographyComponent } from './components/typography/typography.component';
@@ -28,6 +31,7 @@ export const sharedConfig: NgModule = {
     declarations: [
         AppComponent,
         HomeComponent,
+        PrismComponent,
         SetupComponent,
         ThemingComponent,
         TypographyComponent,

@@ -28,7 +28,7 @@ export class AutocompleteComponent {
             return this.themes;
         }
 
-        if (typeof val === "object") {
+        if (typeof val === 'object') {
             if (val && this.themes.indexOf(val) > -1) {
                 this.themeService.setTheme(val);
             }

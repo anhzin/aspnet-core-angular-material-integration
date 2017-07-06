@@ -1,7 +1,7 @@
 <md-toolbar>Slider</md-toolbar>
 <p>
-    <code>md-slider</code> allows for the selection of a value from a range via mouse, touch, or keyboard, similar to <code>input type="range"</code>.
-    See <a href="https://material.angular.io/components/slider/overview">documentation</a>.
+    <code class="snippet">md-slider</code> allows for the selection of a value from a range via mouse, touch, or keyboard,
+    similar to <code class="snippet">input type="range"</code>. See <a href="https://material.angular.io/components/slider/overview">documentation</a>.
 </p>
 <md-card class="example-card">
     <md-card-content>
@@ -49,7 +49,7 @@
 <md-toolbar color="primary">Code</md-toolbar>
 <md-tab-group>
     <md-tab label="slider.component.html">
-        <pre class="snippet">&lt;md-card class="example-card"&gt;
+        <prism language="markup">&lt;md-card class="example-card"&gt;
     &lt;md-card-content&gt;
         &lt;h2 class="example-h2"&gt;Slider Configuration&lt;/h2&gt;
         &lt;section class="example-section"&gt;
@@ -91,10 +91,10 @@
             &lt;p [style.font-size]="value+'px'"&gt;Slider&lt;/p&gt;
         &lt;/section&gt;
     &lt;/md-card-content&gt;
-&lt;/md-card&gt;</pre>
+&lt;/md-card&gt;</prism>
     </md-tab>
     <md-tab label="slider.component.ts">
-        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+        <prism language="typescript">import {{'{'}} Component {{'}'}} from '@angular/core';
 
 @Component({{'{'}}
     selector: 'slider-usage',
@@ -122,10 +122,10 @@ export class SliderComponent {{'{'}}
     {{'}'}}
 
     private _tickInterval = 1;
-{{'}'}}</pre>
+{{'}'}}</prism>
     </md-tab>
     <md-tab label="slider.component.css">
-        <pre class="snippet">.example-h2 {{'{'}}
+        <prism language="css">.example-h2 {{'{'}}
     margin: 10px;
 {{'}'}}
 
@@ -150,6 +150,6 @@ export class SliderComponent {{'{'}}
 
 md-card.example-card {{'{'}}
     display: inline-flex;
-{{'}'}}</pre>
+{{'}'}}</prism>
     </md-tab>
 </md-tab-group>

@@ -13,17 +13,17 @@
 <md-toolbar color="primary">Code</md-toolbar>
 <md-tab-group>
     <md-tab label="autocomplete.component.html">
-        <pre class="snippet">&lt;md-input-container&gt;
+        <prism language="markup">&lt;md-input-container&gt;
     &lt;input mdInput placholder="Theme" [mdAutocomplete]="auto" [formControl]="themeCtrl"&gt;
 &lt;/md-input-container&gt;
 &lt;md-autocomplete #auto="mdAutocomplete" [displayWith]="displayTheme"&gt;
     &lt;md-option *ngFor="let theme of filteredThemes | async" [value]="theme"&gt;
         {{'{'}}{{'{'}} theme.display {{'}'}}{{'}'}}
     &lt;/md-option&gt;
-&lt;/md-autocomplete&gt;</pre>
+&lt;/md-autocomplete&gt;</prism>
     </md-tab>
     <md-tab label="autocomplete.component.ts">
-        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+        <prism language="typescript">import {{'{'}} Component {{'}'}} from '@angular/core';
 import {{'{'}} FormControl {{'}'}} from '@angular/forms';
 import {{'{'}} Theme {{'}'}} from '../../models/theme.model';
 import {{'{'}} ThemeService {{'}'}} from '../../services/theme.service';
@@ -73,10 +73,11 @@ export class AutocompleteComponent {{'{'}}
     displayTheme(val: Theme) {{'{'}}
         return val ? val.display : val;
     {{'}'}}
-{{'}'}}</pre>
+{{'}'}}</prism>
     </md-tab>
-    <md-tab label="theme.service.ts">
-        <pre class="snippet">import {{'{'}} Injectable {{'}'}} from '@angular/core';
+    <md-tab label="theme.service.ts" class="code-snippet">
+        <prism language="typescript">
+import {{'{'}} Injectable {{'}'}} from '@angular/core';
 import {{'{'}} Observable {{'}'}} from 'rxjs/Observable';
 import {{'{'}} Subject {{'}'}} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
@@ -102,6 +103,6 @@ export class ThemeService {{'{'}}
     setTheme(theme: Theme) {{'{'}}
         this.themeSubject.next(theme);
     {{'}'}}
-{{'}'}}</pre>
+{{'}'}}</prism>
     </md-tab>
 </md-tab-group>

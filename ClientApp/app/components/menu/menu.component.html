@@ -1,6 +1,6 @@
 <md-toolbar>Menu</md-toolbar>
 <p>
-    <code>md-menu</code> is a floating panel containing list of options. See <a href="https://material.angular.io/components/menu/overview"
+    <code class="snippet">md-menu</code> is a floating panel containing list of options. See <a href="https://material.angular.io/components/menu/overview"
         target="_blank">documentation</a>.
 </p>
 <h3>Menu Example</h3>
@@ -26,7 +26,7 @@
 <md-toolbar color="primary">Code</md-toolbar>
 <md-tab-group>
     <md-tab label="menu.component.html">
-        <pre class="snippet">&lt;h3&gt;Menu Example&lt;/h3&gt;
+        <prism language="markup">&lt;h3&gt;Menu Example&lt;/h3&gt;
 &lt;section class="example"&gt;
     &lt;button md-icon-button [mdMenuTriggerFor]="menu"&gt;
         &lt;md-icon&gt;more_vert&lt;/md-icon&gt;
@@ -45,22 +45,22 @@
             &lt;span&gt;Disable alerts&lt;/span&gt;
         &lt;/button&gt;
     &lt;/md-menu&gt;
-&lt;/section&gt;</pre>
+&lt;/section&gt;</prism>
     </md-tab>
     <md-tab label="menu.component.ts">
-        <pre class="snippet">import {{'{'}} Component {{'}'}} from '@angular/core';
+        <prism language="typescript">import {{'{'}} Component {{'}'}} from '@angular/core';
 
 @Component({{'{'}}
     selector: 'menu-usage',
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.css']
 {{'}'}})
-export class MenuComponent {{'{'}}{{'}'}}</pre>
+export class MenuComponent {{'{'}}{{'}'}}</prism>
     </md-tab>
     <md-tab label="menu.component.css">
-        <pre class="snippet">.example {{'{'}}
+        <prism language="css">.example {{'{'}}
     margin-left: 20px;
     margin-bottom: 20px;
-{{'}'}}</pre>
+{{'}'}}</prism>
     </md-tab>
 </md-tab-group>

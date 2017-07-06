@@ -3,34 +3,34 @@
 </a>
 <h2>Initial Theming Setup</h2>
 <p>
-    Before building out the <code>.scss</code> file that will represent our material theme, as well as app-wide style settings,
+    Before building out the <code class="snippet">.scss</code> file that will represent our material theme, as well as app-wide style settings,
     there is some infrastructure that needs to be added to support theming.
 </p>
 <ol>
     <li>
-        Install <code>node-sass</code> and <code>sass-loader</code> to enable webpack to transpile Sass into CSS:
+        Install <code class="snippet">node-sass</code> and <code class="snippet">sass-loader</code> to enable webpack to transpile Sass into CSS:
         <div>
             <pre class="snippet">npm install --save-dev node-sass sass-loader</pre>
         </div>
     </li>
     <li>
-        Remove <code>'@angular/material/prebuilt-themes/deeppurple-amber.css'</code> from the <code>vendor</code> array in
-        <code>webpack.config.vendor.js</code>
+        Remove <code class="snippet">'@angular/material/prebuilt-themes/deeppurple-amber.css'</code> from the <code class="snippet">vendor</code> array in
+        <code class="snippet">webpack.config.vendor.js</code>
     </li>
     <li>
-        Add <code>'./ClientApp/material-theme.scss'</code> to the <code>vendor</code> array in <code>webpack.config.vendor.js</code>.
+        Add <code class="snippet">'./ClientApp/material-theme.scss'</code> to the <code class="snippet">vendor</code> array in <code class="snippet">webpack.config.vendor.js</code>.
         This will be created momentarily
     </li>
     <li>
-        Configure <code>webpack.config.vendor.js</code> to use <code>sass-loader</code> to transpile Sass and merge it into
-        the <code>vendor.css</code> file that it generates:
+        Configure <code class="snippet">webpack.config.vendor.js</code> to use <code class="snippet">sass-loader</code> to transpile Sass and merge it into
+        the <code class="snippet">vendor.css</code> file that it generates:
         <div class="inline-card">
             <md-card>
                 <md-card-header>
                     <md-card-title>webpack.config.vendor.js - clientBundleConfig</md-card-title>
                 </md-card-header>
                 <md-card-content>
-                    <pre class="card-snippet">const clientBundleConfig = merge(sharedConfig, {{ '{' }}
+                    <prism language="javascript" class="card-snippet">const clientBundleConfig = merge(sharedConfig, {{ '{' }}
         output: {{ '{' }}
             path: path.join(__dirname, 'wwwroot', 'dist')
         {{ '}' }},
@@ -58,7 +58,7 @@
         ].concat(isDevBuild ? [] : [
             new webpack.optimize.UglifyJsPlugin()
         ])
-    {{ '}' }});</pre>
+    {{ '}' }});</prism>
                 </md-card-content>
             </md-card>
         </div>
@@ -68,7 +68,7 @@
                     <md-card-title>webpack.config.vendor.js - serverBundleConfig</md-card-title>
                 </md-card-header>
                 <md-card-content>
-                    <pre class="card-snippet">const serverBundleConfig = merge(sharedConfig, {{ '{' }}
+                    <prism language="javascript" class="card-snippet">const serverBundleConfig = merge(sharedConfig, {{ '{' }}
         target: 'node',
         resolve: {{ '{' }}
             mainFields: ['main']
@@ -96,13 +96,13 @@
                 name: '[name]_[hash]'
             {{ '}' }})
         ]
-    {{ '}' }});</pre>
+    {{ '}' }});</prism>
                 </md-card-content>
             </md-card>
         </div>
     </li>
     <li>
-        Create a <code>material-theme.scss</code> file in the <code>ClientApp</code> folder
+        Create a <code class="snippet">material-theme.scss</code> file in the <code class="snippet">ClientApp</code> folder
     </li>
     <li>
         Provide initial settings for the theme:
@@ -112,11 +112,11 @@
                     <md-card-title>material-theme.scss</md-card-title>
                 </md-card-header>
                 <md-card-content>
-                    <pre class="card-snippet">@import '~@angular/material/_theming.scss';
+                    <prism language="scss" class="card-snippet">@import '~@angular/material/_theming.scss';
 @include mat-core();
 
 $default-theme: mat-dark-theme(mat-palette($mat-green), mat-palette($mat-red));
-@include angular-material-theme($default-theme);</pre>
+@include angular-material-theme($default-theme);</prism>
                 </md-card-content>
             </md-card>
         </div>
@@ -146,7 +146,7 @@ $default-theme: mat-dark-theme(mat-palette($mat-green), mat-palette($mat-red));
             <md-card-title>ClientApp/material-theme.scss</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">html, body, app {{ '{' }}
+            <prism language="scss" class="card-snippet">html, body, app {{ '{' }}
     margin: 0;
     height: 100%;
 {{ '}' }}
@@ -207,7 +207,7 @@ pre.card-snippet {{ '{' }}
 
 pre.snippet, code {{ '{' }}
     font-family: Consolas, "Lucida Console", Monaco, monospace;
-{{ '}' }}</pre>
+{{ '}' }}</prism>
         </md-card-content>
     </md-card>
 </div>
@@ -231,7 +231,7 @@ pre.snippet, code {{ '{' }}
                 Infrastructure is provided to allow for image and snippet cards
             </li>
             <li>
-                <code>pre</code> and <code>code</code> elements are styled to enable block and inline code snippets. Nothing
+                <code class="snippet">pre</code> and <code class="snippet">code</code> elements are styled to enable block and inline code snippets. Nothing
                 fancy, but good enough for now.
             </li>
         </ul>
@@ -239,22 +239,27 @@ pre.snippet, code {{ '{' }}
 </md-card>
 <h2>Multiple Material Themes</h2>
 <p>
-    Before modifying the <code>material-theme.scss</code> file, some infrastructure needs to be put in place to support multiple
+    Before modifying the <code class="snippet">material-theme.scss</code> file, some infrastructure needs to be put in place to support multiple
     themes:
 </p>
 <ol>
     <li>
-        In <code>ClientApp/app/components/app/app.component.ts</code>, a <code>materialTheme: string</code> property should
+        In <code class="snippet">ClientApp/app/components/app/app.component.ts</code>, a <code class="snippet">materialTheme: string</code> property should
         be defined
     </li>
     <li>
-        In <code>ClientApp/app/components/app/app.component.ts</code>, a <code>themes: any[]</code> property should be defined
+        In <code class="snippet">ClientApp/app/components/app/app.component.ts</code>, a <code class="snippet">themes: any[]</code> property should be defined
     </li>
     <li>
-        <code>ClientApp/app/components/app/app.component.ts</code> should implement <code>ngOnInit</code> and build an array
-        of styles that will be defined in <code>material-theme.scss</code>. Also, the initial value of <code>materialTheme</code>        should be set to the first index of the <code>themes</code> array
-        <div>
-            <pre class="snippet">ngOnInit() {{ '{' }}
+        <code class="snippet">ClientApp/app/components/app/app.component.ts</code> should implement <code class="snippet">ngOnInit</code> and build an array
+        of styles that will be defined in <code class="snippet">material-theme.scss</code>. Also, the initial value of <code class="snippet">materialTheme</code>        should be set to the first index of the <code class="snippet">themes</code> array
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title><md-icon>code</md-icon></md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <prism language="typescript" class="card-snippet">ngOnInit() {{ '{' }}
     this.themes = [
         {{ '{' }} id: "green-app", display: "Green" {{ '}' }},
         {{ '{' }} id: "red-app", display: "Red" {{ '}' }},
@@ -262,28 +267,44 @@ pre.snippet, code {{ '{' }}
     ];
 
     this.materialTheme = this.themes[0].id;
-{{ '}' }}</pre>
+{{ '}' }}</prism>
+                </md-card-content>
+            </md-card>
         </div>
     </li>
     <li>
-        In <code>ClientApp/app/components/app/app.component.html</code>, the <code>md-sidenav-container</code> should use
-        template binding to set a class based on the value of <code>materialTheme</code>:
-        <div>
-            <pre class="snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;</pre>
+        In <code class="snippet">ClientApp/app/components/app/app.component.html</code>, the <code class="snippet">md-sidenav-container</code> should use
+        template binding to set a class based on the value of <code class="snippet">materialTheme</code>:
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title><md-icon>code</md-icon></md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <prism language="markup" class="card-snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;</prism>
+                </md-card-content>
+            </md-card>
         </div>
     </li>
     <li>
-        In <code>ClientApp/app/components/app/app.component.html</code>, the <code>router-outlet</code> should be surrounded
-        by a div with a class of <code>app-body</code>:
-        <div>
-            <pre class="snippet">&lt;div class="app-body"&gt;
+        In <code class="snippet">ClientApp/app/components/app/app.component.html</code>, the <code class="snippet">router-outlet</code> should be surrounded
+        by a div with a class of <code class="snippet">app-body</code>:
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title><md-icon>code</md-icon></md-card-title>
+                </md-card-header>
+                <md-card-content>                    
+                    <prism language="markup" class="card-snippet">&lt;div class="app-body"&gt;
   &lt;router-outlet&gt;&lt;/router-outlet&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</prism>
+                </md-card-content>
+            </md-card>
         </div>
     </li>
 </ol>
 <p>
-    Here are the full <code>app.component.ts</code> and <code>app.component.html</code> files:
+    Here are the full <code class="snippet">app.component.ts</code> and <code class="snippet">app.component.html</code> files:
 </p>
 <div class="inline-card">
     <md-card>
@@ -291,7 +312,7 @@ pre.snippet, code {{ '{' }}
             <md-card-title>ClientApp/app/components/app/app.component.ts</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">import {{ '{' }} Component, OnInit {{ '}' }} from '@angular/core';
+            <prism language="typescript" class="card-snippet">import {{ '{' }} Component, OnInit {{ '}' }} from '@angular/core';
 
 @Component({{ '{' }}
     selector: 'app',
@@ -311,7 +332,7 @@ export class AppComponent implements OnInit {{ '{' }}
 
         this.materialTheme = this.themes[0].id;
     {{ '}' }}
-{{ '}' }}</pre>
+{{ '}' }}</prism>
         </md-card-content>
     </md-card>
 </div>
@@ -321,7 +342,7 @@ export class AppComponent implements OnInit {{ '{' }}
             <md-card-title>ClientApp/app/components/app/app.component.html</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;
+            <prism language="markup" class="card-snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;
   &lt;md-sidenav #sidenav&gt;
     &lt;md-toolbar color="primary"&gt;
       &lt;span&gt;Material Documentation - Menu&lt;/span&gt;
@@ -341,12 +362,12 @@ export class AppComponent implements OnInit {{ '{' }}
   &lt;div class="app-body"&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
   &lt;/div&gt;
-&lt;/md-sidenav-container&gt;</pre>
+&lt;/md-sidenav-container&gt;</prism>
         </md-card-content>
     </md-card>
 </div>
 <p>
-    Now, add the following styles to the bottom of <code>material-theme.scss</code>:
+    Now, add the following styles to the bottom of <code class="snippet">material-theme.scss</code>:
 </p>
 <div class="inline-card">
     <md-card>
@@ -354,7 +375,7 @@ export class AppComponent implements OnInit {{ '{' }}
             <md-card-title>ClientApp/material-theme.scss</md-card-title>
         </md-card-header>
         <md-card-content>
-            <pre class="card-snippet">.green-app {{ '{' }}
+            <prism language="scss" class="card-snippet">.green-app {{ '{' }}
     background-color: black;
     $green-app-primary: mat-palette($mat-green, A400);
     $green-app-accent: mat-palette($mat-red);
@@ -403,7 +424,7 @@ export class AppComponent implements OnInit {{ '{' }}
 .blue-app .app-body a:visited,
 .blue-app a.active div.mat-list-item-content {{ '{' }}
     color: map-get($mat-blue, 400);
-{{ '}' }}</pre>
+{{ '}' }}</prism>
         </md-card-content>
     </md-card>
 </div>
