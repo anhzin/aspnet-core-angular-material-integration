@@ -23,6 +23,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 
 import { MenuComponent } from './components/menu/menu.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 import { CardComponent } from './components/card/card.component';
 
@@ -44,6 +45,7 @@ export const sharedConfig: NgModule = {
         SliderComponent,
         SlideToggleComponent,
         MenuComponent,
+        SidenavComponent,
         CardComponent
     ],
     providers: [
@@ -66,6 +68,7 @@ export const sharedConfig: NgModule = {
             { path: 'slider', component: SliderComponent },
             { path: 'slide-toggle', component: SlideToggleComponent },
             { path: 'menu', component: MenuComponent },
+            { path: 'sidenav', component: SidenavComponent },
             { path: 'card', component: CardComponent },
             { path: '**', redirectTo: 'home' }
         ])

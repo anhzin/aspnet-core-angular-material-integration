@@ -1,0 +1,28 @@
+md-chip {
+    max-width: 200px;
+}
+
+md-sidenav-container.example-container.mat-sidenav-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.example-container {
+    width: 500px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    margin-left: 20px;
+}
+
+.example-sidenav {
+    padding: 20px;
+}
+
+.example-button {
+    margin: 15px 10px;   
+}
+
+.example-side-button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

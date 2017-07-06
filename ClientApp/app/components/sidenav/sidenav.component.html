@@ -1,0 +1,90 @@
+<md-toolbar>Sidenav</md-toolbar>
+<p>
+    <code class="snippet">md-sidenav</code> is a panel that can be placed next to or above some primary content. A sidenav
+    is typically used for navigation, but can contain any content. See <a href="https://material.angular.io/components/sidenav/overview"
+        target="_blank">documentation</a>.
+</p>
+<md-sidenav-container class="example-container">
+    <md-sidenav #demoSidenav class="example-sidenav">
+        <div *ngFor="let color of availableColors">
+            <button type="button" class="example-side-button" md-raised-button color="{{color.color}}" (click)="demoSidenav.close()">{{color.name}}</button>
+        </div>
+    </md-sidenav>
+    <div>
+        <md-toolbar color="primary">
+            <button type="button" class="example-button" md-button (click)="demoSidenav.open()"><md-icon>menu</md-icon></button> Sidenav Demo
+        </md-toolbar>
+    </div>
+</md-sidenav-container>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="sidenav.component.html">
+        <prism language="markup">
+&lt;md-sidenav-container class="example-container"&gt;
+    &lt;md-sidenav #demoSidenav class="example-sidenav"&gt;
+        &lt;div *ngFor="let color of availableColors"&gt;
+            &lt;button type="button" class="example-side-button" md-raised-button color="{{'{'}}{{'{'}}color.color{{'}'}}{{'}'}}" (click)="demoSidenav.close()"&gt;{{'{'}}{{'{'}}color.name{{'}'}}{{'}'}}&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/md-sidenav&gt;
+    &lt;div&gt;
+        &lt;md-toolbar color="primary"&gt;
+            &lt;button type="button" class="example-button" md-button (click)="demoSidenav.open()"&gt;&lt;md-icon&gt;menu&lt;/md-icon&gt;&lt;/button&gt; Sidenav Demo
+        &lt;/md-toolbar&gt;
+    &lt;/div&gt;
+&lt;/md-sidenav-container&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="sidenav.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'sidenav-usage',
+    templateUrl: './sidenav.component.html',
+    styleUrls: ['./sidenav.component.css']
+{{'}'}})
+export class SidenavComponent {{'{'}}
+    color: string;
+
+    availableColors = [
+        {{'{'}} name: 'none', color: '' {{'}'}},
+        {{'{'}} name: 'Primary', color: 'primary' {{'}'}},
+        {{'{'}} name: 'Accent', color: 'accent' {{'}'}},
+        {{'{'}} name: 'Warn', color: 'warn' {{'}'}}
+    ];
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="sidenav.component.css">
+        <prism language="css">
+md-chip {{'{'}}
+    max-width: 200px;
+{{'}'}}
+
+md-sidenav-container.example-container.mat-sidenav-container {{'{'}}
+    margin-top: 20px;
+    margin-bottom: 20px;
+{{'}'}}
+
+.example-container {{'{'}}
+    width: 500px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    margin-left: 20px;
+{{'}'}}
+
+.example-sidenav {{'{'}}
+    padding: 20px;
+{{'}'}}
+
+.example-button {{'{'}}
+    margin: 15px 10px;   
+{{'}'}}
+
+.example-side-button {{'{'}}
+    margin-top: 5px;
+    margin-bottom: 5px;
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>
