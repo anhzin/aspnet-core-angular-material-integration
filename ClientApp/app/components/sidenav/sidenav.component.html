@@ -4,26 +4,32 @@
     is typically used for navigation, but can contain any content. See <a href="https://material.angular.io/components/sidenav/overview"
         target="_blank">documentation</a>.
 </p>
-<md-sidenav-container class="example-container">
-    <md-sidenav #demoSidenav class="example-sidenav">
-        <div *ngFor="let color of availableColors">
-            <button type="button" class="example-side-button" md-raised-button color="{{color.color}}" (click)="demoSidenav.close()">{{color.name}}</button>
-        </div>
-    </md-sidenav>
-    <div>
-        <md-toolbar color="primary">
-            <button type="button" class="example-button" md-button (click)="demoSidenav.open()"><md-icon>menu</md-icon></button> Sidenav Demo
-        </md-toolbar>
-    </div>
-</md-sidenav-container>
+<demo-sidenav></demo-sidenav>
 <md-toolbar color="primary">Code</md-toolbar>
 <md-tab-group>
     <md-tab label="sidenav.component.html">
         <prism language="markup">
-&lt;md-sidenav-container class="example-container"&gt;
-    &lt;md-sidenav #demoSidenav class="example-sidenav"&gt;
-        &lt;div *ngFor="let color of availableColors"&gt;
-            &lt;button type="button" class="example-side-button" md-raised-button color="{{'{'}}{{'{'}}color.color{{'}'}}{{'}'}}" (click)="demoSidenav.close()"&gt;{{'{'}}{{'{'}}color.name{{'}'}}{{'}'}}&lt;/button&gt;
+&lt;demo-sidenav&gt;&lt;/demo-sidenav&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="sidenav.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'sidenav-usage',
+    templateUrl: './sidenav.component.html'
+{{'}'}})
+export class SidenavComponent {{'{'}}{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="demo-sidenav.component.html">
+        <prism language="markup">
+&lt;md-sidenav-container class="example-container" [ngClass]="materialTheme"&gt;
+    &lt;md-sidenav #demoSidenav&gt;
+        &lt;md-toolbar color="accent"&gt;Select a Theme&lt;/md-toolbar&gt;
+        &lt;div *ngFor="let theme of themes" class="button-container"&gt;
+            &lt;button type="button" class="example-side-button" md-raised-button (click)="setTheme(theme, demoSidenav)"&gt;{{'{'}}{{'{'}}theme.display{{'}'}}{{'}'}}&lt;/button&gt;
         &lt;/div&gt;
     &lt;/md-sidenav&gt;
     &lt;div&gt;
@@ -34,56 +40,62 @@
 &lt;/md-sidenav-container&gt;
         </prism>
     </md-tab>
-    <md-tab label="sidenav.component.ts">
+    <md-tab label="demo-sidenav.component.ts">
         <prism language="typescript">
-import {{'{'}} Component {{'}'}} from '@angular/core';
+import {{'{'}} Component, OnInit {{'}'}} from '@angular/core';
+import {{'{'}} MdSidenav {{'}'}} from '@angular/material';
+import {{'{'}} Theme {{'}'}} from '../../models/theme.model';
+import {{'{'}} ThemeService {{'}'}} from '../../services/theme.service';
 
 @Component({{'{'}}
-    selector: 'sidenav-usage',
-    templateUrl: './sidenav.component.html',
-    styleUrls: ['./sidenav.component.css']
+    selector: 'demo-sidenav',
+    templateUrl: './demo-sidenav.component.html',
+    styleUrls: ['./demo-sidenav.component.css'],
+    providers: [
+        ThemeService
+    ]
 {{'}'}})
-export class SidenavComponent {{'{'}}
-    color: string;
+export class DemoSidenavComponent implements OnInit {{'{'}}
+    materialTheme = 'green-app';
+    themes: Theme[] = new Array&lt;Theme&gt;();
+    constructor(private themeService: ThemeService) {{'{'}} }
 
-    availableColors = [
-        {{'{'}} name: 'none', color: '' {{'}'}},
-        {{'{'}} name: 'Primary', color: 'primary' {{'}'}},
-        {{'{'}} name: 'Accent', color: 'accent' {{'}'}},
-        {{'{'}} name: 'Warn', color: 'warn' {{'}'}}
-    ];
+    ngOnInit() {{'{'}}
+        this.themes = this.themeService.getThemes();
+
+        this.themeService.activeTheme.subscribe(theme => {{'{'}}
+            this.materialTheme = theme.id;
+        {{'}'}});
+    {{'}'}}
+
+    setTheme(theme: Theme, sidenav: MdSidenav) {{'{'}}
+        this.themeService.setTheme(theme);
+        sidenav.close();
+    {{'}'}}
 {{'}'}}
         </prism>
     </md-tab>
-    <md-tab label="sidenav.component.css">
+    <md-tab label="demo-sidenav.component.css">
         <prism language="css">
-md-chip {{'{'}}
-    max-width: 200px;
-{{'}'}}
-
-md-sidenav-container.example-container.mat-sidenav-container {{'{'}}
-    margin-top: 20px;
-    margin-bottom: 20px;
-{{'}'}}
-
 .example-container {{'{'}}
     width: 500px;
     height: 300px;
     border: 1px solid rgba(0, 0, 0, 0.5);
-    margin-left: 20px;
-{{'}'}}
-
-.example-sidenav {{'{'}}
-    padding: 20px;
+    margin: 20px;
 {{'}'}}
 
 .example-button {{'{'}}
-    margin: 15px 10px;   
+    margin: 15px 10px;
+{{'}'}}
+
+.button-container {{'{'}}
+    display: flex;
+    justify-content: center;
+    align-items: center;
 {{'}'}}
 
 .example-side-button {{'{'}}
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
 {{'}'}}
         </prism>
     </md-tab>

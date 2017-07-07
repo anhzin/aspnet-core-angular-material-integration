@@ -24,6 +24,7 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 
 import { MenuComponent } from './components/menu/menu.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { DemoSidenavComponent } from './components/sidenav/demo-sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 import { CardComponent } from './components/card/card.component';
@@ -47,6 +48,7 @@ export const sharedConfig: NgModule = {
         SlideToggleComponent,
         MenuComponent,
         SidenavComponent,
+        DemoSidenavComponent,
         ToolbarComponent,
         CardComponent
     ],
