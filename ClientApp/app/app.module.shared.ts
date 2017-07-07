@@ -27,6 +27,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DemoSidenavComponent } from './components/sidenav/demo-sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
+import { ListComponent } from './components/list/list.component';
 import { CardComponent } from './components/card/card.component';
 
 export const sharedConfig: NgModule = {
@@ -50,6 +51,7 @@ export const sharedConfig: NgModule = {
         SidenavComponent,
         DemoSidenavComponent,
         ToolbarComponent,
+        ListComponent,
         CardComponent
     ],
     providers: [
@@ -74,6 +76,7 @@ export const sharedConfig: NgModule = {
             { path: 'menu', component: MenuComponent },
             { path: 'sidenav', component: SidenavComponent },
             { path: 'toolbar', component: ToolbarComponent },
+            { path: 'list', component: ListComponent },
             { path: 'card', component: CardComponent },
             { path: '**', redirectTo: 'home' }
         ])

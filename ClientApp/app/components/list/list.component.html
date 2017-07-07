@@ -1,0 +1,91 @@
+<md-toolbar>List</md-toolbar>
+<p>
+    <code class="snippet">md-list</code> is a container component that wraps and formats a series of line items. As the base
+    list component, it provides Material Design styling, but no behavior of its own. See <a href="https://material.angular.io/components/list/overview"
+        target="_blank">documentation</a>.
+</p>
+<md-list>
+    <h3 md-subheader>Folders</h3>
+    <md-list-item *ngFor="let folder of folders">
+        <md-icon md-list-icon>folder</md-icon>
+        <h4 md-line>{{folder.name}}</h4>
+        <p md-line> {{folder.updated | date}} </p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <h3 md-subheader>Notes</h3>
+    <md-list-item *ngFor="let note of notes">
+        <md-icon md-list-icon>note</md-icon>
+        <h4 md-line>{{note.name}}</h4>
+        <p md-line> {{note.updated | date}} </p>
+    </md-list-item>
+</md-list>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="list.component.html">
+        <prism language="markup">
+&lt;md-list&gt;
+    &lt;h3 md-subheader&gt;Folders&lt;/h3&gt;
+    &lt;md-list-item *ngFor="let folder of folders"&gt;
+        &lt;md-icon md-list-icon&gt;folder&lt;/md-icon&gt;
+        &lt;h4 md-line&gt;{{'{'}}{{'{'}}folder.name{{'}'}}{{'}'}}&lt;/h4&gt;
+        &lt;p md-line&gt; {{'{'}}{{'{'}}folder.updated | date{{'}'}}{{'}'}} &lt;/p&gt;
+    &lt;/md-list-item&gt;
+    &lt;md-divider&gt;&lt;/md-divider&gt;
+    &lt;h3 md-subheader&gt;Notes&lt;/h3&gt;
+    &lt;md-list-item *ngFor="let note of notes"&gt;
+        &lt;md-icon md-list-icon&gt;note&lt;/md-icon&gt;
+        &lt;h4 md-line&gt;{{'{'}}{{'{'}}note.name{{'}'}}{{'}'}}&lt;/h4&gt;
+        &lt;p md-line&gt; {{'{'}}{{'{'}}note.updated | date{{'}'}}{{'}'}} &lt;/p&gt;
+    &lt;/md-list-item&gt;
+&lt;/md-list&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="list.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'list-usage',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.css']
+{{'}'}})
+export class ListComponent {{'{'}}
+    folders = [
+        {{'{'}}
+            name: 'Photos',
+            updated: new Date('1/1/16')
+        {{'}'}},
+        {{'{'}}
+            name: 'Recipes',
+            updated: new Date('1/17/16')
+        {{'}'}},
+        {{'{'}}
+            name: 'Work',
+            updated: new Date('1/28/16')
+        {{'}'}}
+    ];
+    notes = [
+        {{'{'}}
+            name: 'Vacation Itinerary',
+            updated: new Date('2/20/16')
+        {{'}'}},
+        {{'{'}}
+            name: 'Kitchen Remodel',
+            updated: new Date('1/18/16')
+        {{'}'}}
+    ];
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="list.component.css">
+        <prism language="css">
+.mat-list-icon {{'{'}}
+  color: rgba(255, 255, 255, 0.8);
+{{'}'}}
+
+md-list {{'{'}}
+    margin: 10px 20px 20px 20px;
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>
