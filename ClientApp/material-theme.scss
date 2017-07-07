@@ -270,7 +270,7 @@ md-nav-list.mat-nav-list .mat-subheader {
 .blue-app {
     background-color: black;
     $blue-app-primary: mat-palette($mat-light-blue, A400);
-    $blue-app-accent: mat-palette($mat-orange);
+    $blue-app-accent: mat-palette($mat-yellow);
     $blue-dark: mat-dark-theme($blue-app-primary, $blue-app-accent);
     @include angular-material-theme($blue-dark);
 }
