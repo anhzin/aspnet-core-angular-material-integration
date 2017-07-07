@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 
 @Component({
-    selector: 'card',
+    selector: 'card-usage',
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.css']
 })

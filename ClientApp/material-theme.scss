@@ -236,8 +236,8 @@ md-nav-list.mat-nav-list .mat-subheader {
 .green-app {
     background-color: black;
     $green-app-primary: mat-palette($mat-green, A400);
-    $green-app-accent: mat-palette($mat-red);
-    $green-dark: mat-dark-theme($green-app-primary, $green-app-accent, $app-warn);
+    $green-app-accent: mat-palette($mat-light-blue, A400);
+    $green-dark: mat-dark-theme($green-app-primary, $green-app-accent);
     @include angular-material-theme($green-dark);    
 }
 
@@ -269,9 +269,9 @@ md-nav-list.mat-nav-list .mat-subheader {
 
 .blue-app {
     background-color: black;
-    $blue-app-primary: mat-palette($mat-blue);
-    $blue-app-accent: mat-palette($mat-yellow);
-    $blue-dark: mat-dark-theme($blue-app-primary, $blue-app-accent, $app-warn);
+    $blue-app-primary: mat-palette($mat-light-blue, A400);
+    $blue-app-accent: mat-palette($mat-orange);
+    $blue-dark: mat-dark-theme($blue-app-primary, $blue-app-accent);
     @include angular-material-theme($blue-dark);
 }
 
@@ -281,7 +281,7 @@ md-nav-list.mat-nav-list .mat-subheader {
 .blue-app a.active div.mat-list-item-content,
 .blue-app .md-option.mat-selected.map-primary,
 .blue-app .mat-primary .mat-option.mat-selected {
-    color: map-get($mat-blue, 400);
+    color: map-get($mat-light-blue, A400);
 }
 
 div.cdk-overlay-container {

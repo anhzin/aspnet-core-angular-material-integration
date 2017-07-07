@@ -30,6 +30,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ListComponent } from './components/list/list.component';
 import { GridListComponent } from './components/grid-list/grid-list.component';
 import { CardComponent } from './components/card/card.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -54,7 +55,8 @@ export const sharedConfig: NgModule = {
         ToolbarComponent,
         ListComponent,
         GridListComponent,
-        CardComponent
+        CardComponent,
+        TabsComponent
     ],
     providers: [
         ThemeService
@@ -81,6 +83,7 @@ export const sharedConfig: NgModule = {
             { path: 'list', component: ListComponent },
             { path: 'grid-list', component: GridListComponent },
             { path: 'card', component: CardComponent },
+            { path: 'tabs', component: TabsComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

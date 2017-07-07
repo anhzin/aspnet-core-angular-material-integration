@@ -1,0 +1,101 @@
+<md-toolbar>Tabs</md-toolbar>
+<p>
+    Angular Material tabs organize content into separate views where only one view can be visible at a time. Each tab's label
+    is shown in the tab header and the active tab's label is designated with the animated ink bar. When the list of tab labels
+    exceeds the width of the header, pagination controls appear to let the user scroll left and right across the labels.
+    See <a href="https://material.angular.io/components/tabs/overview" target="_blank">documentation</a>.
+</p>
+<md-card class="example-content">
+    <md-tab-group>
+        <md-tab>
+            <ng-template md-tab-label>
+                <md-icon class="tab-icon">flight</md-icon> Flight
+            </ng-template>
+            <md-toolbar color="accent">Flight</md-toolbar>
+            <p>
+                Flight detail information would appear in this tab.
+            </p>
+        </md-tab>
+        <md-tab>
+            <ng-template md-tab-label>
+                <md-icon class="tab-icon">directions_car</md-icon> Rental Car
+            </ng-template>
+            <md-toolbar color="accent">Rental Car</md-toolbar>
+            <p>
+                Rental car detail information would appear in this tab.
+            </p>
+        </md-tab>
+        <md-tab>
+            <ng-template md-tab-label>
+                <md-icon class="tab-icon">hotel</md-icon> Hotel Reservation
+            </ng-template>
+            <md-toolbar color="accent">Hotel Reservation</md-toolbar>
+            <p>
+                Hotel reservation detail information would appear in this tab.
+            </p>
+        </md-tab>
+    </md-tab-group>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="tabs.component.html">
+        <prism language="markup">
+&lt;md-card class="example-content"&gt;
+    &lt;md-tab-group&gt;
+        &lt;md-tab&gt;
+            &lt;ng-template md-tab-label&gt;
+                &lt;md-icon class="tab-icon"&gt;flight&lt;/md-icon&gt; Flight
+            &lt;/ng-template&gt;
+            &lt;md-toolbar color="accent"&gt;Flight&lt;/md-toolbar&gt;
+            &lt;p&gt;
+                Flight detail information would appear in this tab.
+            &lt;/p&gt;
+        &lt;/md-tab&gt;
+        &lt;md-tab&gt;
+            &lt;ng-template md-tab-label&gt;
+                &lt;md-icon class="tab-icon"&gt;directions_car&lt;/md-icon&gt; Rental Car
+            &lt;/ng-template&gt;
+            &lt;md-toolbar color="accent"&gt;Rental Car&lt;/md-toolbar&gt;
+            &lt;p&gt;
+                Rental car detail information would appear in this tab.
+            &lt;/p&gt;
+        &lt;/md-tab&gt;
+        &lt;md-tab&gt;
+            &lt;ng-template md-tab-label&gt;
+                &lt;md-icon class="tab-icon"&gt;hotel&lt;/md-icon&gt; Hotel Reservation
+            &lt;/ng-template&gt;
+            &lt;md-toolbar color="accent"&gt;Hotel Reservation&lt;/md-toolbar&gt;
+            &lt;p&gt;
+                Hotel reservation detail information would appear in this tab.
+            &lt;/p&gt;
+        &lt;/md-tab&gt;
+    &lt;/md-tab-group&gt;
+&lt;/md-card&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="tabs.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'tabs-usage',
+    templateUrl: './tabs.component.html',
+    styleUrls: ['./tabs.component.css']
+{{'}'}})
+export class TabsComponent {{'{'}}{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="tabs.component.css">
+        <prism language="css">
+.tab-icon {{'{'}}
+    margin-right: 4px;
+{{'}'}}
+
+.example-content {{'{'}}
+    margin: 20px;
+    width: 600px;
+    height: 200px;
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>
