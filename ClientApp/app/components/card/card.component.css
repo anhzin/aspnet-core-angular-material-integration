@@ -1,11 +1,12 @@
-.app-content {
-    padding: 20px;
-    text-align: center;
+.example-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-.app-content md-card {
-    width: 420px;
+.example-content md-card {
     margin: 20px;
     display: inline-block;
-    text-align: justify;
+    width: 400px;
 }

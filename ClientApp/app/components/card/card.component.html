@@ -1,16 +1,83 @@
-<div class="app-content">
-  <md-card *ngFor="let data of (myData ? myData.slice(0,6): []); let i = index">
+<md-toolbar>Card</md-toolbar>
+<p>
+  <code class="snippet">md-card</code> is a content container for text, photos, and actions in the context of a single subject.
+  See <a href="https://material.angular.io/components/card/overview" target="_blank">documentation</a>.
+</p>
+<div class="example-content">
+  <md-card *ngFor="let data of (myData ? myData.slice(0,3): []); let i = index">
     <md-card-header>
       <md-card-title>{{ data.title }}</md-card-title>
       <md-card-subtitle><a href="https://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a></md-card-subtitle>
+      <img md-card-avatar [src]="data.thumbnailUrl">
     </md-card-header>
-    <img md-card-image src="{{data.url}}">
+    <img md-card-image [src]="data.url">
     <md-card-content>
-      <a href="https://material.io/guidelines/" target="_blank">Material Guidelines</a>
+      {{ data.title }}
     </md-card-content>
     <md-card-actions>
-      <button md-button>EDIT</button>
-      <button md-button>DELETE</button>
+      <button md-button>LIKE</button>
+      <button md-button>SHARE</button>
     </md-card-actions>
   </md-card>
 </div>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+  <md-tab label="card.component.html">
+    <prism language="markup">
+&lt;div class="example-content"&gt;
+  &lt;md-card *ngFor="let data of (myData ? myData.slice(0,3): []); let i = index"&gt;
+    &lt;md-card-header&gt;
+      &lt;md-card-title&gt;{{'{'}}{{'{'}} data.title {{'}'}}{{'}'}}&lt;/md-card-title&gt;
+      &lt;md-card-subtitle&gt;&lt;a href="https://jsonplaceholder.typicode.com/" target="_blank"&gt;JSONPlaceholder&lt;/a&gt;&lt;/md-card-subtitle&gt;
+      &lt;img md-card-avatar [src]="data.thumbnailUrl"&gt;
+    &lt;/md-card-header&gt;
+    &lt;img md-card-image [src]="data.url"&gt;
+    &lt;md-card-content&gt;
+      {{'{'}}{{'{'}} data.title {{'}'}}{{'}'}}
+    &lt;/md-card-content&gt;
+    &lt;md-card-actions&gt;
+      &lt;button md-button&gt;LIKE&lt;/button&gt;
+      &lt;button md-button&gt;SHARE&lt;/button&gt;
+    &lt;/md-card-actions&gt;
+  &lt;/md-card&gt;
+&lt;/div&gt;
+    </prism>
+  </md-tab>
+  <md-tab label="card.component.ts">
+    <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+import {{'{'}} Http {{'}'}} from '@angular/http';
+
+@Component({{'{'}}
+    selector: 'card',
+    templateUrl: './card.component.html',
+    styleUrls: ['./card.component.css']
+{{'}'}})
+export class CardComponent {{'{'}}
+    myData: Array&lt;any&gt;;
+
+    constructor(private http: Http) {{'{'}}
+        this.http.get('https://jsonplaceholder.typicode.com/photos')
+            .map(response => response.json())
+            .subscribe(res => this.myData = res);
+    {{'}'}}
+{{'}'}}
+    </prism>
+  </md-tab>
+  <md-tab label="card.component.css">
+    <prism language="css">
+.example-content {{'{'}}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+{{'}'}}
+
+.example-content md-card {{'{'}}
+    margin: 20px;
+    display: inline-block;
+    width: 400px;
+{{'}'}}
+    </prism>
+  </md-tab>
+</md-tab-group>
