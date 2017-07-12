@@ -36,6 +36,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { ButtonToggleComponent } from './components/button-toggle/button-toggle.component';
 import { ChipComponent } from './components/chip/chip.component';
 import { IconComponent } from './components/icon/icon.component';
+import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -65,7 +66,8 @@ export const sharedConfig: NgModule = {
         ButtonComponent,
         ButtonToggleComponent,
         ChipComponent,
-        IconComponent
+        IconComponent,
+        ProgressSpinnerComponent
     ],
     providers: [
         ThemeService
@@ -97,6 +99,7 @@ export const sharedConfig: NgModule = {
             { path: 'button-toggle', component: ButtonToggleComponent },
             { path: 'chip', component: ChipComponent },
             { path: 'icon', component: IconComponent },
+            { path: 'progress-spinner', component: ProgressSpinnerComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
