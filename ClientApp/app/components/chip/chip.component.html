@@ -1,0 +1,86 @@
+<md-toolbar>Chips</md-toolbar>
+<p>
+    <code class="snippet">md-chip-list</code> displays a list of values as individual, keyboard accessible, chips. See
+    <a href="https://material.angular.io/components/chips/overview" target="_blank" class="link">documentation</a>.
+</p>
+<md-card>
+    <md-card-content>
+        <h2 class="example-h2">Basic Chips</h2>
+        <div class="example-section">
+            <md-chip-list>
+                <md-chip *ngFor="let color of colors" [color]="color.color" selected="true">
+                    {{color.name}}
+                </md-chip>
+            </md-chip-list>
+        </div>
+        <h2 class="example-h2">Stacked Chips</h2>
+        <div class="example-section">
+            <md-chip-list class="mat-chip-list-stacked">
+                <md-chip *ngFor="let color of colors" [color]="color.color" selected="true">
+                    {{color.name}}
+                </md-chip>
+            </md-chip-list>
+        </div>
+    </md-card-content>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="chip.component.html">
+        <prism language="markup">
+&lt;md-card&gt;
+    &lt;md-card-content&gt;
+        &lt;h2 class="example-h2"&gt;Basic Chips&lt;/h2&gt;
+        &lt;div class="example-section"&gt;
+            &lt;md-chip-list&gt;
+                &lt;md-chip *ngFor="let color of colors" [color]="color.color" selected="true"&gt;
+                    {{'{'}}{{'{'}}color.name{{'}'}}{{'}'}}
+                &lt;/md-chip&gt;
+            &lt;/md-chip-list&gt;
+        &lt;/div&gt;
+        &lt;h2 class="example-h2"&gt;Stacked Chips&lt;/h2&gt;
+        &lt;div class="example-section"&gt;
+            &lt;md-chip-list class="mat-chip-list-stacked"&gt;
+                &lt;md-chip *ngFor="let color of colors" [color]="color.color" selected="true"&gt;
+                    {{'{'}}{{'{'}}color.name{{'}'}}{{'}'}}
+                &lt;/md-chip&gt;
+            &lt;/md-chip-list&gt;
+        &lt;/div&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="chip.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'chip-usage',
+    templateUrl: './chip.component.html',
+    styleUrls: ['./chip.component.css']
+{{'}'}})
+export class ChipComponent {{'{'}}
+    colors = [
+        {{'{'}} name: 'None', color: '' {{'}'}},
+        {{'{'}} name: 'Primary', color: 'primary' {{'}'}},
+        {{'{'}} name: 'Accent', color: 'accent' {{'}'}},
+        {{'{'}} name: 'Warn', color: 'warn' {{'}'}}
+    ]
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="chip.component.css">
+        <prism language="css">
+md-chip {{'{'}}
+    max-width: 200px;
+{{'}'}}
+
+.example-h2 {{'{'}}
+    margin: 10px;
+{{'}'}}
+
+.example-section {{'{'}}
+    margin: 20px;
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>
