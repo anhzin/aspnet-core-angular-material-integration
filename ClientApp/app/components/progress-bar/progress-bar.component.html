@@ -1,0 +1,115 @@
+<md-toolbar>Progress Bar</md-toolbar>
+<p>
+    <code class="snippet">md-progress-bar</code> is a horizontal progress-bar for indicating progress and activity. See
+    <a class="link" href="https://material.angular.io/components/progress-bar/overview" target="_blank">documentation</a>.
+</p>
+<md-card>
+    <md-card-content>
+        <h2 class="example-h2">Progress Bar Configuration</h2>
+        <section class="example-section">
+            <label class="example-margin">Color:</label>
+            <md-radio-group [(ngModel)]="color">
+                <md-radio-button class="example-margin" value="primary">Primary</md-radio-button>
+                <md-radio-button class="example-margin" value="accent">Accent</md-radio-button>
+                <md-radio-button class="example-margin" value="warn">Warn</md-radio-button>
+            </md-radio-group>
+        </section>
+        <section class="example-section">
+            <label class="example-margin">Mode:</label>
+            <md-radio-group [(ngModel)]="mode">
+                <md-radio-button class="example-margin" value="determinate">Determinate</md-radio-button>
+                <md-radio-button class="example-margin" value="indeterminate">Indeterminate</md-radio-button>
+                <md-radio-button class="example-margin" value="buffer">Buffer</md-radio-button>
+                <md-radio-button class="example-margin" value="query">Query</md-radio-button>
+            </md-radio-group>
+        </section>
+        <section class="example-section" *ngIf="mode == 'determinate' || mode =='buffer'">
+            <label class="example-margin">Progress:</label>
+            <md-slider class="example-margin" [(ngModel)]="value"></md-slider>
+        </section>
+        <section class="example-section" *ngIf="mode == 'buffer'">
+            <label class="example-margin">Buffer:</label>
+            <md-slider class="example-margin" [(ngModel)]="bufferValue"></md-slider>
+        </section>
+        <h2 class="example-h2">Result</h2>
+        <section class="example-section">
+            <md-progress-bar class="example-margin" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue"></md-progress-bar>
+        </section>
+    </md-card-content>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="progress-bar.component.html">
+        <prism language="markup">
+&lt;md-card&gt;
+    &lt;md-card-content&gt;
+        &lt;h2 class="example-h2"&gt;Progress Bar Configuration&lt;/h2&gt;
+        &lt;section class="example-section"&gt;
+            &lt;label class="example-margin"&gt;Color:&lt;/label&gt;
+            &lt;md-radio-group [(ngModel)]="color"&gt;
+                &lt;md-radio-button class="example-margin" value="primary"&gt;Primary&lt;/md-radio-button&gt;
+                &lt;md-radio-button class="example-margin" value="accent"&gt;Accent&lt;/md-radio-button&gt;
+                &lt;md-radio-button class="example-margin" value="warn"&gt;Warn&lt;/md-radio-button&gt;
+            &lt;/md-radio-group&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            &lt;label class="example-margin"&gt;Mode:&lt;/label&gt;
+            &lt;md-radio-group [(ngModel)]="mode"&gt;
+                &lt;md-radio-button class="example-margin" value="determinate"&gt;Determinate&lt;/md-radio-button&gt;
+                &lt;md-radio-button class="example-margin" value="indeterminate"&gt;Indeterminate&lt;/md-radio-button&gt;
+                &lt;md-radio-button class="example-margin" value="buffer"&gt;Buffer&lt;/md-radio-button&gt;
+                &lt;md-radio-button class="example-margin" value="query"&gt;Query&lt;/md-radio-button&gt;
+            &lt;/md-radio-group&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section" *ngIf="mode == 'determinate' || mode =='buffer'"&gt;
+            &lt;label class="example-margin"&gt;Progress:&lt;/label&gt;
+            &lt;md-slider class="example-margin" [(ngModel)]="value"&gt;&lt;/md-slider&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section" *ngIf="mode == 'buffer'"&gt;
+            &lt;label class="example-margin"&gt;Buffer:&lt;/label&gt;
+            &lt;md-slider class="example-margin" [(ngModel)]="bufferValue"&gt;&lt;/md-slider&gt;
+        &lt;/section&gt;
+        &lt;h2 class="example-h2"&gt;Result&lt;/h2&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-progress-bar class="example-margin" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue"&gt;&lt;/md-progress-bar&gt;
+        &lt;/section&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="progress-bar.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'progress-bar-usage',
+    templateUrl: './progress-bar.component.html',
+    styleUrls: ['./progress-bar.component.css']
+{{'}'}})
+export class ProgressBarComponent {{'{'}}
+    color = 'primary';
+    mode = 'determinate';
+    value = 50;
+    bufferValue = 75;
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="progress-bar.component.css">
+        <prism language="css">
+.example-h2 {{'{'}}
+  margin: 10px;
+{{'}'}}
+
+.example-section {{'{'}}
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+{{'}'}}
+
+.example-margin {{'{'}}
+  margin: 0 10px;
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>
