@@ -1,0 +1,93 @@
+<md-toolbar>Button Toggle</md-toolbar>
+<p>
+    <code class="snippet">md-button-toggle</code> are on/off toggles with the appearance of a button. These toggles can be
+    configured to behave as either radio-buttons or checkboxes. While they can be standalone, they are typically part of
+    a <code class="snippet">md-button-toggle-group</code>.
+</p>
+<md-card>
+    <md-card-content>
+        <h2 class="example-h2">Button Toggle Configuration</h2>
+        <div class="example-section">
+            <md-checkbox [(ngModel)]="vertical" class="example-margin">Vertical Button Toggle Group</md-checkbox>
+            <md-checkbox [(ngModel)]="disabled" class="example-margin">Button Toggle Disabled</md-checkbox>
+        </div>
+        <h2 class="example-h2">Theme</h2>
+        <div class="example-result-section">
+            <md-button-toggle-group #group="mdButtonToggleGroup" [vertical]="vertical">
+                <md-button-toggle *ngFor="let theme of themes" value="theme" (click)="disabled ? return : setTheme(theme)" [disabled]="disabled">
+                    {{theme.display}}
+                </md-button-toggle>
+            </md-button-toggle-group>
+        </div>
+    </md-card-content>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="button-toggle.component.html">
+        <prism language="markup">
+&lt;md-card&gt;
+    &lt;md-card-content&gt;
+        &lt;h2 class="example-h2"&gt;Button Toggle Configuration&lt;/h2&gt;
+        &lt;div class="example-section"&gt;
+            &lt;md-checkbox [(ngModel)]="vertical" class="example-margin"&gt;Vertical Button Toggle Group&lt;/md-checkbox&gt;
+            &lt;md-checkbox [(ngModel)]="disabled" class="example-margin"&gt;Button Toggle Disabled&lt;/md-checkbox&gt;
+        &lt;/div&gt;
+        &lt;h2 class="example-h2"&gt;Theme&lt;/h2&gt;
+        &lt;div class="example-result-section"&gt;
+            &lt;md-button-toggle-group #group="mdButtonToggleGroup" [vertical]="vertical"&gt;
+                &lt;md-button-toggle *ngFor="let theme of themes" value="theme" (click)="disabled ? return : setTheme(theme)" [disabled]="disabled"&gt;
+                    {{'{'}}{{'{'}}theme.display{{'}'}}{{'}'}}
+                &lt;/md-button-toggle&gt;
+            &lt;/md-button-toggle-group&gt;
+        &lt;/div&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="button-toggle.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+import {{'{'}} Theme {{'}'}} from '../../models/theme.model';
+import {{'{'}} ThemeService {{'}'}} from '../../services/theme.service';
+
+@Component({{'{'}}
+    selector: 'button-toggle-usage',
+    templateUrl: './button-toggle.component.html',
+    styleUrls: ['./button-toggle.component.css']
+{{'}'}})
+export class ButtonToggleComponent {{'{'}}
+    themes: Array&lt;Theme&gt;;
+
+    constructor(private themeService: ThemeService) {{'{'}}
+        this.themes = this.themeService.getThemes();
+    {{'}'}}
+
+    setTheme(theme: Theme) {{'{'}}
+        this.themeService.setTheme(theme);
+    {{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="button-toggle.component.css">
+        <prism language="css">
+.example-h2 {{'{'}}
+    margin: 10px;
+{{'}'}}
+
+.example-section {{'{'}}
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+{{'}'}}
+
+.example-margin {{'{'}}
+    margin: 0 10px;
+{{'}'}}
+
+.example-result-section {{'{'}}
+    margin-left: 10px;
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>

@@ -33,6 +33,7 @@ import { CardComponent } from './components/card/card.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 
 import { ButtonComponent } from './components/button/button.component';
+import { ButtonToggleComponent } from './components/button-toggle/button-toggle.component';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -59,7 +60,8 @@ export const sharedConfig: NgModule = {
         GridListComponent,
         CardComponent,
         TabsComponent,
-        ButtonComponent
+        ButtonComponent,
+        ButtonToggleComponent
     ],
     providers: [
         ThemeService
@@ -88,6 +90,7 @@ export const sharedConfig: NgModule = {
             { path: 'card', component: CardComponent },
             { path: 'tabs', component: TabsComponent },
             { path: 'button', component: ButtonComponent },
+            { path: 'button-toggle', component: ButtonToggleComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
