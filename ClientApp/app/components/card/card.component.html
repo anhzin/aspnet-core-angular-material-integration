@@ -1,13 +1,13 @@
 <md-toolbar>Card</md-toolbar>
 <p>
   <code class="snippet">md-card</code> is a content container for text, photos, and actions in the context of a single subject.
-  See <a href="https://material.angular.io/components/card/overview" target="_blank">documentation</a>.
+  See <a class="link" href="https://material.angular.io/components/card/overview" target="_blank">documentation</a>.
 </p>
 <div class="example-content">
   <md-card *ngFor="let data of (myData ? myData.slice(0,3): []); let i = index">
     <md-card-header>
       <md-card-title>{{ data.title }}</md-card-title>
-      <md-card-subtitle><a href="https://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a></md-card-subtitle>
+      <md-card-subtitle><a class="link" href="https://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a></md-card-subtitle>
       <img md-card-avatar [src]="data.thumbnailUrl">
     </md-card-header>
     <img md-card-image [src]="data.url">

@@ -1,0 +1,134 @@
+<md-toolbar>Button</md-toolbar>
+<p>
+    Angular Material buttons are native <code>button</code> or <code>a</code> elements enhanced with Material Design styling
+    and ink ripples. See <a class="link" href="https://material.angular.io/components/button/overview" target="_blank">documentation</a>.
+</p>
+<div class="example-container">
+    <h3>Normal Buttons</h3>
+    <div class="example-button-row">
+        <button md-button>Flat Button</button>
+        <button md-button color="primary">Primary Flat Button</button>
+        <button md-button color="accent">Accent Flat Button</button>
+        <button md-button color="warn">Warn Flat Button</button>
+    </div>
+    <div class="example-button-row">
+        <button md-raised-button>Raised Button</button>
+        <button md-raised-button color="primary">Primary Raised Button</button>
+        <button md-raised-button color="accent">Accent Raised Button</button>
+        <button md-raised-button color="warn">Warn Raised Button</button>
+    </div>
+    <div class="example-button-row">
+        <button md-fab><md-icon>add</md-icon></button>
+        <button md-fab color="primary"><md-icon>add</md-icon></button>
+        <button md-fab color="warn"><md-icon>add</md-icon></button>
+    </div>
+    <div class="example-button-row">
+        <button md-mini-fab><md-icon>add</md-icon></button>
+        <button md-mini-fab color="primary"><md-icon>add</md-icon></button>
+        <button md-mini-fab color="warn"><md-icon>add</md-icon></button>
+    </div>
+    <h3>Link Buttons</h3>
+    <div class="example-button-row">
+        <a md-button>Flat Button</a>
+        <a md-button color="primary">Primary Flat Button</a>
+        <a md-button color="accent">Accent Flat Button</a>
+        <a md-button color="warn">Warn Flat Button</a>
+    </div>
+    <div class="example-button-row">
+        <a md-raised-button>Raised Button</a>
+        <a md-raised-button color="primary">Primary Raised Button</a>
+        <a md-raised-button color="accent">Accent Raised Button</a>
+        <a md-raised-button color="warn">Warn Raised Button</a>
+    </div>
+    <div class="example-button-row">
+        <a md-fab><md-icon>add</md-icon></a>
+        <a md-fab color="primary"><md-icon>add</md-icon></a>
+        <a md-fab color="warn"><md-icon>add</md-icon></a>        
+    </div>
+    <div class="example-button-row">
+        <a md-mini-fab><md-icon>add</md-icon></a>
+        <a md-mini-fab color="primary"><md-icon>add</md-icon></a>
+        <a md-mini-fab color="warn"><md-icon>add</md-icon></a>
+    </div>
+</div>
+<md-tab-group>
+    <md-tab label="button.component.html">
+        <prism language="markup">
+&lt;div class="example-container"&gt;
+    &lt;h3&gt;Normal Buttons&lt;/h3&gt;
+    &lt;div class="example-button-row"&gt;
+        &lt;button md-button&gt;Flat Button&lt;/button&gt;
+        &lt;button md-button color="primary"&gt;Primary Flat Button&lt;/button&gt;
+        &lt;button md-button color="accent"&gt;Accent Flat Button&lt;/button&gt;
+        &lt;button md-button color="warn"&gt;Warn Flat Button&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="example-button-row"&gt;
+        &lt;button md-raised-button&gt;Raised Button&lt;/button&gt;
+        &lt;button md-raised-button color="primary"&gt;Primary Raised Button&lt;/button&gt;
+        &lt;button md-raised-button color="accent"&gt;Accent Raised Button&lt;/button&gt;
+        &lt;button md-raised-button color="warn"&gt;Warn Raised Button&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="example-button-row"&gt;
+        &lt;button md-fab&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/button&gt;
+        &lt;button md-fab color="primary"&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/button&gt;
+        &lt;button md-fab color="warn"&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="example-button-row"&gt;
+        &lt;button md-mini-fab&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/button&gt;
+        &lt;button md-mini-fab color="primary"&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/button&gt;
+        &lt;button md-mini-fab color="warn"&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;h3&gt;Link Buttons&lt;/h3&gt;
+    &lt;div class="example-button-row"&gt;
+        &lt;a md-button&gt;Flat Button&lt;/a&gt;
+        &lt;a md-button color="primary"&gt;Primary Flat Button&lt;/a&gt;
+        &lt;a md-button color="accent"&gt;Accent Flat Button&lt;/a&gt;
+        &lt;a md-button color="warn"&gt;Warn Flat Button&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="example-button-row"&gt;
+        &lt;a md-raised-button&gt;Raised Button&lt;/a&gt;
+        &lt;a md-raised-button color="primary"&gt;Primary Raised Button&lt;/a&gt;
+        &lt;a md-raised-button color="accent"&gt;Accent Raised Button&lt;/a&gt;
+        &lt;a md-raised-button color="warn"&gt;Warn Raised Button&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="example-button-row"&gt;
+        &lt;a md-fab&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/a&gt;
+        &lt;a md-fab color="primary"&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/a&gt;
+        &lt;a md-fab color="warn"&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/a&gt;        
+    &lt;/div&gt;
+    &lt;div class="example-button-row"&gt;
+        &lt;a md-mini-fab&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/a&gt;
+        &lt;a md-mini-fab color="primary"&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/a&gt;
+        &lt;a md-mini-fab color="warn"&gt;&lt;md-icon&gt;add&lt;/md-icon&gt;&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="button.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'button-usage',
+    templateUrl: './button.component.html',
+    styleUrls: ['./button.component.css']
+{{'}'}})
+export class ButtonComponent {{'{'}}{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="button.component.css">
+        <prism language="css">
+.example-container {{'{'}}
+    max-width: 800px;
+    margin: 20px;
+{{'}'}}
+
+.example-button-row {{'{'}}
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>
