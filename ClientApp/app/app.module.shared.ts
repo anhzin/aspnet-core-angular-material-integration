@@ -35,6 +35,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ButtonToggleComponent } from './components/button-toggle/button-toggle.component';
 import { ChipComponent } from './components/chip/chip.component';
+import { IconComponent } from './components/icon/icon.component';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -63,7 +64,8 @@ export const sharedConfig: NgModule = {
         TabsComponent,
         ButtonComponent,
         ButtonToggleComponent,
-        ChipComponent
+        ChipComponent,
+        IconComponent
     ],
     providers: [
         ThemeService
@@ -94,6 +96,7 @@ export const sharedConfig: NgModule = {
             { path: 'button', component: ButtonComponent },
             { path: 'button-toggle', component: ButtonToggleComponent },
             { path: 'chip', component: ChipComponent },
+            { path: 'icon', component: IconComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

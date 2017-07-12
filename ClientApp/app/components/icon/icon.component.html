@@ -1,0 +1,50 @@
+<md-toolbar>Icon</md-toolbar>
+<p>
+    <code class="snippet">md-icon</code> makes it easier to use <em>vector-based</em> icons in your app. This directive supports
+    both icon fonts and SVG icons, but not bitmap-based formats (png, jpg, etc.). See <a class="link" href="https://material.angular.io/components/icon/overview"
+        target="_blank">documentation</a>.
+</p>
+<div class="example-section">
+    <a md-raised-button href="https://angular.io" target="_blank">
+        <md-icon svgIcon="angular"></md-icon> Angular Docs
+    </a>
+</div>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="icon.component.html">
+        <prism language="markup">
+&lt;div class="example-section"&gt;
+    &lt;a md-raised-button href="https://angular.io" target="_blank"&gt;
+        &lt;md-icon svgIcon="angular"&gt;&lt;/md-icon&gt; Angular Docs
+    &lt;/a&gt;
+&lt;/div&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="icon.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+import {{'{'}} DomSanitizer {{'}'}} from '@angular/platform-browser';
+import {{'{'}} MdIconRegistry {{'}'}} from '@angular/material';
+
+@Component({{'{'}}
+  selector: 'icon-usage',
+  templateUrl: 'icon.component.html',
+  styleUrls: ['icon.component.css']
+{{'}'}})
+export class IconComponent {{'{'}}
+  constructor(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {{'{'}}
+    iconRegistry.addSvgIcon('angular', sanitizer.bypassSecurityTrustResourceUrl('/assets/angular-icon.svg'));
+  {{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="icon.component.css">
+        <prism language="css">
+.example-section a,
+.example-section a:visited {{'{'}}
+    color: #eee;
+    margin: 20px;
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>

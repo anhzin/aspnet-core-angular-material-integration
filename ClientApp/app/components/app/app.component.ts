@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Theme } from '../../models/theme.model';
 import { ThemeService } from '../../services/theme.service';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MdIconRegistry} from '@angular/material';
 
 @Component({
     selector: 'app',
@@ -12,7 +14,10 @@ export class AppComponent implements OnInit {
 
     themes: Theme[] = new Array<Theme>();
 
-    constructor(private themeService: ThemeService) {
+    constructor(private themeService: ThemeService, iconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
+        iconRegistry.addSvgIcon(
+        'github',
+        sanitizer.bypassSecurityTrustResourceUrl('/assets/github-icon.svg'));
     }
 
     ngOnInit() {

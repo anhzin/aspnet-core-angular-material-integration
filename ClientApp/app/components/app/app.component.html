@@ -4,7 +4,7 @@
     <span class="toolbar-header">Web Platform Development</span>
     <span class="example-spacer"></span>
     <button md-button *ngFor="let theme of themes" (click)="themeService.setTheme(theme)">{{theme.display}}</button>
-    <a md-button href="https://github.com/JaimeStill/AspNetCoreMaterial" target="_blank">GitHub</a>
+    <a md-icon-button href="https://github.com/JaimeStill/AspNetCoreMaterial" target="_blank"><md-icon svgIcon="github"></md-icon></a>
   </md-toolbar>
   <md-sidenav-container [ngClass]="materialTheme" class="mat-typography">
     <md-sidenav #sidenav mode="side" opened="true">
@@ -45,6 +45,7 @@
         <a md-list-item routerLink="/button" routerLinkActive="active">Button</a>
         <a md-list-item routerLink="/button-toggle" routerLinkActive="active">Button toggle</a>
         <a md-list-item routerLink="/chip" routerLinkActive="active">Chip</a>
+        <a md-list-item routerLink="/icon" routerLinkActive="active">Icon</a>
         <md-divider></md-divider>
         <h3 md-subheader>Popups &amp; Modals</h3>
         <md-divider></md-divider>
