@@ -1,0 +1,111 @@
+<md-toolbar>Dialog</md-toolbar>
+<p>
+    The <code class="snippet">MdDialog</code> service can be used to open modal dialogs with Material Design styling and
+    animations. See <a class="link" href="https://material.angular.io/components/dialog/overview" target="_blank">documentation</a>.
+</p>
+<md-card class="example-card">
+    <md-card-content>
+        <section class="example-section">
+            <button md-button (click)="openDialog()">Launch Dialog</button>
+        </section>
+        <section class="example-section">
+            You chose: {{selectedOption}}
+        </section>
+    </md-card-content>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="dialog.component.html">
+        <prism language="markup">
+&lt;md-card class="example-card"&gt;
+    &lt;md-card-content&gt;
+        &lt;section class="example-section"&gt;
+            &lt;button md-button (click)="openDialog()"&gt;Launch Dialog&lt;/button&gt;
+        &lt;/section&gt;
+        &lt;section class="example-section"&gt;
+            You chose: {{'{'}}{{'{'}}selectedOption{{'}'}}{{'}'}}
+        &lt;/section&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="dialog.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+import {{'{'}} MdDialog {{'}'}} from '@angular/material';
+import {{'{'}} ExampleDialogComponent {{'}'}} from './example-dialog.component';
+
+@Component({{'{'}}
+    selector: 'dialog-usage',
+    templateUrl: 'dialog.component.html',
+    styleUrls: ['dialog.component.css']
+{{'}'}})
+
+export class DialogComponent {{'{'}}
+    selectedOption: string;
+
+    constructor(public dialog: MdDialog) {{'{'}}{{'}'}}
+
+    openDialog() {{'{'}}
+        const dialogRef = this.dialog.open(ExampleDialogComponent);
+        dialogRef.afterClosed().subscribe(result => {{'{'}}
+            this.selectedOption = result;
+        {{'}'}});
+    {{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="dialog.component.css">
+        <prism language="css">
+.example-section {{'{'}}
+    margin: 10px;
+{{'}'}}
+
+.example-card {{'{'}}
+    width: 500px;
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="example-dialog.component.html">
+        <prism language="markup">
+&lt;div class="mat-typography"&gt;
+    &lt;h2 md-dialog-title&gt;Important Decisions&lt;/h2&gt;
+    &lt;div md-dialog-content&gt;What would you like to do?&lt;/div&gt;
+    &lt;div md-dialog-actions&gt;
+        &lt;button md-button md-dialog-close="Eat cake"&gt;&lt;md-icon&gt;cake&lt;/md-icon&gt; Eat Cake&lt;/button&gt;
+        &lt;button md-button md-dialog-close="Cry because you have no cake"&gt;&lt;md-icon&gt;sentiment_very_dissatisfied&lt;/md-icon&gt; Cry&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="example-dialog.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+import {{'{'}} MdDialogRef {{'}'}} from '@angular/material';
+
+@Component({{'{'}}
+    selector: 'example-dialog',
+    templateUrl: 'example-dialog.component.html'
+{{'}'}})
+export class ExampleDialogComponent {{'{'}}
+    constructor(public dialogRef: MdDialogRef&lt;ExampleDialogComponent&gt;) {{'{'}}{{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="app.module.shared.ts">
+        <prism language="typescript">
+// Only relevant code shown
+// See https://material.angular.io/components/dialog/overview#aot-compilation
+import {{'{'}} ExampleDialogComponent {{'}'}} from './components/dialog/example-dialog.component';
+
+export const sharedConfig: NgModule = {{'{'}}
+    declarations: [
+        ExampleDialogComponent
+    ],
+    entryComponents: [
+        ExampleDialogComponent
+    ]
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>

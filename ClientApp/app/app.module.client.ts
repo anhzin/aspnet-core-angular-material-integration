@@ -16,6 +16,9 @@ import { sharedConfig } from './app.module.shared';
         HttpModule,
         ...sharedConfig.imports
     ],
+    entryComponents: [
+        ...sharedConfig.entryComponents
+    ],
     providers: [
         { provide: 'ORIGIN_URL', useValue: location.origin },
         sharedConfig.providers
