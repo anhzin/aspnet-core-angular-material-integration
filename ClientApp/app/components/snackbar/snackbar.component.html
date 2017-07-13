@@ -1,0 +1,159 @@
+<md-toolbar>Snackbar</md-toolbar>
+<p>
+    <code class="snippet">MdSnackBar</code> is a service for displaying snack-bar notifications. See <a class="link" href="https://material.angular.io/components/snack-bar/overview"
+        target="_blank">documentation</a>.
+</p>
+<md-card class="example-card">
+    <md-card-content>
+        <h2 class="example-h2">Basic Snackbar</h2>
+        <section class="example-section">
+            <md-input-container>
+                <input mdInput value="Disco party!" placeholder="Message" #message>
+            </md-input-container>
+            <md-input-container>
+                <input mdInput value="Dance" placeholder="Action" #action>
+            </md-input-container>
+            <button md-raised-button color="primary" (click)="openSnackBar(message.value, action.value)">Show Snackbar</button>
+        </section>
+        <h2 class="example-h2">Component Snackbar</h2>
+        <section class="example-section">
+            <button md-raised-button color="primary" (click)="openSnackBarComponent()">Donut Party</button>
+        </section>
+        <h2 class="example-h2">Snackbar Output Console</h2>
+        <section class="example-console">
+            <p *ngFor="let snack of snacks">{{snack}}</p>
+        </section>
+    </md-card-content>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="snackbar.component.html">
+        <prism language="markup">
+&lt;md-card class="example-card"&gt;
+    &lt;md-card-content&gt;
+        &lt;h2 class="example-h2"&gt;Basic Snackbar&lt;/h2&gt;
+        &lt;section class="example-section"&gt;
+            &lt;md-input-container&gt;
+                &lt;input mdInput value="Disco party!" placeholder="Message" #message&gt;
+            &lt;/md-input-container&gt;
+            &lt;md-input-container&gt;
+                &lt;input mdInput value="Dance" placeholder="Action" #action&gt;
+            &lt;/md-input-container&gt;
+            &lt;button md-raised-button color="primary" (click)="openSnackBar(message.value, action.value)"&gt;Show Snackbar&lt;/button&gt;
+        &lt;/section&gt;
+        &lt;h2 class="example-h2"&gt;Component Snackbar&lt;/h2&gt;
+        &lt;section class="example-section"&gt;
+            &lt;button md-raised-button color="primary" (click)="openSnackBarComponent()"&gt;Donut Party&lt;/button&gt;
+        &lt;/section&gt;
+        &lt;h2 class="example-h2"&gt;Snackbar Output Console&lt;/h2&gt;
+        &lt;section class="example-console"&gt;
+            &lt;p *ngFor="let snack of snacks"&gt;{{snack}}&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="snackbar.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+import {{'{'}} MdSnackBar {{'}'}} from '@angular/material';
+import {{'{'}} ExampleSnackbarComponent {{'}'}} from './example-snackbar.component';
+
+@Component({{'{'}}
+    selector: 'snackbar-usage',
+    templateUrl: 'snackbar.component.html',
+    styleUrls: ['snackbar.component.css']
+{{'}'}})
+
+export class SnackbarComponent {{'{'}}
+    snacks: Array&lt;string&gt; = new Array&lt;string&gt;();
+
+    constructor(public snackBar: MdSnackBar) {{'{'}}{{'}'}}
+    openSnackBar(message: string, action: string) {{'{'}}
+        const snackBarRef = this.snackBar.open(message, action, {{'{'}}
+            duration: 2000
+        {{'}'}});
+
+        snackBarRef.afterDismissed().subscribe(() => {{'{'}}
+            this.snacks.push(message + ' Dismissed');
+        {{'}'}});
+
+        snackBarRef.onAction().subscribe(() => {{'{'}}
+            this.snacks.push(action + ' Action');
+        {{'}'}});
+    {{'}'}}
+    openSnackBarComponent() {{'{'}}
+        const snackBarRef = this.snackBar.openFromComponent(ExampleSnackbarComponent, {{'{'}}
+            duration: 2000
+        {{'}'}});
+
+        snackBarRef.afterDismissed().subscribe(() => {{'{'}}
+            this.snacks.push('SnackBar Component Dismissed');
+        {{'}'}});
+
+        snackBarRef.onAction().subscribe(() => {{'{'}}
+            this.snacks.push('SnackBar Component Action');
+        {{'}'}});
+    {{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="snackbar.component.css">
+        <prism language="css">
+.example-h2 {{'{'}}
+    margin: 10px;
+{{'}'}}
+
+.example-card {{'{'}}
+    max-width: 600px;
+    margin: 20px;
+{{'}'}}
+
+.example-section {{'{'}}
+    margin: 10px;
+{{'}'}}
+
+.example-console {{'{'}}
+    font-family: 'Consolas', Courier New, Courier, monospace;
+    background: #333;
+    margin: 10px;
+    padding: 10px;
+    overflow: auto;
+    height: 90px;
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="example-snackbar.component.html">
+        <prism language="markup">
+&lt;span [style.color]="'white'" class="mat-typography"&gt;
+     🍩🍩🍩🍩 Donut Party!!! 🍩🍩🍩🍩
+&lt;/span&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="example-snackbar.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'example-snackbar',
+    templateUrl: 'example-snackbar.component.html'
+{{'}'}})
+export class ExampleSnackbarComponent {{'{'}}{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="app.module.shared.ts">
+        <prism language="typescript">
+// Only showing relevant code
+import {{'{'}} ExampleSnackbarComponent {{'}'}} from './components/snackbar/example-snackbar.component';
+
+export const sharedConfig: NgModule = {{'{'}}
+    declarations: [
+        ExampleSnackbarComponent
+    ],
+    entryComponents: [
+        ExampleSnackbarComponent
+    ]
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>

@@ -42,6 +42,8 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ExampleDialogComponent } from './components/dialog/example-dialog.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { ExampleSnackbarComponent } from './components/snackbar/example-snackbar.component';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -76,10 +78,13 @@ export const sharedConfig: NgModule = {
         ProgressBarComponent,
         DialogComponent,
         ExampleDialogComponent,
-        TooltipComponent
+        TooltipComponent,
+        SnackbarComponent,
+        ExampleSnackbarComponent
     ],
     entryComponents: [
-        ExampleDialogComponent
+        ExampleDialogComponent,
+        ExampleSnackbarComponent
     ],
     providers: [
         ThemeService
@@ -115,6 +120,7 @@ export const sharedConfig: NgModule = {
             { path: 'progress-bar', component: ProgressBarComponent },
             { path: 'dialog', component: DialogComponent },
             { path: 'tooltip', component: TooltipComponent },
+            { path: 'snackbar', component: SnackbarComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
