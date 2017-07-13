@@ -1,0 +1,95 @@
+<md-toolbar>Tooltip</md-toolbar>
+<p>
+    The Angular Material tooltip provides a text label that is displayed with the user hovers over or longpresses an element.
+    See <a class="link" href="https://material.angular.io/components/tooltip/overview" target="_blank">documentation</a>.
+</p>
+<md-card class="example-card">
+    <md-card-content>
+        <h2 class="example-h2">Tooltip Position</h2>
+        <md-select class="example-select" [(ngModel)]="position">
+            <md-option *ngFor="let pos of positions" [value]="pos">{{pos}}</md-option>
+        </md-select>
+        <div class="example-container">
+            <section class="example-section" mdTooltip="Tooltip!" [mdTooltipPosition]="position">
+                Show tooltip
+            </section>
+        </div>
+    </md-card-content>
+</md-card>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="tooltip.component.html">
+        <prism language="markup">
+&lt;md-card class="example-card"&gt;
+    &lt;md-card-content&gt;
+        &lt;h2 class="example-h2"&gt;Tooltip Position&lt;/h2&gt;
+        &lt;md-select class="example-select" [(ngModel)]="position"&gt;
+            &lt;md-option *ngFor="let pos of positions" [value]="pos"&gt;{{'{'}}{{'{'}}pos{{'}'}}{{'}'}}&lt;/md-option&gt;
+        &lt;/md-select&gt;
+        &lt;div class="example-container"&gt;
+            &lt;section class="example-section" mdTooltip="Tooltip!" [mdTooltipPosition]="position"&gt;
+                Show tooltip
+            &lt;/section&gt;
+        &lt;/div&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="tooltip.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+
+@Component({{'{'}}
+    selector: 'tooltip-usage',
+    templateUrl: 'tooltip.component.html',
+    styleUrls: ['tooltip.component.css']
+{{'}'}})
+export class TooltipComponent {{'{'}}
+    positions: Array&lt;string&gt;;
+    position: string;
+    constructor() {{'{'}}
+        this.positions = [
+            'before',
+            'after',
+            'above',
+            'below',
+            'left',
+            'right'
+        ];
+        this.position = this.positions[0];
+    {{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="tooltip.component.css">
+        <prism language="css">
+.example-card {{'{'}}
+    margin: 20px;
+    max-width: 500px;
+{{'}'}}
+
+.example-select {{'{'}}
+    margin-bottom: 20px;
+    margin-top: 20px;
+{{'}'}}
+
+.example-section {{'{'}}
+    padding: 10px;
+    background: #333;
+    width: 200px;
+{{'}'}}
+
+.example-container {{'{'}}
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+{{'}'}}
+
+.example-h2 {{'{'}}
+    margin: 10px;
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>

@@ -38,8 +38,10 @@ import { ChipComponent } from './components/chip/chip.component';
 import { IconComponent } from './components/icon/icon.component';
 import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ExampleDialogComponent } from './components/dialog/example-dialog.component';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -73,7 +75,8 @@ export const sharedConfig: NgModule = {
         ProgressSpinnerComponent,
         ProgressBarComponent,
         DialogComponent,
-        ExampleDialogComponent
+        ExampleDialogComponent,
+        TooltipComponent
     ],
     entryComponents: [
         ExampleDialogComponent
@@ -111,6 +114,7 @@ export const sharedConfig: NgModule = {
             { path: 'progress-spinner', component: ProgressSpinnerComponent },
             { path: 'progress-bar', component: ProgressBarComponent },
             { path: 'dialog', component: DialogComponent },
+            { path: 'tooltip', component: TooltipComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
