@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DatabaseService } from '../../services/database.service';
 import { BasicDataSourceService } from '../../services/basic-datasource.service';
 
 @Component({

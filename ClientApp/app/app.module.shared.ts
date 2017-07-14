@@ -48,6 +48,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { ExampleSnackbarComponent } from './components/snackbar/example-snackbar.component';
 
 import { TableBasicComponent } from './components/table-basic/table-basic.component';
+import { TableFilterComponent } from './components/table-filter/table-filter.component';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -85,7 +86,8 @@ export const sharedConfig: NgModule = {
         TooltipComponent,
         SnackbarComponent,
         ExampleSnackbarComponent,
-        TableBasicComponent
+        TableBasicComponent,
+        TableFilterComponent
     ],
     entryComponents: [
         ExampleDialogComponent,
@@ -128,6 +130,7 @@ export const sharedConfig: NgModule = {
             { path: 'tooltip', component: TooltipComponent },
             { path: 'snackbar', component: SnackbarComponent },
             { path: 'table-basic', component: TableBasicComponent },
+            { path: 'table-filter', component: TableFilterComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

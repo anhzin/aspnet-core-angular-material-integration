@@ -1,0 +1,187 @@
+<md-toolbar>Table - Filter</md-toolbar>
+<p>
+    While Angular Material does not offer a specific component for filtering tabular data, the table's data source can be updated
+    based on any custom filter UI. Any filtering pattern need only trigger an update via the table's data source. See
+    <a class="link" href="https://material.angular.io/components/table/overview#filtering" target="_blank">documentation</a>.
+</p>
+<div class="example-container mat-elevation-z8">
+    <div class="example-header">
+        <md-input-container floatPlaceholder="never">
+            <input mdInput #filter placeholder="Filter Users">
+        </md-input-container>
+    </div>
+    <md-table #table [dataSource]="dataSource">
+        <ng-container cdkColumnDef="userId">
+            <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.id}} </md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="progress">
+            <md-header-cell *cdkHeaderCellDef> Progress </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.progress}}% </md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="userName">
+            <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="color">
+            <md-header-cell *cdkHeaderCellDef> Color </md-header-cell>
+            <md-cell *cdkCellDef="let row" [style.color]="row.color"> {{row.color}} </md-cell>
+        </ng-container>
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+</div>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="table-filter.component.html">
+        <prism language="markup">
+&lt;div class="example-container mat-elevation-z8"&gt;
+    &lt;div class="example-header"&gt;
+        &lt;md-input-container floatPlaceholder="never"&gt;
+            &lt;input mdInput #filter placeholder="Filter Users"&gt;
+        &lt;/md-input-container&gt;
+    &lt;/div&gt;
+    &lt;md-table #table [dataSource]="dataSource"&gt;
+        &lt;ng-container cdkColumnDef="userId"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef&gt; ID &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row"&gt; {{'{'}}{{'{'}}row.id{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container cdkColumnDef="progress"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef&gt; Progress &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row"&gt; {{'{'}}{{'{'}}row.progress{{'}'}}{{'}'}}% &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container cdkColumnDef="userName"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef&gt; Name &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row"&gt; {{'{'}}{{'{'}}row.name{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container cdkColumnDef="color"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef&gt; Color &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row" [style.color]="row.color"&gt; {{'{'}}{{'{'}}row.color{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;md-header-row *cdkHeaderRowDef="displayedColumns"&gt;&lt;/md-header-row&gt;
+        &lt;md-row *cdkRowDef="let row; columns: displayedColumns;"&gt;&lt;/md-row&gt;
+    &lt;/md-table&gt;
+&lt;/div&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="table-filter.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component, ElementRef, ViewChild, OnInit {{'}'}} from '@angular/core';
+import {{'{'}} Observable {{'}'}} from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import {{'{'}} FilterDataSourceService {{'}'}} from '../../services/filter-datasource.service';
+
+@Component({{'{'}}
+    selector: 'table-filter-usage',
+    templateUrl: 'table-filter.component.html',
+    styleUrls: ['table-filter.component.css'],
+    providers: [ FilterDataSourceService ]
+{{'}'}})
+export class TableFilterComponent implements OnInit {{'{'}}
+    displayedColumns = ['userId', 'userName', 'progress', 'color'];
+
+    @ViewChild('filter') filter: ElementRef;
+
+    constructor(private dataSource: FilterDataSourceService) {{'{'}}{{'}'}}
+
+    ngOnInit() {{'{'}}
+        Observable.fromEvent(this.filter.nativeElement, 'keyup')
+            .debounceTime(150)
+            .distinctUntilChanged()
+            .subscribe(() => {{'{'}}
+                if (!this.dataSource) {{'{'}} return; {{'}'}}
+                this.dataSource.filter = this.filter.nativeElement.value;
+            {{'}'}});
+    {{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="table-filter.component.css">
+        <prism language="css">
+.example-container {{'{'}}
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+{{'}'}}
+
+.example-header {{'{'}}
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 20px;
+{{'}'}}
+
+.example-header {{'{'}}
+  min-height: 64px;
+  display: flex;
+  align-items: baseline;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+{{'}'}}
+
+.mat-input-container {{'{'}}
+  font-size: 14px;
+  flex-grow: 1;
+  margin-left: 32px;
+{{'}'}}
+
+.mat-table {{'{'}}
+  overflow: auto;
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="user.model.ts">
+        <prism language="typescript">
+export interface UserData {{'{'}}
+    id: string;
+    name: string;
+    progress: string;
+    color: string;
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="filter-datasource.service.ts">
+        <prism language="typescript">
+import {{'{'}} Injectable {{'}'}} from '@angular/core';
+import {{'{'}} DataSource {{'}'}} from '@angular/cdk';
+import {{'{'}} BehaviorSubject {{'}'}} from 'rxjs/BehaviorSubject';
+import {{'{'}} Observable {{'}'}} from 'rxjs/Observable';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import {{'{'}} DatabaseService {{'}'}} from './database.service';
+import {{'{'}} UserData {{'}'}} from '../models/user.model';
+
+@Injectable()
+export class FilterDataSourceService extends DataSource&lt;any&gt; {{'{'}}
+    _filterChange = new BehaviorSubject('');
+    get filter(): string {{'{'}} return this._filterChange.value; {{'}'}}
+    set filter(filter: string) {{'{'}} this._filterChange.next(filter); {{'}'}}
+
+    constructor(private dbService: DatabaseService) {{'{'}}
+        super();
+    {{'}'}}
+
+    connect(): Observable&lt;UserData[]&gt; {{'{'}}
+        const displayDataChanges = [
+            this.dbService.dataChange,
+            this._filterChange
+        ];
+
+        return Observable.merge(...displayDataChanges).map(() => {{'{'}}
+            return this.dbService.data.slice().filter((item: UserData) => {{'{'}}
+                const searchStr = (item.name + item.color).toLowerCase();
+                return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+            {{'}'}});
+        {{'}'}});
+    {{'}'}}
+
+    disconnect() {{'{'}}{{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>
