@@ -1,0 +1,128 @@
+<md-toolbar>Table - Basic</md-toolbar>
+<p>
+    The <code class="snippet">md-table</code> provides a Material Design styled data-table that can be used to display rows
+    of data. See <a class="link" href="https://material.angular.io/components/table/overview" target="_blank">documentation</a>.
+</p>
+<div class="example-container mat-elevation-z8">
+    <md-table #table [dataSource]="dataSource">
+        <ng-container cdkColumnDef="userId">
+            <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.id}} </md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="progress">
+            <md-header-cell *cdkHeaderCellDef> Progress </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.progress}}% </md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="userName">
+            <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="color">
+            <md-header-cell *cdkHeaderCellDef> Color </md-header-cell>
+            <md-cell *cdkCellDef="let row" [style.color]="row.color"> {{row.color}} </md-cell>
+        </ng-container>
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+</div>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="table-basic.component.html">
+        <prism language="markup">
+&lt;div class="example-container mat-elevation-z8"&gt;
+    &lt;md-table #table [dataSource]="dataSource"&gt;
+        &lt;ng-container cdkColumnDef="userId"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef&gt; ID &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row"&gt; {{'{'}}{{'{'}}row.id{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container cdkColumnDef="progress"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef&gt; Progress &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row"&gt; {{'{'}}{{'{'}}row.progress{{'}'}}{{'}'}}% &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container cdkColumnDef="userName"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef&gt; Name &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row"&gt; {{'{'}}{{'{'}}row.name{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container cdkColumnDef="color"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef&gt; Color &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row" [style.color]="row.color"&gt; {{'{'}}{{'{'}}row.color{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;md-header-row *cdkHeaderRowDef="displayedColumns"&gt;&lt;/md-header-row&gt;
+        &lt;md-row *cdkRowDef="let row; columns: displayedColumns;"&gt;&lt;/md-row&gt;
+    &lt;/md-table&gt;
+&lt;/div&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="table-basic.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component {{'}'}} from '@angular/core';
+import {{'{'}} DatabaseService {{'}'}} from '../../services/database.service';
+import {{'{'}} BasicDataSourceService {{'}'}} from '../../services/basic-datasource.service';
+
+@Component({{'{'}}
+    selector: 'table-basic-usage',
+    templateUrl: 'table-basic.component.html',
+    styleUrls: ['table-basic.component.css'],
+    providers: [ BasicDataSourceService ]
+{{'}'}})
+export class TableBasicComponent {{'{'}}
+    displayedColumns = ['userId', 'userName', 'progress', 'color'];
+    constructor(private dataSource: BasicDataSourceService) {{'{'}}{{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="table-basic.component.css">
+        <prism language="css">
+.example-container {{'{'}}
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+{{'}'}}
+
+.example-header {{'{'}}
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+    font-size: 20px;
+{{'}'}}
+
+.mat-table {{'{'}}
+    overflow: auto;
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="user.model.ts">
+        <prism language="typescript">
+export interface UserData {{'{'}}
+    id: string;
+    name: string;
+    progress: string;
+    color: string;
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="basic-datasource.service.ts">
+        <prism language="typescript">
+import {{'{'}} Injectable {{'}'}} from '@angular/core';
+import {{'{'}} DataSource {{'}'}} from '@angular/cdk';
+import {{'{'}} Observable {{'}'}} from 'rxjs/Observable';
+import {{'{'}} DatabaseService {{'}'}} from './database.service';
+import {{'{'}} UserData {{'}'}} from '../models/user.model';
+
+@Injectable()
+export class BasicDataSourceService extends DataSource&lt;any&gt; {{'{'}}
+    constructor(private dbService: DatabaseService) {{'{'}}
+        super();
+    {{'}'}}
+
+    connect(): Observable&lt;UserData[]&gt; {{'{'}}
+        return this.dbService.dataChange.asObservable();
+    {{'}'}}
+
+    disconnect() {{'{'}}{{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>

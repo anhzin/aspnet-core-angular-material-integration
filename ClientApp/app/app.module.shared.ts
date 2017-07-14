@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { ThemeService } from './services/theme.service';
 import { DatabaseService } from './services/database.service';
+import { BasicDataSourceService } from './services/basic-datasource.service';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -46,6 +47,8 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { ExampleSnackbarComponent } from './components/snackbar/example-snackbar.component';
 
+import { TableBasicComponent } from './components/table-basic/table-basic.component';
+
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
     declarations: [
@@ -81,7 +84,8 @@ export const sharedConfig: NgModule = {
         ExampleDialogComponent,
         TooltipComponent,
         SnackbarComponent,
-        ExampleSnackbarComponent
+        ExampleSnackbarComponent,
+        TableBasicComponent
     ],
     entryComponents: [
         ExampleDialogComponent,
@@ -123,6 +127,7 @@ export const sharedConfig: NgModule = {
             { path: 'dialog', component: DialogComponent },
             { path: 'tooltip', component: TooltipComponent },
             { path: 'snackbar', component: SnackbarComponent },
+            { path: 'table-basic', component: TableBasicComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

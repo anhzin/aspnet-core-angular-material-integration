@@ -5,7 +5,7 @@ import { DatabaseService } from './database.service';
 import { UserData } from '../models/user.model';
 
 @Injectable()
-export class DataSourceService extends DataSource<any> {
+export class BasicDataSourceService extends DataSource<any> {
     constructor(private dbService: DatabaseService) {
         super();
     }

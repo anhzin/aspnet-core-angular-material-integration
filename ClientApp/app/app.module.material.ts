@@ -29,7 +29,12 @@ import {
     MdToolbarModule,
     MdTooltipModule,
     OverlayContainer,
-} from '@angular/material';  
+    MdTableModule
+} from '@angular/material';
+
+import {
+    CdkTableModule
+} from '@angular/cdk';
 
 @NgModule({
     exports: [
@@ -60,6 +65,8 @@ import {
         MdToolbarModule,
         MdTooltipModule,
         MdNativeDateModule,
+        MdTableModule,
+        CdkTableModule
     ]
 })
 export class AppMaterialModule {}
