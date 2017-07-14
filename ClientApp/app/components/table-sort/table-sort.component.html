@@ -1,0 +1,171 @@
+<md-toolbar>Table - Sort</md-toolbar>
+<p>
+    Using the <code class="snippet">mdSort</code> directive and <code class="snippet">md-sort-header</code> adds a sorting
+    UI to the table's column headers. The sort headers emit events that can be used to trigger an update via the table's
+    data source. See <a class="link" href="https://material.angular.io/components/table/overview#sorting" target="_blank">documentation</a>.
+</p>
+<div class="example-container mat-elevation-z8">
+    <md-table #table [dataSource]="dataSource" mdSort>
+        <ng-container cdkColumnDef="userId">
+            <md-header-cell *cdkHeaderCellDef md-sort-header> ID </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.id}} </md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="progress">
+            <md-header-cell *cdkHeaderCellDef md-sort-header> Progress </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.progress}} </md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="userName">
+            <md-header-cell *cdkHeaderCellDef md-sort-header> Name </md-header-cell>
+            <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="color">
+            <md-header-cell *cdkHeaderCellDef md-sort-header> Color </md-header-cell>
+            <md-cell *cdkCellDef="let row" [style.color]="row.color"> {{row.color}} </md-cell>
+        </ng-container>
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+</div>
+<md-toolbar color="primary">Code</md-toolbar>
+<md-tab-group>
+    <md-tab label="table-sort.component.html">
+        <prism language="markup">
+&lt;div class="example-container mat-elevation-z8"&gt;
+    &lt;md-table #table [dataSource]="dataSource" mdSort&gt;
+        &lt;ng-container cdkColumnDef="userId"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef md-sort-header&gt; ID &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row"&gt; {{'{'}}{{'{'}}row.id{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container cdkColumnDef="progress"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef md-sort-header&gt; Progress &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row"&gt; {{'{'}}{{'{'}}row.progress{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container cdkColumnDef="userName"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef md-sort-header&gt; Name &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row"&gt; {{'{'}}{{'{'}}row.name{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container cdkColumnDef="color"&gt;
+            &lt;md-header-cell *cdkHeaderCellDef md-sort-header&gt; Color &lt;/md-header-cell&gt;
+            &lt;md-cell *cdkCellDef="let row" [style.color]="row.color"&gt; {{'{'}}{{'{'}}row.color{{'}'}}{{'}'}} &lt;/md-cell&gt;
+        &lt;/ng-container&gt;
+        &lt;md-header-row *cdkHeaderRowDef="displayedColumns"&gt;&lt;/md-header-row&gt;
+        &lt;md-row *cdkRowDef="let row; columns: displayedColumns;"&gt;&lt;/md-row&gt;
+    &lt;/md-table&gt;
+&lt;/div&gt;
+        </prism>
+    </md-tab>
+    <md-tab label="table-sort.component.ts">
+        <prism language="typescript">
+import {{'{'}} Component, ViewChild, OnInit {{'}'}} from '@angular/core';
+import {{'{'}} MdSort {{'}'}} from '@angular/material';
+import {{'{'}} DatabaseService {{'}'}} from '../../services/database.service';
+import {{'{'}} SortDataSource {{'}'}} from '../../models/sort-datasource.model';
+
+@Component({{'{'}}
+    selector: 'table-sort-usage',
+    templateUrl: 'table-sort.component.html',
+    styleUrls: ['table-sort.component.css']
+{{'}'}})
+export class TableSortComponent implements OnInit {{'{'}}
+    displayedColumns = ['userId', 'userName', 'progress', 'color'];
+    dataSource: SortDataSource | null;
+
+    @ViewChild(MdSort) sort: MdSort;
+
+    constructor(private dbService: DatabaseService) {{'{'}}{{'}'}}
+
+    ngOnInit() {{'{'}}
+        this.dataSource = new SortDataSource(this.dbService, this.sort);
+    {{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="table-sort.component.css">
+        <prism language="css">
+.example-container {{'{'}}
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+{{'}'}}
+
+.example-header {{'{'}}
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 20px;
+{{'}'}}
+
+.mat-table {{'{'}}
+  overflow: auto;
+{{'}'}}
+
+.mat-header-cell .mat-sort-header-sorted {{'{'}}
+  color: black;
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="user.model.ts">
+        <prism language="typescript">
+export interface UserData {{'{'}}
+    id: string;
+    name: string;
+    progress: string;
+    color: string;
+{{'}'}}
+        </prism>
+    </md-tab>
+    <md-tab label="sort-datasource.model.ts">
+        <prism language="typescript">
+import {{'{'}} DataSource {{'}'}} from '@angular/cdk';
+import {{'{'}} MdSort {{'}'}} from '@angular/material';
+import {{'{'}} Observable {{'}'}} from 'rxjs/Observable';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import {{'{'}} DatabaseService {{'}'}} from '../services/database.service';
+import {{'{'}} UserData {{'}'}} from './user.model';
+
+export class SortDataSource extends DataSource&lt;any&gt; {{'{'}}
+    constructor(private dbService: DatabaseService, private sort: MdSort) {{'{'}}
+        super();
+    {{'}'}}
+
+    connect(): Observable&lt;UserData[]&gt; {{'{'}}
+        const displayDataChanges = [
+            this.dbService.dataChange,
+            this.sort.mdSortChange
+        ];
+
+        return Observable.merge(...displayDataChanges).map(() =&gt; {{'{'}}
+            return this.getSortedData();
+        {{'}'}});
+    {{'}'}}
+
+    disconnect() {{'{'}}{{'}'}}
+
+    getSortedData(): UserData[] {{'{'}}
+        const data = this.dbService.data.slice();
+        if (!this.sort.active || this.sort.direction === '') {{'{'}} return data; {{'}'}}
+
+        return data.sort((a, b) =&gt; {{'{'}}
+            let propertyA: number|string = '';
+            let propertyB: number|string = '';
+
+            switch (this.sort.active) {{'{'}}
+                case 'userId': [propertyA, propertyB] = [a.id, b.id]; break;
+                case 'userName': [propertyA, propertyB] = [a.name, b.name]; break;
+                case 'progress': [propertyA, propertyB] = [a.progress, b.progress]; break;
+                case 'color': [propertyA, propertyB] = [a.color, b.color]; break;
+            {{'}'}}
+
+            const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+            const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+            return (valueA &lt; valueB ? -1 : 1) * (this.sort.direction === 'asc' ? 1 : -1);
+        {{'}'}})
+    {{'}'}}
+{{'}'}}
+        </prism>
+    </md-tab>
+</md-tab-group>
