@@ -14,6 +14,7 @@ import { PrismComponent } from './components/prism/prism.component';
 import { SetupComponent } from './components/setup/setup.component';
 import { ThemingComponent } from './components/theming/theming.component';
 import { TypographyComponent } from './components/typography/typography.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
 
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
@@ -59,6 +60,7 @@ export const sharedConfig: NgModule = {
         SetupComponent,
         ThemingComponent,
         TypographyComponent,
+        DataTableComponent,
         AutocompleteComponent,
         CheckboxComponent,
         DatepickerComponent,
@@ -105,6 +107,7 @@ export const sharedConfig: NgModule = {
             { path: 'setup', component: SetupComponent },
             { path: 'theming', component: ThemingComponent },
             { path: 'typography', component: TypographyComponent },
+            { path: 'data-table', component: DataTableComponent },
             { path: 'autocomplete', component: AutocompleteComponent },
             { path: 'checkbox', component: CheckboxComponent },
             { path: 'datepicker', component: DatepickerComponent },

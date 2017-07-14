@@ -1,0 +1,134 @@
+<a class="link" href="https://material.angular.io/guide/cdk-table" target="_blank">
+    <h1>Angular Material - Data Table Setup</h1>
+</a>
+<p>
+    Before using the <code class="snippet">MdTableModule</code>, there are several steps that need to be taken in order to
+    do so:
+</p>
+<ol>
+    <li>
+        Make sure that the <code class="snippet">@angular/material</code> version is at least <code class="snippet">2.0.0-beta.8</code>        in <code class="snippet">package.json</code>.
+    </li>
+    <li>
+        Install at least version <code class="snippet">2.0.0-beta.8</code> of the <code class="snippet">@angular/cdk</code> npm module.
+    </li>
+    <li>
+        Update <code class="snippet">app.module.material.ts</code> to import / export <code class="snippet">MdTableModule</code>        and <code class="snippet">CdkTableModule</code>:
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title><code class="snippet">app.module.material.ts</code></md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <prism language="typescript">
+// Only relevant code shown
+import {{'{'}} NgModule {{'}'}} from '@angular/core';
+import {{'{'}}
+    MdTableModule
+{{'}'}} from '@angular/material';
+
+import {{'{'}}
+    CdkTableModule
+{{'}'}} from '@angular/cdk';
+
+@NgModule({{'{'}}
+    exports: [
+        MdTableModule,
+        CdkTableModule
+    ]
+{{'}'}})
+export class AppMaterialModule {{'{'}}{{'}'}}
+                    </prism>
+                </md-card-content>
+            </md-card>
+        </div>
+    </li>
+</ol>
+<p>
+    With this infrastructure in place, <code class="snippet">MdTableModule</code> can be used. The demonstrations in this documentation use a modified infrastructure from the demonstrations shown on the <a class="link" href="https://material.angular.io/components/table/overview" target="_blank">Angular Material Docs</a> site. This infrastructure is demonstrated below.
+</p>
+<p>
+    Create a <code class="snippet">DatabaseService</code> class in <code class="snippet">ClientApp/app/services/database.service.ts</code>:
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title><code class="snippet">database.service.ts</code></md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="typescript">
+import {{'{'}} Injectable {{'}'}} from '@angular/core';
+import {{'{'}} BehaviorSubject {{'}'}} from 'rxjs/BehaviorSubject';
+import {{'{'}} UserData {{'}'}} from '../models/user.model';
+
+const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
+    'fuschia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
+const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
+    'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
+    'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
+
+@Injectable()
+export class DatabaseService {{'{'}}
+    dataChange: BehaviorSubject&lt;UserData[]&gt; = new BehaviorSubject&lt;UserData[]&gt;([]);
+    get data(): UserData[] {{'{'}} return this.dataChange.value; {{'}'}}
+
+    constructor() {{'{'}}
+        for (let i = 0; i &lt; 100; i++) {{'{'}} this.addUser(); {{'}'}}
+    {{'}'}}
+
+    addUser() {{'{'}}
+        const copiedData = this.data.slice();
+        copiedData.push(this.createNewUser());
+        this.dataChange.next(copiedData);
+    {{'}'}}
+
+    private createNewUser() {{'{'}}
+        const name =
+            NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
+            NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+
+        return {{'{'}}
+            id: (this.data.length + 1).toString(),
+            name: name,
+            progress: Math.round(Math.random() * 100).toString(),
+            color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
+        {{'}'}};
+    {{'}'}}
+{{'}'}}
+            </prism>
+        </md-card-content>
+    </md-card>
+</div>
+<p>
+    Register the <code class="snippet">DatabaseService</code> with the <code class="snippet">sharedConfig.providers</code> array at <code class="snippet">ClientApp/app/app.module.shared.ts</code>:
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title><code class="snippet">app.module.shared.ts</code></md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="typescript">
+// Only relevant code shown
+import {{'{'}} DatabaseService {{'}'}} from './services/database.service';
+
+export const sharedConfig: NgModule = {{'{'}}
+    providers: [
+        DatabaseService
+    ]
+{{'}'}}
+            </prism>
+        </md-card-content>
+    </md-card>    
+</div>
+<p>
+    Now, the Data Table examples shown can be completed as demonstrated.
+</p>
+<md-nav-list>
+    <h3 md-subheader>Data Table Examples</h3>
+    <a md-list-item routerLink="/table-basic">Table - Basic</a>
+    <a md-list-item routerLink="/table-filter" color="accent">Table - Filter</a>
+    <a md-list-item routerLink="/table-sort" color="accent">Table - Sort Header</a>
+    <a md-list-item routerLink="/table-paginator" color="accent">Table - Paginator</a>
+    <a md-list-item routerLink="/table-complete" color="accent">Table - Complete</a>
+</md-nav-list>
