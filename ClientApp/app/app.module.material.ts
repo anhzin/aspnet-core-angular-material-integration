@@ -29,7 +29,9 @@ import {
     MdToolbarModule,
     MdTooltipModule,
     OverlayContainer,
-    MdTableModule
+    MdTableModule,
+    MdPaginatorModule,
+    MdSortModule
 } from '@angular/material';
 
 import {
@@ -66,6 +68,8 @@ import {
         MdTooltipModule,
         MdNativeDateModule,
         MdTableModule,
+        MdPaginatorModule,
+        MdSortModule,
         CdkTableModule
     ]
 })

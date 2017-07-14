@@ -13,7 +13,7 @@
         Install at least version <code class="snippet">2.0.0-beta.8</code> of the <code class="snippet">@angular/cdk</code> npm module.
     </li>
     <li>
-        Update <code class="snippet">app.module.material.ts</code> to import / export <code class="snippet">MdTableModule</code>        and <code class="snippet">CdkTableModule</code>:
+        Update <code class="snippet">app.module.material.ts</code> to import / export <code class="snippet">MdTableModule</code>, <code class="snippet">MdPaginatorModule</code>, <code class="snippet">MdSortModule</code>, and <code class="snippet">CdkTableModule</code>:
         <div class="inline-card">
             <md-card>
                 <md-card-header>
@@ -24,7 +24,9 @@
 // Only relevant code shown
 import {{'{'}} NgModule {{'}'}} from '@angular/core';
 import {{'{'}}
-    MdTableModule
+    MdTableModule,    
+    MdPaginatorModule,
+    MdSortModule
 {{'}'}} from '@angular/material';
 
 import {{'{'}}
@@ -34,6 +36,8 @@ import {{'{'}}
 @NgModule({{'{'}}
     exports: [
         MdTableModule,
+        MdPaginatorModule,
+        MdSortModule,
         CdkTableModule
     ]
 {{'}'}})

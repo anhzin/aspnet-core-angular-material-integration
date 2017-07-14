@@ -50,6 +50,7 @@ import { ExampleSnackbarComponent } from './components/snackbar/example-snackbar
 
 import { TableBasicComponent } from './components/table-basic/table-basic.component';
 import { TableFilterComponent } from './components/table-filter/table-filter.component';
+import { TablePaginatorComponent } from './components/table-paginator/table-paginator.component';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -89,7 +90,8 @@ export const sharedConfig: NgModule = {
         SnackbarComponent,
         ExampleSnackbarComponent,
         TableBasicComponent,
-        TableFilterComponent
+        TableFilterComponent,
+        TablePaginatorComponent
     ],
     entryComponents: [
         ExampleDialogComponent,
@@ -134,6 +136,7 @@ export const sharedConfig: NgModule = {
             { path: 'snackbar', component: SnackbarComponent },
             { path: 'table-basic', component: TableBasicComponent },
             { path: 'table-filter', component: TableFilterComponent },
+            { path: 'table-paginator', component: TablePaginatorComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
