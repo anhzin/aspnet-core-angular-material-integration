@@ -3,6 +3,7 @@ import { AppMaterialModule } from './app.module.material';
 import { RouterModule } from '@angular/router';
 
 import { ThemeService } from './services/theme.service';
+import { DatabaseService } from './services/database.service';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -87,7 +88,8 @@ export const sharedConfig: NgModule = {
         ExampleSnackbarComponent
     ],
     providers: [
-        ThemeService
+        ThemeService,
+        DatabaseService
     ],
     imports: [
         AppMaterialModule,
