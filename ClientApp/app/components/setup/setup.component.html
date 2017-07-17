@@ -1,7 +1,7 @@
-<a class="link" href="https://material.angular.io/guide/getting-started" target="_blank">
-    <h1>Angular Material - Setup</h1>
-</a>
-<h2>Setting Up the Project</h2>
+<md-toolbar>
+    <a class ="link"href="https://material.angular.io/guide/getting-started" target="_blank">Angular Material - Setup</a>
+</md-toolbar>
+<md-toolbar color="accent">Setting Up the Project</md-toolbar>
 <p>
     This guide will demonstrate how to accomplish the following:
 </p>
@@ -19,7 +19,7 @@
         project.
     </li>
 </ul>
-<h3>Scaffold Project</h3>
+<md-toolbar color="accent">Scaffold Project</md-toolbar>
 <p>
     Ensure that both <code class="snippet">yeoman</code> and the <code class="snippet">generator-aspnetcore-spa</code> npm
     modules are installed globally.
@@ -77,7 +77,206 @@
         <p class="mat-caption">This tells Visual Studio Code to open the current directory.</p>
     </md-card-content>
 </md-card>
-<h3>Establish a Baseline</h3>
+<md-toolbar color="accent">Remove Server Pre-rendering Setup and jQuery</md-toolbar>
+<p>
+    Per this <a class="link" href="https://github.com/aspnet/JavaScriptServices/issues/483#issuecomment-264172427" target="_blank">
+        GitHub issue comment</a>, Angular Material doesn't suppoert Angular Universal. For now, you have to disable server 
+    pre-rendering in order for Angular Material to work.
+</p>
+<p>
+    In addition to removing server pre-rendering, jQuery should be removed because it is an unnecessary dependency.
+</p>
+<ol>
+    <li>
+        Delete the <code class="snippet">dist</code> folders from both the <code class="snippet">ClientApp</code> and <code class="snippet">wwwroot</code>
+        directories.
+    </li>
+    <li>
+        In <code class="snippet">Views/Home/Index.cshtml</code>, delete the <code class="snippet">asp-prerender-module</code> attribute from the
+        <code class="snippet">app</code> element.
+    </li>
+    <li>
+        In <code class="snippet">ClientApp</code>, rename <code class="snippet">boot-client.ts</code> to <code class="snippet">main.ts</code> and
+        delete <code class="snippet">boot-server.ts</code>.
+    </li>
+    <li>
+        In <code class="snippet">ClientApp/app</code>, rename <code class="snippet">app.module.client.ts</code> to <code class="snippet">app.module.ts</code>
+        and delete <code class="snippet">app.module.server.ts</code>.
+    </li>
+    <li>
+        In <code class="snippet">ClientApp/main.ts</code>, remove <code class="snippet">.client</code> from the <code class="snippet">AppModule</code> 
+        import statement.
+    </li>
+    <li>
+        In <code class="snippet">webpack.config.js</code>, in <code class="snippet">const clientBundleConfig</code>, change
+        <code class="snippet">entry</code> to the following:
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title><md-icon>code</md-icon></md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <prism language="javascript">
+entry: {{'{'}} 'main-client': './ClientApp/main.ts' {{'}'}}</prism>
+                </md-card-content>
+            </md-card>
+        </div>
+    </li>
+    <li>
+        In <code class="snippet">webpack.config.js</code>, delete the <code class="snippet">const serverBundleConfig</code> property and remove it from
+        the <code class="snippet">return</code> array.
+    </li>
+    <li>
+        In <code class="snippet">webpack.config.vendor.js</code>, delete jQuery from the <code class="snippet">vendor</code> array, and delete the
+        <code class="snippet">webpack.ProvidePlugin</code> declaration for jQuery in the <code class="snippet">plugins</code> array. Delete the
+        <code class="snippet">const serverBundleConfig</code> property and remove it from the <code class="snippet">return</code> array.
+    </li>
+    <li>
+        Run the command <code class="snippet">npm uninstall --save jquery</code> on the project.
+    </li>
+</ol>
+<p>
+    Here are the full <code class="snippet">webpack.config.js</code> and <code class="snippet">webpack.config.vendor.js</code> files:
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title><code class="snippet">webpack.config.js</code></md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="javascript">
+// Comments removed
+const path = require('path');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+
+module.exports = (env) => {{'{'}}
+    const isDevBuild = !(env &amp;&amp; env.prod);
+    const sharedConfig = {{'{'}}
+        stats: {{'{'}} modules: false {{'}'}},
+        context: __dirname,
+        resolve: {{'{'}} extensions: [ '.js', '.ts' ] {{'}'}},
+        output: {{'{'}}
+            filename: '[name].js',
+            publicPath: '/dist/'
+        },
+        module: {{'{'}}
+            rules: [
+                {{'{'}} test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader'] {{'}'}},
+                {{'{'}} test: /\.html$/, use: 'html-loader?minimize=false' {{'}'}},
+                {{'{'}} test: /\.css$/, use: [ 'to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize' ] {{'}'}},
+                {{'{'}} test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' {{'}'}}
+            ]
+        {{'}'}},
+        plugins: [new CheckerPlugin()]
+    {{'}'}};
+
+    const clientBundleOutputDir = './wwwroot/dist';
+    const clientBundleConfig = merge(sharedConfig, {{'{'}}
+        entry: {{'{'}} 'main-client': './ClientApp/main.ts' {{'}'}},
+        output: {{'{'}} path: path.join(__dirname, clientBundleOutputDir) {{'}'}},
+        plugins: [
+            new webpack.DllReferencePlugin({{'{'}}
+                context: __dirname,
+                manifest: require('./wwwroot/dist/vendor-manifest.json')
+            {{'}'}})
+        ].concat(isDevBuild ? [
+            new webpack.SourceMapDevToolPlugin({{'{'}}
+                filename: '[file].map',
+                moduleFilenameTemplate: path.relative(clientBundleOutputDir, '[resourcePath]')
+            {{'}'}})
+        ] : [
+            new webpack.optimize.UglifyJsPlugin()
+        ])
+    {{'}'}});
+
+    return [clientBundleConfig];
+{{'}'}};
+            </prism>
+        </md-card-content>
+    </md-card>
+</div>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title><code class="snippet">webpack.config.vendor.js</code></md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="javascript">
+// Comments removed
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const merge = require('webpack-merge');
+
+module.exports = (env) => {{'{'}}
+    const extractCSS = new ExtractTextPlugin('vendor.css');
+    const isDevBuild = !(env &amp;&amp; env.prod);
+    const sharedConfig = {{'{'}}
+        stats: {{'{'}} modules: false {{'}'}},
+        resolve: {{'{'}} extensions: [ '.js' ] {{'}'}},
+        module: {{'{'}}
+            rules: [
+                {{'{'}} test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' {{'}'}}
+            ]
+        {{'}'}},
+        entry: {{'{'}}
+            vendor: [
+                '@angular/animations',
+                '@angular/common',
+                '@angular/compiler',
+                '@angular/core',
+                '@angular/forms',
+                '@angular/http',
+                '@angular/platform-browser',
+                '@angular/platform-browser-dynamic',
+                '@angular/router',
+                'bootstrap',
+                'bootstrap/dist/css/bootstrap.css',
+                'es6-shim',
+                'es6-promise',
+                'event-source-polyfill',
+                'zone.js',
+            ]
+        {{'}'}},
+        output: {{'{'}}
+            publicPath: '/dist/',
+            filename: '[name].js',
+            library: '[name]_[hash]'
+        {{'}'}},
+        plugins: [
+            new webpack.ContextReplacementPlugin(/\@angular\b.*\b(bundles|linker)/, path.join(__dirname, './ClientApp')),
+            new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/, path.join(__dirname, './ClientApp')),
+            new webpack.IgnorePlugin(/^vertx$/)
+        ]
+    {{'}'}};
+
+    const clientBundleConfig = merge(sharedConfig, {{'{'}}
+        output: {{'{'}} path: path.join(__dirname, 'wwwroot', 'dist') {{'}'}},
+        module: {{'{'}}
+            rules: [
+                {{'{'}} test: /\.css(\?|$)/, use: extractCSS.extract({{'{'}} use: isDevBuild ? 'css-loader' : 'css-loader?minimize' {{'}'}}) {{'}'}}
+            ]
+        {{'}'}},
+        plugins: [
+            extractCSS,
+            new webpack.DllPlugin({{'{'}}
+                path: path.join(__dirname, 'wwwroot', 'dist', '[name]-manifest.json'),
+                name: '[name]_[hash]'
+            {{'}'}})
+        ].concat(isDevBuild ? [] : [
+            new webpack.optimize.UglifyJsPlugin()
+        ])
+    {{'}'}});
+
+    return [clientBundleConfig];
+{{'}'}}
+            </prism>
+        </md-card-content>
+    </md-card>
+</div>
+<md-toolbar color="accent">Establish a Baseline</md-toolbar>
 <p>
     With the project open in Visual Studio Code, perform the following steps to get the project ready:
 </p>
@@ -98,11 +297,19 @@
     </li>
     <li>
         Add the following <code class="snippet">npm</code> scripts to <code class="snippet">package.json</code>:
-        <div>
-            <pre class="snippet">"scripts": {{ '{' }}
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title><md-icon>code</md-icon></md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <prism language="javascript">
+"scripts": {{ '{' }}
   "build": "npm install &amp;&amp; npm run webpack",
   "webpack": "webpack --config webpack.config.vendor.js &amp;&amp; webpack"
-{{ '}' }}</pre>
+{{ '}' }}</prism>
+                </md-card-content>
+            </md-card>
         </div>
     </li>
     <li>
@@ -119,7 +326,7 @@
         Create a <code class="snippet">polyfills.ts</code> file in the <code class="snippet">ClientApp</code> folder
     </li>
     <li>
-        Add the following import statement: <code class="snippet">import './polyfills';</code> in <code class="snippet">ClientApp/boot-client.ts</code>
+        Add the following import statement: <code class="snippet">import './polyfills';</code> in <code class="snippet">ClientApp/main.ts</code>
     </li>
     <li>
         Delete the following items from the <code class="snippet">ClientApp/app/app.module.shared.ts</code> file:
@@ -254,7 +461,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
         </md-card-content>
     </md-card>
 </div>
-<h2>Installing Angular Material</h2>
+<md-toolbar color="accent">Installing Angular Material</md-toolbar>
 <ol>
     <li>
         Install the <code class="snippet">npm</code> module: <code class="snippet">npm install --save @angular/material</code>
@@ -386,7 +593,7 @@ export const sharedConfig: NgModule = {{ '{' }}
 <div class="inline-card">
     <md-card>
         <md-card-header>
-            <md-card-title>ClientApp/app/app.module.client.ts</md-card-title>
+            <md-card-title>ClientApp/app/app.module.ts</md-card-title>
         </md-card-header>
         <md-card-content>
             <prism language="typescript" class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';

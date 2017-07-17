@@ -1,7 +1,7 @@
-<a class="link" href="https://material.angular.io/guide/theming" target="_blank">
-    <h1>Angular Material - Theming</h1>
-</a>
-<h2>Initial Theming Setup</h2>
+<md-toolbar>
+    <a class ="link"href="https://material.angular.io/guide/theming" target="_blank">Angular Material - Theming</a>
+</md-toolbar>
+<md-toolbar color="accent">Initial Theming Setup</md-toolbar>
 <p>
     Before building out the <code class="snippet">.scss</code> file that will represent our material theme, as well as app-wide style settings,
     there is some infrastructure that needs to be added to support theming.
@@ -62,44 +62,6 @@
                 </md-card-content>
             </md-card>
         </div>
-        <div class="inline-card">
-            <md-card>
-                <md-card-header>
-                    <md-card-title>webpack.config.vendor.js - serverBundleConfig</md-card-title>
-                </md-card-header>
-                <md-card-content>
-                    <prism language="javascript" class="card-snippet">const serverBundleConfig = merge(sharedConfig, {{ '{' }}
-        target: 'node',
-        resolve: {{ '{' }}
-            mainFields: ['main']
-        {{ '}' }},
-        output: {{ '{' }}
-            path: path.join(__dirname, 'ClientApp', 'dist'),
-            libraryTarget: 'commonjs2',
-        {{ '}' }},
-        module: {{ '{' }}
-            rules: [{{ '{' }}
-                test: /\.css(\?|$)/,
-                use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize']
-            {{ '}' }},
-             {{ '{' }}
-                test: /\.scss(\?|$)/,
-                use: [{{ '{' }} loader: 'to-string-loader' {{ '}' }}, {{ '{' }} loader: 'css-loader' {{ '}' }}, {{ '{' }} loader: 'sass-loader' {{ '}' }}]
-            {{ '}' }}]
-        },
-        entry: {{ '{' }}
-            vendor: ['aspnet-prerendering']
-        {{ '}' }},
-        plugins: [
-            new webpack.DllPlugin({{ '{' }}
-                path: path.join(__dirname, 'ClientApp', 'dist', '[name]-manifest.json'),
-                name: '[name]_[hash]'
-            {{ '}' }})
-        ]
-    {{ '}' }});</prism>
-                </md-card-content>
-            </md-card>
-        </div>
     </li>
     <li>
         Create a <code class="snippet">material-theme.scss</code> file in the <code class="snippet">ClientApp</code> folder
@@ -134,7 +96,7 @@ $default-theme: mat-dark-theme(mat-palette($mat-green), mat-palette($mat-red));
         <p>An initial theme is applied to the web app</p>
     </md-card-content>
 </md-card>
-<h2>Global Styles in Sass</h2>
+<md-toolbar color="accent">Global Styles in Sass</md-toolbar>
 <p>
     By default, Angular Material does not include much in the way of global styling. It is a lot more configuration-driven than
     a more conventional framework like Bootstrap. With this in mind, some global stylings will be added after the initial
@@ -237,7 +199,7 @@ pre.snippet, code {{ '{' }}
         </ul>
     </md-card-content>
 </md-card>
-<h2>Multiple Material Themes</h2>
+<md-toolbar color="accent">Multiple Material Themes</md-toolbar>
 <p>
     Before modifying the <code class="snippet">material-theme.scss</code> file, some infrastructure needs to be put in place to support multiple
     themes:
