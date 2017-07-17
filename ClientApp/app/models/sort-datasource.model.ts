@@ -43,6 +43,6 @@ export class SortDataSource extends DataSource<any> {
             const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
 
             return (valueA < valueB ? -1 : 1) * (this.sort.direction === 'asc' ? 1 : -1);
-        })
+        });
     }
 }

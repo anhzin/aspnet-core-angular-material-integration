@@ -52,6 +52,7 @@ import { TableBasicComponent } from './components/table-basic/table-basic.compon
 import { TableFilterComponent } from './components/table-filter/table-filter.component';
 import { TableSortComponent } from './components/table-sort/table-sort.component';
 import { TablePaginatorComponent } from './components/table-paginator/table-paginator.component';
+import { TableCompleteComponent } from './components/table-complete/table-complete.component';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -93,7 +94,8 @@ export const sharedConfig: NgModule = {
         TableBasicComponent,
         TableFilterComponent,
         TableSortComponent,
-        TablePaginatorComponent
+        TablePaginatorComponent,
+        TableCompleteComponent
     ],
     entryComponents: [
         ExampleDialogComponent,
@@ -140,6 +142,7 @@ export const sharedConfig: NgModule = {
             { path: 'table-filter', component: TableFilterComponent },
             { path: 'table-sort', component: TableSortComponent },
             { path: 'table-paginator', component: TablePaginatorComponent },
+            { path: 'table-complete', component: TableCompleteComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
