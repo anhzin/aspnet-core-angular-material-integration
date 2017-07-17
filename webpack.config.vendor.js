@@ -36,7 +36,6 @@ module.exports = (env) => {
                 'es6-promise',
                 'event-source-polyfill',
                 'hammerjs',
-                'jquery',
                 'roboto-fontface/css/roboto/roboto-fontface.css',
                 'webpack-material-design-icons',
                 'zone.js',
@@ -49,10 +48,6 @@ module.exports = (env) => {
             library: '[name]_[hash]'
         },
         plugins: [
-            new webpack.ProvidePlugin({
-                $: 'jquery',
-                jQuery: 'jquery'
-            }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
             new webpack.ContextReplacementPlugin(/\@angular\b.*\b(bundles|linker)/, path.join(__dirname, './ClientApp')), // Workaround for https://github.com/angular/angular/issues/11580
             new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/, path.join(__dirname, './ClientApp')), // Workaround for https://github.com/angular/angular/issues/14898
             new webpack.IgnorePlugin(/^vertx$/) // Workaround for https://github.com/stefanpenner/es6-promise/issues/100
@@ -89,35 +84,5 @@ module.exports = (env) => {
         ])
     });
 
-    const serverBundleConfig = merge(sharedConfig, {
-        target: 'node',
-        resolve: {
-            mainFields: ['main']
-        },
-        output: {
-            path: path.join(__dirname, 'ClientApp', 'dist'),
-            libraryTarget: 'commonjs2',
-        },
-        module: {
-            rules: [{
-                test: /\.css(\?|$)/,
-                use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize']
-            },
-            {
-                test: /\.scss(\?|$)/,
-                use: [{ loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }]
-            }]
-        },
-        entry: {
-            vendor: ['aspnet-prerendering']
-        },
-        plugins: [
-            new webpack.DllPlugin({
-                path: path.join(__dirname, 'ClientApp', 'dist', '[name]-manifest.json'),
-                name: '[name]_[hash]'
-            })
-        ]
-    });
-
-    return [clientBundleConfig, serverBundleConfig];
+    return [clientBundleConfig];
 }

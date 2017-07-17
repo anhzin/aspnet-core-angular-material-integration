@@ -24,5 +24,4 @@ import { sharedConfig } from './app.module.shared';
         sharedConfig.providers
     ]
 })
-export class AppModule {
-}
+export class AppModule {}
