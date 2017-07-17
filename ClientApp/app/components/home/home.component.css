@@ -2,3 +2,38 @@
     margin-left: 15px;
     margin-top: 10px;
 }
+
+h2 {
+    margin: 10px 15px;
+}
+
+.card-container {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 28px 15px;
+    flex-wrap: wrap;
+}
+
+.link-card {
+    background-color: #444;
+    margin: 2px;
+    height: 100%;
+    width: 100%;
+    max-width: 520px;
+    max-height: 380px;
+    text-decoration: transparent;
+    border-radius: 2px;
+}
+
+.image-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    box-sizing: border-box;
+}

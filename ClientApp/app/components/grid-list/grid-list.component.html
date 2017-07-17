@@ -5,7 +5,7 @@
 </p>
 <md-grid-list cols="3" rowHeight="fit" gutterSize="4px">
     <md-grid-tile *ngFor="let image of images" class="example-grid-tile">
-        <img md-card-image [src]="image" class="grid-image">
+        <img [src]="image" class="grid-image">
     </md-grid-tile>
 </md-grid-list>
 <md-toolbar color="primary">Code</md-toolbar>
@@ -14,7 +14,7 @@
         <prism language="markup">
 &lt;md-grid-list cols="3" rowHeight="fit" gutterSize="4px"&gt;
     &lt;md-grid-tile *ngFor="let image of images" class="example-grid-tile"&gt;
-        &lt;img md-card-image [src]="image" class="grid-image"&gt;
+        &lt;img [src]="image" class="grid-image"&gt;
     &lt;/md-grid-tile&gt;
 &lt;/md-grid-list&gt;
         </prism>
