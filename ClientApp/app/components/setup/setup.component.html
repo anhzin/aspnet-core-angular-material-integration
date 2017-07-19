@@ -625,26 +625,30 @@ export class AppModule {{ '{' }}{{ '}' }}</prism>
             <md-card-title>ClientApp/app/components/app/app.component.html</md-card-title>
         </md-card-header>
         <md-card-content>
-            <prism language="markup" class="card-snippet">&lt;md-sidenav-container class="mat-typography"&gt;
-  &lt;md-sidenav #sidenav&gt;
-    &lt;md-toolbar color="primary"&gt;
-      &lt;span&gt;Material Documentation - Menu&lt;/span&gt;
-    &lt;/md-toolbar&gt;
-    &lt;md-nav-list&gt;
-      &lt;h3 md-subheader&gt;Getting Started&lt;/h3&gt;
-      &lt;a md-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()"&gt;Home&lt;/a&gt;
-    &lt;/md-nav-list&gt;
-  &lt;/md-sidenav&gt;
-  &lt;md-toolbar color="primary"&gt;
+            <prism language="markup" class="card-snippet">
+&lt;div class="app-frame"&gt;  
+  &lt;md-toolbar color="primary" class="fixed-toolbar"&gt;
     &lt;button md-button (click)="sidenav.open()"&gt;Menu&lt;/button&gt;
-    &lt;span class="toolbar-header"&gt;Material Documentation&lt;/span&gt;
+    &lt;span class="toolbar-header"&gt;ASP.NET Core Angular Material&lt;/span&gt;
     &lt;span class="example-spacer"&gt;&lt;/span&gt;
     &lt;a md-button href="https://github.com/JaimeStill/AspNetCoreMaterial" target="_blank"&gt;GitHub&lt;/a&gt;
   &lt;/md-toolbar&gt;
-  &lt;div class="app-body"&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  &lt;/div&gt;
-&lt;/md-sidenav-container&gt;</prism>
+  &lt;md-sidenav-container class="mat-typography"&gt;
+    &lt;md-sidenav #sidenav&gt;
+      &lt;md-toolbar color="primary"&gt;
+        &lt;span&gt;ASP.NET Core Angular Material&lt;/span&gt;
+      &lt;/md-toolbar&gt;
+      &lt;md-nav-list&gt;
+        &lt;h3 md-subheader&gt;Getting Started&lt;/h3&gt;
+        &lt;a md-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()"&gt;Home&lt;/a&gt;
+      &lt;/md-nav-list&gt;
+    &lt;/md-sidenav&gt;
+    &lt;div class="app-body"&gt;
+      &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    &lt;/div&gt;
+  &lt;/md-sidenav-container&gt;
+&lt;/div&gt;
+            </prism>
         </md-card-content>
     </md-card>
 </div>
