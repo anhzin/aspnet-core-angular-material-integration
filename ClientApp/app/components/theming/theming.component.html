@@ -235,7 +235,7 @@ div.cdk-overlay-container {{'{'}}
         </div>
     </li>
     <li>
-        In <code class="snippet">ClientApp/app/components/app/app.component.html</code>, the <code class="snippet">md-sidenav-container</code> should use
+        In <code class="snippet">ClientApp/app/components/app/app.component.html</code>, the root <code class="snippet">div</code> should use
         template binding to set a class based on the value of <code class="snippet">materialTheme</code>:
         <div class="inline-card">
             <md-card>
@@ -243,23 +243,7 @@ div.cdk-overlay-container {{'{'}}
                     <md-card-title><md-icon>code</md-icon></md-card-title>
                 </md-card-header>
                 <md-card-content>
-                    <prism language="markup" class="card-snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;</prism>
-                </md-card-content>
-            </md-card>
-        </div>
-    </li>
-    <li>
-        In <code class="snippet">ClientApp/app/components/app/app.component.html</code>, the <code class="snippet">router-outlet</code> should be surrounded
-        by a div with a class of <code class="snippet">app-body</code>:
-        <div class="inline-card">
-            <md-card>
-                <md-card-header>
-                    <md-card-title><md-icon>code</md-icon></md-card-title>
-                </md-card-header>
-                <md-card-content>                    
-                    <prism language="markup" class="card-snippet">&lt;div class="app-body"&gt;
-  &lt;router-outlet&gt;&lt;/router-outlet&gt;
-&lt;/div&gt;</prism>
+                    <prism language="markup" class="card-snippet">&lt;div [ngClass]="materialTheme" class="mat-typography"&gt;</prism>
                 </md-card-content>
             </md-card>
         </div>
@@ -304,27 +288,31 @@ export class AppComponent implements OnInit {{ '{' }}
             <md-card-title>ClientApp/app/components/app/app.component.html</md-card-title>
         </md-card-header>
         <md-card-content>
-            <prism language="markup" class="card-snippet">&lt;md-sidenav-container [ngClass]="materialTheme" class="mat-typography"&gt;
-  &lt;md-sidenav #sidenav&gt;
-    &lt;md-toolbar color="primary"&gt;
-      &lt;span&gt;Material Documentation - Menu&lt;/span&gt;
-    &lt;/md-toolbar&gt;
-    &lt;md-nav-list&gt;
-      &lt;h3 md-subheader&gt;Getting Started&lt;/h3&gt;
-      &lt;a md-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()"&gt;Home&lt;/a&gt;
-    &lt;/md-nav-list&gt;
-  &lt;/md-sidenav&gt;
-  &lt;md-toolbar color="primary"&gt;
+            <prism language="markup" class="card-snippet">
+&lt;div [ngClass]="materialTheme" class="app-frame"&gt;  
+  &lt;md-toolbar color="primary" class="fixed-toolbar"&gt;
     &lt;button md-button (click)="sidenav.open()"&gt;Menu&lt;/button&gt;
-    &lt;span class="toolbar-header"&gt;Material Documentation&lt;/span&gt;
+    &lt;span class="toolbar-header"&gt;ASP.NET Core Angular Material&lt;/span&gt;
     &lt;span class="example-spacer"&gt;&lt;/span&gt;
-    &lt;button md-button *ngFor="let theme of themes" (click)="materialTheme = theme.id"&gt;{{ '{' }}{{ '{' }}theme.display{{ '}' }}{{ '}' }}&lt;/button&gt;
+    &lt;button md-button *ngFor="let theme of themes" (click)="materialTheme = theme.id"&gt;{{'{'}}{{'{'}}theme.display{{'}'}}{{'}'}}&lt;/button&gt;
     &lt;a md-button href="https://github.com/JaimeStill/AspNetCoreMaterial" target="_blank"&gt;GitHub&lt;/a&gt;
   &lt;/md-toolbar&gt;
-  &lt;div class="app-body"&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  &lt;/div&gt;
-&lt;/md-sidenav-container&gt;</prism>
+  &lt;md-sidenav-container class="mat-typography"&gt;
+    &lt;md-sidenav #sidenav&gt;
+      &lt;md-toolbar color="primary"&gt;
+        &lt;span&gt;ASP.NET Core Angular Material&lt;/span&gt;
+      &lt;/md-toolbar&gt;
+      &lt;md-nav-list&gt;
+        &lt;h3 md-subheader&gt;Getting Started&lt;/h3&gt;
+        &lt;a md-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()"&gt;Home&lt;/a&gt;
+      &lt;/md-nav-list&gt;
+    &lt;/md-sidenav&gt;
+    &lt;div class="app-body"&gt;
+      &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    &lt;/div&gt;
+  &lt;/md-sidenav-container&gt;
+&lt;/div&gt;
+            </prism>
         </md-card-content>
     </md-card>
 </div>
