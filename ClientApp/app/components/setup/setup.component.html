@@ -313,7 +313,7 @@ module.exports = (env) => {{'{'}}
         </div>
     </li>
     <li>
-        Delete the <code class="snippet">bootstrap</code> dependency from <code class="snippet">project.json</code>
+        Delete the <code class="snippet">bootstrap</code> dependency from <code class="snippet">package.json</code>
     </li>
     <li>
         Delete <code class="snippet">bootstrap</code> and <code class="snippet">bootstrap/dist/css/bootstrap.css</code> from
@@ -358,15 +358,8 @@ module.exports = (env) => {{'{'}}
         </ul>
     </li>
     <li>
-        Delete the <code class="snippet">app.component.css</code> file from <code class="snippet">ClientApp/app/components/app</code>
-    </li>
-    <li>
         Delete the contents of <code class="snippet">app.component.html</code> in <code class="snippet">ClientApp/app/components/app</code>,
         and set the contents to just <code class="snippet">&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>
-    </li>
-    <li>
-        Delete the <code class="snippet">styleUrls</code> setting in the <code class="snippet">@Component</code> metadata
-        attribute in <code class="snippet">ClientApp/app/components/app/app.component.ts</code>
     </li>
     <li>
         Delete the contents of <code class="snippet">home.component.html</code> in <code class="snippet">ClientApp/app/components/home</code>,
@@ -467,30 +460,25 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
         Install the <code class="snippet">npm</code> module: <code class="snippet">npm install --save @angular/material</code>
     </li>
     <li>
-        Add <code class="snippet">@angular/material</code> to the <code class="snippet">vendors</code> array in <code class="snippet">webpack.config.vendor.js</code>
+        Install the <code class="snippet">npm</code> module for Angular CDK: <code class="snippet">npm install --save @angular/cdk</code>
+    </li>
+    <li>
+        Add <code class="snippet">@angular/material</code> and <code class="snipopet">@angular/cdk</code> to the <code class="snippet">vendors</code> array in <code class="snippet">webpack.config.vendor.js</code>
     </li>
     <li>
         Add one of the pre-built material themes (<code class="snippet">'@angular/material/prebuilt-themes/deeppurple-amber.css'</code>)
         to the <code class="snippet">vendors</code> array in <code class="snippet">webpack.config.vendor.js</code>
     </li>
     <li>
-        Create a <code class="snippet">app.module.material.ts</code> file in the <code class="snippet">ClientApp/app</code>        directory
-    </li>
-    <li>
-        <code class="snippet">import</code> the <code class="snippet">AppMaterialModule</code> and add it to the <code class="snippet">imports</code>        array before <code class="snippet">RouterModule</code> in <code class="snippet">ClientApp/app/app.module.shared.ts</code>
-    </li>
-    <li>
-        <code class="snippet">import</code> the <code class="snippet">BrowserAnimationsModule</code> from <code class="snippet">'@angular/platform-browser/animations'</code>        and add it to the <code class="snippet">imports</code> array beneath <code class="snippet">BrowserModule</code>
-    </li>
-</ol>
-
-<div class="inline-card">
-    <md-card>
-        <md-card-header>
-            <md-card-title>ClientApp/app/app.module.material.ts</md-card-title>
-        </md-card-header>
-        <md-card-content>
-            <prism language="typescript" class="card-snippet">import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
+        Create a <code class="snippet">app.module.material.ts</code> file in the <code class="snippet">ClientApp/app</code> directory:
+        <div class="inline-card">
+            <md-card>
+                <md-card-header>
+                    <md-card-title>ClientApp/app/app.module.material.ts</md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <prism language="typescript" class="card-snippet">
+import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
 import {{ '{' }}
     FullscreenOverlayContainer,
     MdAutocompleteModule,
@@ -555,10 +543,17 @@ import {{ '{' }}
     ]
 {{ '}' }})
 export class AppMaterialModule {{ '{' }}{{ '}' }}</prism>
-        </md-card-content>
-    </md-card>
-</div>
-
+                </md-card-content>
+            </md-card>
+        </div>
+    </li>
+    <li>
+        <code class="snippet">import</code> the <code class="snippet">AppMaterialModule</code> and add it to the <code class="snippet">imports</code>        array before <code class="snippet">RouterModule</code> in <code class="snippet">ClientApp/app/app.module.shared.ts</code>
+    </li>
+    <li>
+        <code class="snippet">import</code> the <code class="snippet">BrowserAnimationsModule</code> from <code class="snippet">'@angular/platform-browser/animations'</code>        and add it to the <code class="snippet">imports</code> array beneath <code class="snippet">BrowserModule</code> in <code class="snippet">ClientApp/app/app.module.ts</code>
+    </li>
+</ol>
 <div class="inline-card">
     <md-card>
         <md-card-header>
