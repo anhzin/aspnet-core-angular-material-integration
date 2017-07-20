@@ -1,9 +1,12 @@
-<div [ngClass]="materialTheme" class="app-frame">
+<div [ngClass]="materialTheme.id" class="app-frame">
   <md-toolbar color="primary" class="fixed-toolbar">
     <button md-button (click)="sidenav.toggle()"><md-icon>menu</md-icon></button>
     <span class="toolbar-header">Angular Material Integration</span>
     <span class="example-spacer"></span>
-    <button md-button *ngFor="let theme of themes" (click)="themeService.setTheme(theme)">{{theme.display}}</button>
+    <button md-button [mdMenuTriggerFor]="themeMenu"><md-icon>color_lens</md-icon> Theme</button>
+    <md-menu #themeMenu="mdMenu" class="sticky-overlay">
+      <button md-menu-item *ngFor="let theme of themes" (click)="setTheme(theme)">{{theme.display}}</button>
+    </md-menu>
     <a md-icon-button href="https://github.com/JaimeStill/AspNetCoreMaterial" target="_blank"><md-icon svgIcon="github"></md-icon></a>
   </md-toolbar>
   <md-sidenav-container [ngClass]="materialTheme" class="mat-typography">
