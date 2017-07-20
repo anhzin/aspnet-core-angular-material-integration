@@ -2,15 +2,26 @@
 @import 'material-prism.scss';
 @include mat-core();
 
-$app-warn: mat-palette($mat-deep-orange);
-$default-theme: mat-dark-theme(mat-palette($mat-green), mat-palette($mat-red), $app-warn);
-@include angular-material-theme($default-theme);
+$green-app-primary: mat-palette($mat-green, A400);
+$green-app-accent: mat-palette($mat-light-blue, A400);
+$red-app-primary: mat-palette($mat-red);
+$red-app-accent: mat-palette($mat-blue);
+$red-app-warn: mat-palette($mat-deep-orange);
+$blue-app-primary: mat-palette($mat-light-blue, A400);
+$blue-app-accent: mat-palette($mat-yellow);
 
-html, body, app {
+$default-theme: mat-dark-theme(mat-palette($mat-green), mat-palette($mat-red));
+@include angular-material-theme($default-theme);
+html,
+body,
+app {
     overflow: hidden;
 }
 
-html, body, app, .app-frame {
+html,
+body,
+app,
+.app-frame {
     margin: 0;
     height: 100%;
 }
@@ -25,12 +36,12 @@ html, body, app, .app-frame {
     margin-top: 50px;
 }
 
-.mat-typography h1, 
-.mat-typography h2, 
-.mat-typography h3, 
-.mat-typography h4, 
-.mat-typography h5, 
-.mat-typography h6, 
+.mat-typography h1,
+.mat-typography h2,
+.mat-typography h3,
+.mat-typography h4,
+.mat-typography h5,
+.mat-typography h6,
 .mat-typography p,
 md-card.mat-card,
 p.mat-caption,
@@ -71,7 +82,8 @@ md-sidenav.mat-sidenav {
     padding-bottom: 64px;
 }
 
-md-sidenav.mat-sidenav, div.app-body {
+md-sidenav.mat-sidenav,
+div.app-body {
     overflow: auto;
 }
 
@@ -83,10 +95,8 @@ md-nav-list.mat-nav-list .mat-subheader {
 
 .green-app {
     background-color: black;
-    $green-app-primary: mat-palette($mat-green, A400);
-    $green-app-accent: mat-palette($mat-light-blue, A400);
     $green-dark: mat-dark-theme($green-app-primary, $green-app-accent);
-    @include angular-material-theme($green-dark);    
+    @include angular-material-theme($green-dark);
 }
 
 .green-app code.snippet,
@@ -100,9 +110,7 @@ md-nav-list.mat-nav-list .mat-subheader {
 
 .red-app {
     background-color: black;
-    $red-app-primary: mat-palette($mat-red);
-    $red-app-accent: mat-palette($mat-blue);
-    $red-dark: mat-dark-theme($red-app-primary, $red-app-accent, $app-warn);
+    $red-dark: mat-dark-theme($red-app-primary, $red-app-accent, $red-app-warn);
     @include angular-material-theme($red-dark);
 }
 
@@ -117,8 +125,6 @@ md-nav-list.mat-nav-list .mat-subheader {
 
 .blue-app {
     background-color: black;
-    $blue-app-primary: mat-palette($mat-light-blue, A400);
-    $blue-app-accent: mat-palette($mat-yellow);
     $blue-dark: mat-dark-theme($blue-app-primary, $blue-app-accent);
     @include angular-material-theme($blue-dark);
 }
@@ -134,4 +140,19 @@ md-nav-list.mat-nav-list .mat-subheader {
 
 div.cdk-overlay-container {
     background-color: transparent;
+}
+
+.example-container.green-app {
+    $example-green-dark: mat-dark-theme($green-app-primary, $green-app-accent);
+    @include angular-material-theme($example-green-dark);
+}
+
+.example-container.red-app {
+    $example-red-dark: mat-dark-theme($red-app-primary, $red-app-accent, $red-app-warn);
+    @include angular-material-theme($example-red-dark);
+}
+
+.example-container.blue-app {
+    $example-blue-dark: mat-dark-theme($blue-app-primary, $blue-app-accent);
+    @include angular-material-theme($example-blue-dark);
 }

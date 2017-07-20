@@ -12,15 +12,20 @@ import { ThemeService } from '../../services/theme.service';
     ]
 })
 export class DemoSidenavComponent implements OnInit {
-    materialTheme = 'green-app';
+    materialTheme: Theme;
     themes: Theme[] = new Array<Theme>();
-    constructor(private themeService: ThemeService) { }
+    constructor(private themeService: ThemeService) {
+        this.materialTheme = {
+            id: 'green-app',
+            display: 'Green'
+        };
+    }
 
     ngOnInit() {
         this.themes = this.themeService.getThemes();
 
         this.themeService.activeTheme.subscribe(theme => {
-            this.materialTheme = theme.id;
+            this.materialTheme = theme;
         });
     }
 
