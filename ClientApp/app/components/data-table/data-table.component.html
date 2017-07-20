@@ -52,6 +52,26 @@ export class AppMaterialModule {{'{'}}{{'}'}}
     With this infrastructure in place, <code class="snippet">MdTableModule</code> can be used. The demonstrations in this documentation use a modified infrastructure from the demonstrations shown on the <a class="link" href="https://material.angular.io/components/table/overview" target="_blank">Angular Material Docs</a> site. This infrastructure is demonstrated below.
 </p>
 <p>
+    Create a <code class="snippet">UserData</code> class in <code class="snippet">ClientApp/app/models/user.model.ts</code>:
+</p>
+<div class="inline-card">
+    <md-card>
+        <md-card-header>
+            <md-card-title><code class="snippet">user.model.ts</code></md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <prism language="typescript">
+export interface UserData {{'{'}}
+    id: string;
+    name: string;
+    progress: string;
+    color: string;
+{{'}'}}
+            </prism>
+        </md-card-content>
+    </md-card>
+</div>
+<p>
     Create a <code class="snippet">DatabaseService</code> class in <code class="snippet">ClientApp/app/services/database.service.ts</code>:
 </p>
 <div class="inline-card">
